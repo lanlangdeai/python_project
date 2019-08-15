@@ -1,0 +1,3616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/kzl_knight/article/details/89791866"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+        <meta name="csdn-baidu-search"  content='{"autorun":true,"install":true,"keyword":"【linux基础2】文件与权限 - kzl_knight的博客"}'>
+    
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>【linux基础2】文件与权限 - kzl_knight的博客 - CSDN博客</title>
+
+        
+                    <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-caa11f8119.min.css">
+            
+            <script type="application/ld+json">{"@context":"https:\/\/ziyuan.baidu.com\/contexts\/cambrian.jsonld","@id":"https:\/\/blog.csdn.net\/kzl_knight\/article\/details\/89791866","appid":"1563894916825412","title":"\u3010linux\u57fa\u78402\u3011\u6587\u4ef6\u4e0e\u6743\u9650 - kzl_knight\u7684\u535a\u5ba2","images":["https:\/\/img-blog.csdnimg.cn\/20190503214955300.png?x-oss-process=image\/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70"],"pubDate":"2019-06-26T21:10:23"}</script>
+        
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-9b39979775.min.css">
+        <script type="text/javascript">
+        var username = "kzl_knight";
+        var blog_address = "https://blog.csdn.net/kzl_knight";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "http://passport.csdn.net/account/login?from=https://blog.csdn.net/kzl_knight/article/details/89791866"
+        var blogUrl = "https://blog.csdn.net/";
+
+        var curSkin = "skin3-template";
+        // 第四范式所需数据
+        var articleTitles = "【linux基础2】文件与权限 - kzl_knight的博客";
+        
+        var nickName = "kzl_knight";
+        var isCorporate = false;
+        var subDomainBlogUrl = "https://blog.csdn.net/"
+        var digg_base_url = "https://blog.csdn.net/kzl_knight/phoenix/comment";
+        var articleDetailUrl = "https://blog.csdn.net/kzl_knight/article/details/89791866";
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+    <script src="//g.csdnimg.cn/??fixed-sidebar/1.1.3/fixed-sidebar.js,track/1.2.6/track.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body class="nodata " > 
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="kp_box_476" data-pid="476" data-track-view='{"mod":"kp_popu_476-923","con":",,"}' data-track-click='{"mod":"kp_popu_476-923","con":",,"}'><script src="//csdnimg.cn/public/common/indexSuperise/1.1.1/indexSuperise.js?20190111165312"></script><script>window.csdn.indexSuperise({smallMoveImg:'https://img-bss.csdn.net/1560915497802.png',bigMoveImg:'https://img-bss.csdn.net/1560915494375.png',link:'https://kunyu.csdn.net?p=476&a=923&c=437&k=&d=1&t=3&dest=https%3A%2F%2Fedu.csdn.net%2Ftopic%2Fai30%3Futm_source%3Dblogpopup',trackSuperId:476,smallMove:'notMove',trackSId:923});</script></div><link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript">
+	var NEWS_FEED = function(){}
+</script>
+
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/chart-3456820cac.css" />
+<div class="container clearfix" id="mainBox">
+			<div class="recommend-right">
+  <ul class="recommend-fixed-box">
+    
+  </ul>
+</div>	    <main>
+        <div class="blog-content-box">
+  <div class="article-header-box">
+    <div class="article-header">
+      <div class="article-title-box">
+        <span class="article-type type-1 float-left">原</span>        <h1 class="title-article">【linux基础2】文件与权限</h1>
+      </div>
+      <div class="article-info-box">
+        <div class="article-bar-top">
+                                                              <span class="time">2019年05月03日 22:05:54</span>
+          <a class="follow-nickName" href="https://me.csdn.net/kzl_knight" target="_blank">kzl_knight</a>
+          <span class="read-count">阅读数 1463</span>
+                  </div>
+        <div class="operating">
+                  </div>
+      </div>
+    </div>
+  </div>
+  <article class="baidu_pl">
+    <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod=popu_307 data-dsm="post">
+              <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-cd6c485e8b.css" />
+                              <div id="content_views" class="markdown_views prism-atom-one-dark">
+            <!-- flowchart 箭头图标 勿删 -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+            </svg>
+            <p></p><div class="toc"><h3>【linux基础2】文件与权限</h3><ul><li><a href="#1_linux_3" rel="nofollow">1 linux中的文件类型</a></li><li><a href="#2_16" rel="nofollow">2.组</a></li><li><a href="#3_34" rel="nofollow">3.用户</a></li><ul><li><a href="#31__useradd_36" rel="nofollow">3.1 创建用户 useradd</a></li><li><a href="#32__userdel_49" rel="nofollow">3.2 删除用户 userdel</a></li><li><a href="#33__passwd_56" rel="nofollow">3.3 设置密码 passwd</a></li><li><a href="#34__61" rel="nofollow">3.4 切换用户</a></li></ul><li><a href="#4_67" rel="nofollow">4.权限与归属</a></li><ul><li><a href="#41__68" rel="nofollow">4.1 权限种类</a></li><li><a href="#42__74" rel="nofollow">4.2 文件归属</a></li><ul><li><a href="#43__chown_84" rel="nofollow">4.3 更改文件所有者 chown</a></li></ul><li><a href="#44__chgrp_91" rel="nofollow">4.4 更改文件所属组 chgrp</a></li><li><a href="#45___chmod_98" rel="nofollow">4.5  更改权限 chmod</a></li><ul><li><a href="#451__ugorwx_99" rel="nofollow">4.5.1 第一种方式 ugo+-rwx</a></li><li><a href="#452__421_117" rel="nofollow">4.5.2 第二种方式 4、2、1</a></li></ul></ul></ul></div><p></p>
+<h1><a id="1_linux_3"></a>1 linux中的文件类型</h1>
+
+<table>
+<thead>
+<tr>
+<th align="left">标识</th>
+<th align="left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-</td>
+<td align="left">普通文件</td>
+</tr>
+<tr>
+<td align="left">d</td>
+<td align="left">文件夹</td>
+</tr>
+<tr>
+<td align="left">l</td>
+<td align="left">软链接或硬链接</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td align="left">套接字</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">块设备</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td align="left">字符设备</td>
+</tr>
+<tr>
+<td align="left">p</td>
+<td align="left">管道文件</td>
+</tr>
+</tbody>
+</table><h1><a id="2_16"></a>2.组</h1>
+
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">groupadd 【组名】</td>
+<td align="left">添加用户组</td>
+</tr>
+<tr>
+<td align="left">groupdel 【组名】</td>
+<td align="left">删除用户组</td>
+</tr>
+<tr>
+<td align="left">groups</td>
+<td align="left">查看已经登录的组与用户</td>
+</tr>
+<tr>
+<td align="left">groups 【用户名】</td>
+<td align="left">查看用户所在组</td>
+</tr>
+<tr>
+<td align="left">cat /etc/group</td>
+<td align="left">查看所有组</td>
+</tr>
+</tbody>
+</table><p>例如：</p>
+<p>创建group1、group2、group3</p>
+<blockquote>
+<p>groupadd group1<br>
+groupadd group2<br>
+groupadd group3</p>
+</blockquote>
+<p>删除group3</p>
+<blockquote>
+<p>groupdel group3</p>
+</blockquote>
+<h1><a id="3_34"></a>3.用户</h1>
+<h2><a id="31__useradd_36"></a>3.1 创建用户 useradd</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-g</td>
+<td align="left">指定用户属于哪个组</td>
+</tr>
+<tr>
+<td align="left">-m</td>
+<td align="left">创建宿主目录</td>
+</tr>
+</tbody>
+</table><p>例如：<br>
+创建名为user1的用户，创建宿主目录，隶属于group1组</p>
+<blockquote>
+<p>useradd -m -g group1 user1</p>
+</blockquote>
+<p>如果不指明创建的用户属于哪个组，默认会创建一个和用户名一样的组</p>
+<blockquote>
+<p>useradd -m user2</p>
+</blockquote>
+<h2><a id="32__userdel_49"></a>3.2 删除用户 userdel</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-r</td>
+<td align="left">删除宿主目录</td>
+</tr>
+</tbody>
+</table><p>例如：</p>
+<blockquote>
+<p>userdel -r user1</p>
+</blockquote>
+<h2><a id="33__passwd_56"></a>3.3 设置密码 passwd</h2>
+<p>例如：<br>
+为新创建的user2用户设置密码</p>
+<blockquote>
+<p>passwd user2<br>
+输入密码即可</p>
+</blockquote>
+<h2><a id="34__61"></a>3.4 切换用户</h2>
+<p>格式：</p>
+<ul>
+<li>su + 【用户名】</li>
+<li>然后输入密码</li>
+</ul>
+<h1><a id="4_67"></a>4.权限与归属</h1>
+<h2><a id="41__68"></a>4.1 权限种类</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">字符表示</th>
+<th align="left">英文缩写</th>
+<th align="left">数字表示</th>
+<th align="left">对文件的权限</th>
+<th align="left">对文件夹的权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">r</td>
+<td align="left">read</td>
+<td align="left">4</td>
+<td align="left">可查看文件内容</td>
+<td align="left">可查看文件夹中的内容</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">write</td>
+<td align="left">2</td>
+<td align="left">可修改文件</td>
+<td align="left">可创建、修改、删除文件夹中的文件</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="left">execute</td>
+<td align="left">1</td>
+<td align="left">可以执行</td>
+<td align="left">可以进入</td>
+</tr>
+</tbody>
+</table><h2><a id="42__74"></a>4.2 文件归属</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">owner</td>
+<td align="left">所有者</td>
+</tr>
+<tr>
+<td align="left">group</td>
+<td align="left">所属组</td>
+</tr>
+<tr>
+<td align="left">other</td>
+<td align="left">其他人</td>
+</tr>
+</tbody>
+</table><p>例如通过ls -lh查看</p>
+<p><img src="https://img-blog.csdnimg.cn/20190503214955300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3><a id="43__chown_84"></a>4.3 更改文件所有者 chown</h3>
+<p>格式：</p>
+<ul>
+<li>chown 【用户名】【文件或文件夹】</li>
+</ul>
+<p>例如：更改文件夹a的所有者为user1</p>
+<blockquote>
+<p>chown user1 a</p>
+</blockquote>
+<h2><a id="44__chgrp_91"></a>4.4 更改文件所属组 chgrp</h2>
+<p>格式：</p>
+<ul>
+<li>chgrp 【组名】 【文件或文件夹】</li>
+</ul>
+<p>例如：更改文件夹a的所有者为group1</p>
+<blockquote>
+<p>chgrp group1 a</p>
+</blockquote>
+<h2><a id="45___chmod_98"></a>4.5  更改权限 chmod</h2>
+<h3><a id="451__ugorwx_99"></a>4.5.1 第一种方式 ugo±rwx</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">u</td>
+<td align="left">user</td>
+</tr>
+<tr>
+<td align="left">g</td>
+<td align="left">group</td>
+</tr>
+<tr>
+<td align="left">o</td>
+<td align="left">other</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">添加权限</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">减少权限</td>
+</tr>
+</tbody>
+</table><p>格式：</p>
+<ul>
+<li>chmod 【u|g|o】±【r|w|x】 【文件或文件夹】</li>
+</ul>
+<p>例如：<br>
+目录a添加所属组的可执行权限</p>
+<blockquote>
+<p>chmod g+x a</p>
+</blockquote>
+<p>目录a减少所属组的可执行权限</p>
+<blockquote>
+<p>chmod o-x a</p>
+</blockquote>
+<h3><a id="452__421_117"></a>4.5.2 第二种方式 4、2、1</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">（- -e）execute</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">（- w -）write</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">（r - -）read</td>
+</tr>
+<tr>
+<td align="left">——————</td>
+<td align="left">——————</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">（- w x）write+execute</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">（r - e）read+execute</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">（r w -）read+write</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">（r w e）read+write+execute</td>
+</tr>
+</tbody>
+</table><p>例如：<br>
+设置文件a</p>
+<ul>
+<li>所有者可读可写可执行</li>
+<li>所属组可读可写</li>
+<li>其他人可读</li>
+</ul>
+<blockquote>
+<p>chmod 764 a</p>
+</blockquote>
+<hr>
+<p><em>联系方式：164645621@qq.com</em></p>
+
+          </div>
+          <link href="https://csdnimg.cn/release/phoenix/mdeditor/markdown_views-e44c3c0e64.css" rel="stylesheet">
+                  </div>
+  </article>
+</div>
+
+<div class="hide-article-box hide-article-pos text-center">
+      <a class="" id="btn-readmore" data-track-view='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/89791866,"}' data-track-click='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/89791866,"}'>
+    展开阅读全文
+    <svg class="icon chevrondown" aria-hidden="true">
+        <use xlink:href="#csdnc-chevrondown"></use>
+      </svg>
+    </a>
+    </div>
+<script>
+  $(".MathJax").remove();
+  if ($('div.markdown_views pre.prettyprint code.hljs').length > 0) {
+    $('div.markdown_views')[0].className = 'markdown_views';
+  }
+</script>
+        <div id="dmp_ad_58"><div id="kp_box_58" data-pid="58" data-track-view='{"mod":"kp_popu_58-402","con":",,"}' data-track-click='{"mod":"kp_popu_58-402","con":",,"}'><div style="width:100%;background:#fff;border:3px solid #fff;padding:16px 0px 0px 0px;">
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<div id="three_ad1" class="mediav_ad" ></div>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 100,
+                showid : 'ztvJV8',
+                placeholderId: "three_ad1",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 0,
+                    imageWidth: 90,
+                    imageHeight: 68,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft YaHei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 20,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script>
+</div></div></div>        <a id="commentBox"></a>
+<div class="comment-box">
+	
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="javascript:void(0);" target="_blank">
+				<img class="show_loginbox" src="//g.csdnimg.cn/static/user-img/anonymous-User-img.png">
+			</a>
+		</div>
+		<form id="commentform">
+			<input type="hidden" id="comment_replyId">
+			<textarea class="comment-content" name="comment_content" id="comment_content" placeholder="想对作者说点什么"></textarea>
+			<div class="opt-box"> <!-- d-flex -->
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="89791866">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div style="display: none;" class="csdn-tracking-statistics tracking-click" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="txt-selected text-truncate">添加代码片</div>
+					<svg class="icon d-block" aria-hidden="true">
+						<use xlink:href="#csdnc-triangledown"></use>
+					</svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>  
+				<div class="right-box">
+					<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+					<input type="button" class="btn btn-sm btn-cancel d-none" value="取消回复">
+					<input type="submit" class="btn btn-sm btn-red btn-comment" value="发表评论">
+				</div>
+			</div>
+		</form>
+	</div>
+
+		<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div>
+		</div>
+	</div>
+</div>
+        <div class="recommend-box">
+                            <div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_40545512/article/details/80723555,BlogCommendFromQuerySearch_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_40545512/article/details/80723555" target="_blank" title="linux基础测试题二">
+		<h4 class="text-truncate oneline">
+				<em>linux</em><em>基础</em>测试题二		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					652</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_40545512/article/details/80723555" target="_blank" title="linux基础测试题二">
+				<span class="desc oneline">                基础测试题一选择题1、某文件的组外成员的权限为只读；所有者有全部权限；组内的权限为读与写，则该文件的权限为。A467    B674   C476     D764 2...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_40545512">来自：	<span class="blog_title"> weixin_40545512的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_37653144/article/details/76601952,BlogCommendFromQuerySearch_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_37653144/article/details/76601952" target="_blank" title="《鸟哥的Linux私房菜 基础学习篇（第三版）》习题与解析（二）">
+		<h4 class="text-truncate oneline">
+				《鸟哥的<em>Linux</em>私房菜 <em>基础</em>学习篇（第三版）》习题与解析（二）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2313</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_37653144/article/details/76601952" target="_blank" title="《鸟哥的Linux私房菜 基础学习篇（第三版）》习题与解析（二）">
+				<span class="desc oneline">第二部分Linux文件、目录与磁盘格式第6章Linux的文件权限与目录配置·请说明/bin与/usr/bin目录所放置的执行文件有何不同之处。答：/bin主要放置在开机时，以及进入单用户维护模式后还能...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_37653144">来自：	<span class="blog_title"> 程序人生</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_33775402/article/details/73695608,BlogCommendFromQuerySearch_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_33775402/article/details/73695608" target="_blank" title="Linux学习之权限管理命令&amp;&amp;深入理解rwx权限">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>学习之<em>权限</em>管理命令&amp;&amp;深入理解rwx<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					538</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_33775402/article/details/73695608" target="_blank" title="Linux学习之权限管理命令&amp;&amp;深入理解rwx权限">
+				<span class="desc oneline">查看更多文章欢迎访问我的主页：http://www.breeziness.cn/一、更改文件/目录的权限命令名称：chmod命令英文原意：changethepermissionsmodeofafile...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_33775402">来自：	<span class="blog_title"> 小风code</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_35131811/article/details/81870636,BlogCommendFromQuerySearch_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_35131811/article/details/81870636" target="_blank" title="【转载】Linux 操作系统的权限为什么是1,2,4 而不是 1,2,3?如何用二进制来做权限管理">
+		<h4 class="text-truncate oneline">
+				【转载】<em>Linux</em> 操作系统的<em>权限</em>为什么是1,2,4 而不是 1,2,3?如何用二进制来做<em>权限</em>管理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					442</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_35131811/article/details/81870636" target="_blank" title="【转载】Linux 操作系统的权限为什么是1,2,4 而不是 1,2,3?如何用二进制来做权限管理">
+				<span class="desc oneline">1.二进制做权限的优点大家都知道，在Linux操作系统中，x-可执行权限，w-可写权限，r-可读权限。其权限值分别是1，2，4，但是有没有想过为什么是1，2，4而不是1，2，3呢？OK，现在是不是发现...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_35131811">来自：	<span class="blog_title"> 湖面上的一叶扁舟的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_59" data-pid="59" data-track-view='{"mod":"kp_popu_59-861","con":",,Linux"}' data-track-click='{"mod":"kp_popu_59-861","con":",,Linux"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/110?positionId=59&queryWord=Linux" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Allenlzcoder/article/details/78761944,BlogCommendFromQuerySearch_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Allenlzcoder/article/details/78761944" target="_blank" title="linux 权限rwx(4,2,1)详细说明">
+		<h4 class="text-truncate oneline">
+				<em>linux</em> <em>权限</em>rwx(4,2,1)详细说明		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					852</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Allenlzcoder/article/details/78761944" target="_blank" title="linux 权限rwx(4,2,1)详细说明">
+				<span class="desc oneline">linux权限rwx(4,2,1)详细说明</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Allenlzcoder">来自：	<span class="blog_title"> Allenlzcoder的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_39719589/article/details/81535798,BlogCommendFromQuerySearch_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_39719589/article/details/81535798" target="_blank" title="linux系统 用户身份与文件权限（二）">
+		<h4 class="text-truncate oneline">
+				<em>linux</em>系统 用户身份与<em>文件</em><em>权限</em>（二）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					247</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_39719589/article/details/81535798" target="_blank" title="linux系统 用户身份与文件权限（二）">
+				<span class="desc oneline">0.文件的权限与归属  尽管在Linux系统中一切都是文件，但是每个文件的类型不尽相同，因此Linux系统使用了不同的字符来加以区分，常见的字符如下所示。			 -：普通文件			d：目录文件			l...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_39719589">来自：	<span class="blog_title"> 羽毛大大的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u012719153/article/details/44776707,BlogCommendFromQuerySearch_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u012719153/article/details/44776707" target="_blank" title="Linux中文件权限标识详解">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>中<em>文件</em><em>权限</em>标识详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-31</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3329</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u012719153/article/details/44776707" target="_blank" title="Linux中文件权限标识详解">
+				<span class="desc oneline">当你在linux下用命令ll或者ls-la的时候会看到类似drwxr-xr-x这样标识，具体代表什么意思呢，下面我详细说说，不清楚的一看就会明白。   这段标识总长度为10位（10个‘-’），第一位表...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u012719153">来自：	<span class="blog_title"> 1024明</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/edtwar/article/details/78429322,BlogCommendFromQuerySearch_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/edtwar/article/details/78429322" target="_blank" title="实验楼 Linux 基础入门 用户及文件权限管理 作业笔记">
+		<h4 class="text-truncate oneline">
+				实验楼 <em>Linux</em> <em>基础</em>入门 用户及<em>文件</em><em>权限</em>管理 作业笔记		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					338</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/edtwar/article/details/78429322" target="_blank" title="实验楼 Linux 基础入门 用户及文件权限管理 作业笔记">
+				<span class="desc oneline">个人答案,仅供参考     添加一个用户 loutest，使用 sudo 创建文件 /opt/forloutest，设置成用户 loutest 可以读写。截图并把操作过程写入实验报告。     提示：...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/edtwar">来自：	<span class="blog_title"> 日光之下的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014796999/article/details/50248329,BlogCommendFromQuerySearch_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u014796999/article/details/50248329" target="_blank" title="linux 权限rwxrwxrwx（4 2 1）详细说明">
+		<h4 class="text-truncate oneline">
+				<em>linux</em> <em>权限</em>rwxrwxrwx（4 2 1）详细说明		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u014796999/article/details/50248329" target="_blank" title="linux 权限rwxrwxrwx（4 2 1）详细说明">
+				<span class="desc oneline">三个三个一组看：1.第一段表示文件所有者对此文件的操作权限2.第二段表示文件所有者所在组对些文件的操作权限3.第三段表示除上述两种外的任何用户/组对此文件的操作权限x执行：1r写入：2w读取：4加起来...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u014796999">来自：	<span class="blog_title"> u014796999的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_60" data-pid="60" data-track-view='{"mod":"kp_popu_60-43","con":",,"}' data-track-click='{"mod":"kp_popu_60-43","con":",,"}'><div id="three_ad8" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 84,
+                showid : 'Afihld',
+                placeholderId: "three_ad8",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zhouzhenhe2008/article/details/40406097,BlogCommendFromQuerySearch_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zhouzhenhe2008/article/details/40406097" target="_blank" title="[Linux实用命令四]文件权限详解">
+		<h4 class="text-truncate oneline">
+				[<em>Linux</em>实用命令四]<em>文件</em><em>权限</em>详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					806</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zhouzhenhe2008/article/details/40406097" target="_blank" title="[Linux实用命令四]文件权限详解">
+				<span class="desc oneline">http://www.qingsword.com/qing/883.html</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zhouzhenhe2008">来自：	<span class="blog_title"> 烟花易冷</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/luolunz/article/details/7463592,BlogCommendFromQuerySearch_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/luolunz/article/details/7463592" target="_blank" title="Linux的用户/文件权限问题">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>的用户/<em>文件</em><em>权限</em>问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3176</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/luolunz/article/details/7463592" target="_blank" title="Linux的用户/文件权限问题">
+				<span class="desc oneline">Linux是一种多用户操作系统，为了确保在多用户环境下的系统运转的安全性，Linux使用用户权限机制对系统进行管理，这种管理主要是通过文件管理机制完成的。Linux对每个文件设置一个16位数字来完成对...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/luolunz">来自：	<span class="blog_title"> IT骆驼翔子</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+			<div class="recommend-item-box blog-expert-recommend-box">
+			<div class="d-flex">
+				<div class="blog-expert-recommend">
+					<div class="blog-expert">
+						<div class="blog-expert-flexbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/yygydjkthh/article/details/20289121,BlogCommendFromQuerySearch_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/yygydjkthh/article/details/20289121" target="_blank" title="linux下对一个文件设置多个组的权限(setfacl getfacl)方法--管理配置">
+		<h4 class="text-truncate oneline">
+				<em>linux</em>下对一个<em>文件</em>设置多个组的<em>权限</em>(setfacl getfacl)方法--管理配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6459</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/yygydjkthh/article/details/20289121" target="_blank" title="linux下对一个文件设置多个组的权限(setfacl getfacl)方法--管理配置">
+				<span class="desc oneline">//要设置的文件的信息:v0id6@v0id6-eof~$lstestacl -la-rw-rw-r--+1v0id6v0id69 3月 214:21testacl//获得文件的访问控制列表v0id6...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/yygydjkthh">来自：	<span class="blog_title"> 狂客队长</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sgmcumt/article/details/79131435,BlogCommendFromQuerySearch_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sgmcumt/article/details/79131435" target="_blank" title="Linux文件操作详解（二）--文件/文件夹的权限更改（chmod命令）">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em><em>文件</em>操作详解（二）--<em>文件</em>/<em>文件</em>夹的<em>权限</em>更改（chmod命令）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					618</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sgmcumt/article/details/79131435" target="_blank" title="Linux文件操作详解（二）--文件/文件夹的权限更改（chmod命令）">
+				<span class="desc oneline">一chmod命令用户可以使用chmod指令去变更文件与目录的权限，设置方式采用文字或数字代号皆可。符号连接的权限无法变更，如果用户对符号连接修改权限，其改变会作用在被连接的原始文件。语法：chmod[...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sgmcumt">来自：	<span class="blog_title"> sgmcumt的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_39209728/article/details/79729885,BlogCommendFromQuerySearch_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_39209728/article/details/79729885" target="_blank" title="Linux中drwxr-xr-x.的意思和权限">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>中drwxr-xr-x.的意思和<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3527</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_39209728/article/details/79729885" target="_blank" title="Linux中drwxr-xr-x.的意思和权限">
+				<span class="desc oneline">读(read)，写(write)，执行r(recute)简写即为(r,w,x),亦可用数字来(4,2,1)表示举例：如果某文件权限为7则代表可读、可写、可执行(4+2+1).若权限为6(4+2)则代表...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_39209728">来自：	<span class="blog_title"> weixin_39209728的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_61" data-pid="61" data-track-view='{"mod":"kp_popu_61-557","con":",,"}' data-track-click='{"mod":"kp_popu_61-557","con":",,"}'><div id="three_ad13" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'GNKXx7',
+                placeholderId: "three_ad13",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_34124060/article/details/79255390,BlogCommendFromQuerySearch_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_34124060/article/details/79255390" target="_blank" title="linux基础--文件的属性与权限">
+		<h4 class="text-truncate oneline">
+				<em>linux</em><em>基础</em>--<em>文件</em>的属性与<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					233</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_34124060/article/details/79255390" target="_blank" title="linux基础--文件的属性与权限">
+				<span class="desc oneline">linux文件属性在linux系统下执行“ls-al”时，会看到下面的内容:ls是list的意思，而参数”-al”则表示列出所有的文件详细的权限与属性上图中共有9列，每列都有不同的含义，分别为1.文件...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_34124060">来自：	<span class="blog_title"> qq_34124060的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/followMyInclinations/article/details/72123429,BlogCommendFromQuerySearch_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/followMyInclinations/article/details/72123429" target="_blank" title="Linux 操作系统的权限为什么是1,2,4 而不是 1,2,3?如何用二进制来做权限管理">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em> 操作系统的<em>权限</em>为什么是1,2,4 而不是 1,2,3?如何用二进制来做<em>权限</em>管理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2275</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/followMyInclinations/article/details/72123429" target="_blank" title="Linux 操作系统的权限为什么是1,2,4 而不是 1,2,3?如何用二进制来做权限管理">
+				<span class="desc oneline">1.二进制做权限的优点大家都知道，在Linux操作系统中，x-可执行权限，w-可写权限，r-可读权限。其权限值分别是1，2，4，但是有没有想过为什么是1，2，4而不是1，2，3呢？OK，现在是不是发现...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/followMyInclinations">来自：	<span class="blog_title"> followMyInclinations的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sdz20172133/article/details/80638484,BlogCommendFromQuerySearch_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sdz20172133/article/details/80638484" target="_blank" title="“Linux 基础入门（新版）”实验报告 Linux 目录结构及文件基本操作">
+		<h4 class="text-truncate oneline">
+				“<em>Linux</em> <em>基础</em>入门（新版）”实验报告 <em>Linux</em> 目录结构及<em>文件</em>基本操作		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					270</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sdz20172133/article/details/80638484" target="_blank" title="“Linux 基础入门（新版）”实验报告 Linux 目录结构及文件基本操作">
+				<span class="desc oneline">我的实验楼报告https://www.shiyanlou.com/courses/reports/1340130“Linux基础入门（新版）”实验报告Linux目录结构及文件基本操作Linux目录结构...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sdz20172133">来自：	<span class="blog_title"> pxlsdz的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq15577969/article/details/80064938,BlogCommendFromQuerySearch_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq15577969/article/details/80064938" target="_blank" title="Linux使用二进制设置文件权限">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>使用二进制设置<em>文件</em><em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-24</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					734</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq15577969/article/details/80064938" target="_blank" title="Linux使用二进制设置文件权限">
+				<span class="desc oneline">一、科普一下二进制知识二进制数据是用0和1两个数码来表示的数。它的基数为2，进位规则是“逢二进一”。二进制是世界上第一台计算机上用的算法，最古老的计算机里有一个个灯泡，当运算的时候，比如要表达“一”，...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq15577969">来自：	<span class="blog_title"> 神码 Say：投资自己，才能逆袭未来！</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wangbran/article/details/81053531,BlogCommendFromQuerySearch_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wangbran/article/details/81053531" target="_blank" title="Linux文件的各种权限问题">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em><em>文件</em>的各种<em>权限</em>问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					281</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wangbran/article/details/81053531" target="_blank" title="Linux文件的各种权限问题">
+				<span class="desc oneline">我的机器下除了root用户外还有两个可登录用户rambo和rmb1.对目录只有x权限是怎么一种体验做的第一个实验是:目录只有x权限，没有r权限的情况是怎么一回事？（换句话说是怎么一种情景）因为/tmp...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wangbran">来自：	<span class="blog_title"> wangbran的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_62" data-pid="62" data-track-view='{"mod":"kp_popu_62-556","con":",,"}' data-track-click='{"mod":"kp_popu_62-556","con":",,"}'><div id="three_ad18" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'Afihld',
+                placeholderId: "three_ad18",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+	<div class="recommend-item-box  recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/javajeep/10242145,BlogCommendFromQuerySearch_19"}'>
+		<a href="https://download.csdn.net/download/javajeep/10242145" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>Linux</em><em>基础</em>及应用教程（基于CentOS7 第2版）.pdf					</h4>
+					<span class="data float-right">02-06</span>
+				</div>
+				<div class="desc oneline">
+						本书以 CentOS 7 为蓝本，分 3 篇介绍了Linux操作系统的使用和配置。操作基础篇介绍了Linux的基础知识、Linux系统的安装、Shell和字符操作界面的使用；系统与安全篇依次介绍了账户管理、权限管理、进程管理、存储管理、网...				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/houhj168/article/details/80436124,BlogCommendFromQuerySearch_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/houhj168/article/details/80436124" target="_blank" title="Linux中drwxr-xr-x.的意思和文件权限详解">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>中drwxr-xr-x.的意思和<em>文件</em><em>权限</em>详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-24</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1753</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/houhj168/article/details/80436124" target="_blank" title="Linux中drwxr-xr-x.的意思和文件权限详解">
+				<span class="desc oneline">读(read)，写(write)，执行r(recute)简写即为(r,w,x),亦可用数字来(4,2,1)表示举例：如果某文件权限为7则代表可读、可写、可执行(4+2+1).若权限为6(4+2)则代表...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/houhj168">来自：	<span class="blog_title"> houhj168的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/niu91/article/details/18712153,BlogCommendFromQuerySearch_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/niu91/article/details/18712153" target="_blank" title="Linux的文件权限">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>的<em>文件</em><em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2831</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/niu91/article/details/18712153" target="_blank" title="Linux的文件权限">
+				<span class="desc oneline">Linux将文件存取访问的身份分为3个类别：owner、group、others。3种身份各有read、write、execute等权限。brw-r--r--1unixguystaff64,64Jan...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/niu91">来自：	<span class="blog_title"> 不才的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tojohnonly/article/details/78682193,BlogCommendFromQuerySearch_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/tojohnonly/article/details/78682193" target="_blank" title="Linux 文件权限体系详解">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em> <em>文件</em><em>权限</em>体系详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1831</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/tojohnonly/article/details/78682193" target="_blank" title="Linux 文件权限体系详解">
+				<span class="desc oneline">1.概述Linux系统中的目录和文件的访问身份分为user,group,others分别简写为u,g,o;user是文件的所有者;group是文件所有者所在组的其他成员;others就是不在所有者的所...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/tojohnonly">来自：	<span class="blog_title"> EnskDeCode</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/youmatterhsp/article/details/79796195,BlogCommendFromQuerySearch_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/youmatterhsp/article/details/79796195" target="_blank" title="linux基础命令练习题">
+		<h4 class="text-truncate oneline">
+				<em>linux</em><em>基础</em>命令练习题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2572</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/youmatterhsp/article/details/79796195" target="_blank" title="linux基础命令练习题">
+				<span class="desc oneline">2、如何通过命令行重启linux操作系统？shutdown -r now |reboot |init 6  3、如何在命令行中快速删除光标前的内容？ctrl + uctrl + k （删除光标之后的内...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/youmatterhsp">来自：	<span class="blog_title"> 韩帅平的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_63" data-pid="63" data-track-view='{"mod":"kp_popu_63-555","con":",,"}' data-track-click='{"mod":"kp_popu_63-555","con":",,"}'><div id="three_ad23" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'GNKXx7',
+                placeholderId: "three_ad23",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lkxiaolou/article/details/38266059,BlogCommendFromQuerySearch_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lkxiaolou/article/details/38266059" target="_blank" title="Linux的文件权限设置为什么可以使用421">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>的<em>文件</em><em>权限</em>设置为什么可以使用421		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3597</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lkxiaolou/article/details/38266059" target="_blank" title="Linux的文件权限设置为什么可以使用421">
+				<span class="desc oneline">Linux的文件权限设置为什么可以使用421</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lkxiaolou">来自：	<span class="blog_title"> lk小楼</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/yhy489275918/article/details/85720796,BlogCommendFromQuerySearch_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/yhy489275918/article/details/85720796" target="_blank" title="Linux创建文件和目录的权限">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>创建<em>文件</em>和目录的<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-03</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					423</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/yhy489275918/article/details/85720796" target="_blank" title="Linux创建文件和目录的权限">
+				<span class="desc oneline">在Linux宏，一位用户创建文件和目录时，所具有的权限都是一样的，创建后可以使用chmod进行相应的修改权限掩码的作用就是规范初创文件和目录时的权限设置。设掩码为abc则某用户新建普通文件的权限为(7...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/yhy489275918">来自：	<span class="blog_title"> 一点点</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u010554294/article/details/88996397,BlogCommendFromQuerySearch_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u010554294/article/details/88996397" target="_blank" title="linux下如何实现不同的用户对同一文件都有写权限">
+		<h4 class="text-truncate oneline">
+				<em>linux</em>下如何实现不同的用户对同一<em>文件</em>都有写<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-03</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					251</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u010554294/article/details/88996397" target="_blank" title="linux下如何实现不同的用户对同一文件都有写权限">
+				<span class="desc oneline">linux下如何实现不同的用户对同一文件都有写权限问题产生原因：用户在创建文件时候，其创建的文件的属主和属组都是用户本身，所以让组具有写权限并不意味着其他用户具有写权限解决方案：给共同访问的目录添加S...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u010554294">来自：	<span class="blog_title"> u010554294的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xuqi7/article/details/51069455,BlogCommendFromQuerySearch_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xuqi7/article/details/51069455" target="_blank" title="Linux chmod 修改多个文件权限">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em> chmod 修改多个<em>文件</em><em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1366</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xuqi7/article/details/51069455" target="_blank" title="Linux chmod 修改多个文件权限">
+				<span class="desc oneline">linux下chmod可以修改文件权限，数字模式比较方便比如chmod755a如果同时给多个文件或者文件夹赋予相同权限，可以：chmod755abcd以空格分开即可——————————————————...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xuqi7">来自：	<span class="blog_title"> xuqi7</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Wyxtnbp/article/details/78339028,BlogCommendFromQuerySearch_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Wyxtnbp/article/details/78339028" target="_blank" title="Linux 基础命令（四）—— 文件的权限和访问控制列表(ACL）">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em> <em>基础</em>命令（四）—— <em>文件</em>的<em>权限</em>和访问控制列表(ACL）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3985</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Wyxtnbp/article/details/78339028" target="_blank" title="Linux 基础命令（四）—— 文件的权限和访问控制列表(ACL）">
+				<span class="desc oneline">Linux基础命令（四）——文件的权限和访问控制列表(ACL） PublishedOnJuly24,2017前言  文件的权限以及访问控制列表贯穿在整个的Linux使用过程中。我们知道，在Linux中...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Wyxtnbp">来自：	<span class="blog_title"> Wyxtnbp的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_64" data-pid="64" data-track-view='{"mod":"kp_popu_64-1251","con":",,"}' data-track-click='{"mod":"kp_popu_64-1251","con":",,"}'><!-- T28 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T28_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T28  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T28_render", "T28");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/include666/article/details/83006529,BlogCommendFromQuerySearch_31"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/include666/article/details/83006529" target="_blank" title="Linux文件系统作业——2">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em><em>文件</em>系统作业——2		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					186</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/include666/article/details/83006529" target="_blank" title="Linux文件系统作业——2">
+				<span class="desc oneline">题目如下：v1.创建新文件，该文件具有用户读写权限。v2.采用dup/dup2/fcntl复制一个新的文件描述符，通过新文件描述符向文件写入“class_name”字符串；v3.通过原有的文件描述符读...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/include666">来自：	<span class="blog_title"> include666的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/huxinguang_ios/article/details/81026811,BlogCommendFromQuerySearch_32"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/huxinguang_ios/article/details/81026811" target="_blank" title="Linux 查看文件权限命令ls -l 输出信息每列所代表的含义">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em> 查看<em>文件</em><em>权限</em>命令ls -l 输出信息每列所代表的含义		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-13</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2196</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/huxinguang_ios/article/details/81026811" target="_blank" title="Linux 查看文件权限命令ls -l 输出信息每列所代表的含义">
+				<span class="desc oneline"></span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/huxinguang_ios">来自：	<span class="blog_title"> huxinguang的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36747237/article/details/80468191,BlogCommendFromQuerySearch_33"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_36747237/article/details/80468191" target="_blank" title="Linux下的文件权限管理">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>下的<em>文件</em><em>权限</em>管理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-27</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					629</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_36747237/article/details/80468191" target="_blank" title="Linux下的文件权限管理">
+				<span class="desc oneline">1.setfacl–设置文件执行列表setfacl-m,–modify=aclmodifythecurrentACL(s)offile(s)-M,–modify-file=filereadACLent...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_36747237">来自：	<span class="blog_title"> Vincent's tech blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Dante_003/article/details/80008977,BlogCommendFromQuerySearch_34"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Dante_003/article/details/80008977" target="_blank" title="linux修改文件系统权限">
+		<h4 class="text-truncate oneline">
+				<em>linux</em>修改<em>文件</em>系统<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-19</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					835</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Dante_003/article/details/80008977" target="_blank" title="linux修改文件系统权限">
+				<span class="desc oneline">chmod令用来变更文件或目录的权限。在UNIX系统家族里，文件或目录权限的控制分别以读取、写入、执行3种一般权限来区分，另有3种特殊权限可供运用。用户可以使用chmod指令去变更文件与目录的权限，设...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Dante_003">来自：	<span class="blog_title"> 敲码的汉子</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_36511527/article/details/81874565,BlogCommendFromQuerySearch_35"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_36511527/article/details/81874565" target="_blank" title="NFS文件挂载权限">
+		<h4 class="text-truncate oneline">
+				NFS<em>文件</em>挂载<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1700</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_36511527/article/details/81874565" target="_blank" title="NFS文件挂载权限">
+				<span class="desc oneline">控制全站写入权限（防止任意执行漏洞造成较大影响）：假如NFS服务器的地址是：127.0.0.1NFS的目录是：/home/web/we7nginx的root目录为：/www/we7----------...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_36511527">来自：	<span class="blog_title"> 啊鹏的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_65" data-pid="65" data-track-view='{"mod":"kp_popu_65-1252","con":",,"}' data-track-click='{"mod":"kp_popu_65-1252","con":",,"}'><!-- T33 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T33_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T33  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T33_render", "T33");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zhaohengchuan/article/details/77852783,BlogCommendFromQuerySearch_36"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zhaohengchuan/article/details/77852783" target="_blank" title="实验楼Linux基础入门（新版）- 历史命令">
+		<h4 class="text-truncate oneline">
+				实验楼<em>Linux</em><em>基础</em>入门（新版）- 历史命令		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1074</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zhaohengchuan/article/details/77852783" target="_blank" title="实验楼Linux基础入门（新版）- 历史命令">
+				<span class="desc oneline">介绍在linux中，对于文本的处理和分析是极为重要的，现在有一个文件叫做data1，同学们可以在这里下载，wgethttp://labfile.oss.aliyuncs.com/courses/1/d...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zhaohengchuan">来自：	<span class="blog_title"> kane的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/godop/article/details/79690817,BlogCommendFromQuerySearch_37"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/godop/article/details/79690817" target="_blank" title="linux基础命令之如何修改文件属性和权限">
+		<h4 class="text-truncate oneline">
+				<em>linux</em><em>基础</em>命令之如何修改<em>文件</em>属性和<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-26</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					888</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/godop/article/details/79690817" target="_blank" title="linux基础命令之如何修改文件属性和权限">
+				<span class="desc oneline">chgrp：改变文件所属用户组。chown：改变文件所有者chmod：改变文件的权限1、改变所属用户组：chgrpchgrp是changegroup的简称，作用是改变用户所属组，但请记得，被改变的组名...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/godop">来自：	<span class="blog_title"> godop的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sdz20172133/article/details/80638477,BlogCommendFromQuerySearch_38"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sdz20172133/article/details/80638477" target="_blank" title="“Linux 基础入门（新版）”实验报告 用户及文件权限管理">
+		<h4 class="text-truncate oneline">
+				“<em>Linux</em> <em>基础</em>入门（新版）”实验报告 用户及<em>文件</em><em>权限</em>管理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					722</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sdz20172133/article/details/80638477" target="_blank" title="“Linux 基础入门（新版）”实验报告 用户及文件权限管理">
+				<span class="desc oneline">我的实验楼报告https://www.shiyanlou.com/courses/reports/1340069“Linux基础入门（新版）”实验报告用户及文件权限管理用户及文件权限管理1.查看用户$...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sdz20172133">来自：	<span class="blog_title"> pxlsdz的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box  recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/bjbhi/10182798,BlogCommendFromQuerySearch_39"}'>
+		<a href="https://download.csdn.net/download/bjbhi/10182798" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>Linux</em><em>基础</em>及应用教程（基于CentOS7 第2版）扫描版有目录					</h4>
+					<span class="data float-right">01-01</span>
+				</div>
+				<div class="desc oneline">
+						本书为第二版以 CentOS 7 为蓝本，分 3 篇介绍了Linux操作系统的使用和配置。大量图表对内容进行表述和归纳，大量配置案例				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/dmzing/article/details/52404480,BlogCommendFromQuerySearch_40"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/dmzing/article/details/52404480" target="_blank" title="用户组管理系列(二)：权限设置">
+		<h4 class="text-truncate oneline">
+				用户组管理系列(二)：<em>权限</em>设置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4405</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/dmzing/article/details/52404480" target="_blank" title="用户组管理系列(二)：权限设置">
+				<span class="desc oneline">1、权限简介  操作系统中每个文件都拥有特定的权限、所属用户和所属组。权限是操作系统用来限制资源访问的机制，在Linux中权限一般分为读(readable)、写(writable)和执行(excuta...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/dmzing">来自：	<span class="blog_title"> LINUX_Home</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_66" data-pid="66" data-track-view='{"mod":"kp_popu_66-881","con":",,"}' data-track-click='{"mod":"kp_popu_66-881","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T38_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T38  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T38_render", "T38");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011277123/article/details/71405077,BlogCommendFromQuerySearch_41"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011277123/article/details/71405077" target="_blank" title="Linux目录与文件的权限">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>目录与<em>文件</em>的<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-08</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2993</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011277123/article/details/71405077" target="_blank" title="Linux目录与文件的权限">
+				<span class="desc oneline">科技优家2017-05-0714:18零、Linux中的权限为什么重要？权限直接关系数据安全！一、用户基础概念：所有者（owner)：拥有这个文件的用户。一般拥有目录或文件的所有权限。用户组（grou...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011277123">来自：	<span class="blog_title"> u011277123的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Judy_yf/article/details/50825292,BlogCommendFromQuerySearch_42"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Judy_yf/article/details/50825292" target="_blank" title="1.设置用户A对目录C有rw权限，用户B对目录C有只读权限。">
+		<h4 class="text-truncate oneline">
+				1.设置用户A对目录C有rw<em>权限</em>，用户B对目录C有只读<em>权限</em>。		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-08</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2136</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Judy_yf/article/details/50825292" target="_blank" title="1.设置用户A对目录C有rw权限，用户B对目录C有只读权限。">
+				<span class="desc oneline">1.设置用户A对目录C有rw权限，用户B对目录C有只读权限。用ACL设置1）首先检查是否有acl权限，一般内核2.6以后的都默认，如果不确定，可以用mount查看：可以看出权限里只标注了rw，并没有a...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Judy_yf">来自：	<span class="blog_title"> Judy_yf的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_16399991/article/details/78928163,BlogCommendFromQuerySearch_43"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_16399991/article/details/78928163" target="_blank" title="鸟哥的linux私房菜_文件权限与目录配置">
+		<h4 class="text-truncate oneline">
+				鸟哥的<em>linux</em>私房菜_<em>文件</em><em>权限</em>与目录配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					412</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_16399991/article/details/78928163" target="_blank" title="鸟哥的linux私房菜_文件权限与目录配置">
+				<span class="desc oneline">6.linux的文件权限与目录配置6.1.用户与用户组a.文件所有者b.用户组概念c.其他人概念6.2.文件权限概念6.2.1Linux 子主题1第一个字符代表这个文件是『目录、文件或链接文件等等』：...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_16399991">来自：	<span class="blog_title"> 王小安的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_40921797/article/details/82021645,BlogCommendFromQuerySearch_44"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_40921797/article/details/82021645" target="_blank" title="linux 什么是文件系统和文件权限">
+		<h4 class="text-truncate oneline">
+				<em>linux</em> 什么是<em>文件</em>系统和<em>文件</em><em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-24</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1441</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_40921797/article/details/82021645" target="_blank" title="linux 什么是文件系统和文件权限">
+				<span class="desc oneline">在linux系统中号称“一切皆文件”文件在我们系统中其中很重要的作用。每个文件都有其属性，这些属性都什么意义呢。首先让我们随便打开一个目录看看文件详细信息都是什么吧~我们在linux中查看文件纤细信息...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_40921797">来自：	<span class="blog_title"> 坚持不懈做贡献</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_36209467/article/details/82319724,BlogCommendFromQuerySearch_45"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_36209467/article/details/82319724" target="_blank" title="学习笔记-find命令-文件特殊权限">
+		<h4 class="text-truncate oneline">
+				学习笔记-find命令-<em>文件</em>特殊<em>权限</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					209</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_36209467/article/details/82319724" target="_blank" title="学习笔记-find命令-文件特殊权限">
+				<span class="desc oneline">文件查找locate:依赖数据库。非实时查找，结果非精确，查找速度快，模糊查找find：实时查找，速度慢，精确查找find[options][查找路径][查找条件][处理动作]查找路径：默认当前路径查...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_36209467">来自：	<span class="blog_title"> kayshi的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_67" data-pid="67" data-track-view='{"mod":"kp_popu_67-882","con":",,"}' data-track-click='{"mod":"kp_popu_67-882","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T43_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T43  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T43_render", "T43");
+</script></div></div>
+	
+	<div class="recommend-item-box  recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_40409260/10561598,BlogCommendFromQuerySearch_46"}'>
+		<a href="https://download.csdn.net/download/qq_40409260/10561598" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						鸟哥的<em>Linux</em>私房菜（PDF打开密码为<em>linux</em>eden）					</h4>
+					<span class="data float-right">07-24</span>
+				</div>
+				<div class="desc oneline">
+						祝大家好好学习，又不懂的可以留言，多多交流，未来的路掌握在自己手里				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kringpin_lin/article/details/21277019,BlogCommendFromQuerySearch_47"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/kringpin_lin/article/details/21277019" target="_blank" title="Linux基本命令学习">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em>基本命令学习		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					934</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/kringpin_lin/article/details/21277019" target="_blank" title="Linux基本命令学习">
+				<span class="desc oneline">1. 将当前目录修改为根目录Cd/2. 列出根目录的内容Ls/3. 切换到根目录下的home目录Cd/home4. 查看当前目录ls5. 使用相对路径切换到根目录下的/bin目录Cd/bin6. 建立...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/kringpin_lin">来自：	<span class="blog_title"> kringpin_lin的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/walykyy/article/details/70811055,BlogCommendFromQuerySearch_48"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/walykyy/article/details/70811055" target="_blank" title="Linux 用户权限设置和切换用户">
+		<h4 class="text-truncate oneline">
+				<em>Linux</em> 用户<em>权限</em>设置和切换用户		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-26</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1120</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/walykyy/article/details/70811055" target="_blank" title="Linux 用户权限设置和切换用户">
+				<span class="desc oneline">用户权限设置：文件权限解释：r读，w写，x执行文件夹权限：r显示内容，w可以创建，删除文件，x进入目录对应权限数字：r-4，w-2，x-1(rwx-421)，例:rwxr---w- 数字解释：4214...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/walykyy">来自：	<span class="blog_title"> 斌斌的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u012402276/article/details/49229365,BlogCommendFromQuerySearch_49"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u012402276/article/details/49229365" target="_blank" title="linux下的目录详解与文件夹权限更改">
+		<h4 class="text-truncate oneline">
+				<em>linux</em>下的目录详解与<em>文件</em>夹<em>权限</em>更改		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5529</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u012402276/article/details/49229365" target="_blank" title="linux下的目录详解与文件夹权限更改">
+				<span class="desc oneline">一.FHS定义的/根目录：（FHS）根/：bin          一般单用户维护模式下还能被调用的命令，一般用户启动时候会用到的命令。boot      1.grub  开机设置相关文件      ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u012402276">来自：	<span class="blog_title"> My Inspiration World _" Franz ° </span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/f907279313/article/details/32133257,BlogCommendHotData_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+		<h4 class="text-truncate oneline">
+				STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+				<span class="desc oneline">IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结
+一，网上下载的例程，跳转部分的代码有差异，尤其是用的汇编那句
+二，关于跳转部分的代码的理解（转）
+三，关于跳转时能否不用按键，用软件标志位...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/f907279313">来自：	<span class="blog_title"> Super_Demo的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_68" data-pid="68" data-track-view='{"mod":"kp_popu_68-883","con":",,"}' data-track-click='{"mod":"kp_popu_68-883","con":",,"}'><!-- T48 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T48_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T48  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T48_render", "T48");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sundacheng1989/article/details/17925431,BlogCommendHotData_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+		<h4 class="text-truncate oneline">
+				在64位Win7操作系统中安装Microsoft Access Engine的解决方案		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+				<span class="desc oneline">现在的Win7系统中安装的一般都是32位的Office，因为微软推荐使用32位的Office，兼容性更强，稳定性更好。在使用Access作为数据库的时候，C#操作Access，如果Access是acc...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sundacheng1989">来自：	<span class="blog_title"> 写代码的蜗牛</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/crazy1235/article/details/44069267,BlogCommendHotData_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+		<h4 class="text-truncate oneline">
+				百度地图开发（五）之公交信息检索 + 路线规划		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+				<span class="desc oneline">转载请注明出处：
+    在上一篇blog中介绍过POI检索的使用，本篇blog主要介绍公交信息检索和线路规划的内容。
+公交信息检索
+    实际上，公交信息检索与POI检索、在线建议检索非常相似，也...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/crazy1235">来自：	<span class="blog_title"> crazy_jack</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011860731/article/details/48733073,BlogCommendHotData_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+		<h4 class="text-truncate oneline">
+				ThreadLocal的设计理念与作用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+				<span class="desc oneline">Java中的ThreadLocal类允许我们创建只能被同一个线程读写的变量。因此，如果一段代码含有一个ThreadLocal变量的引用，即使两个线程同时执行这段代码，它们也无法访问到对方的Thread...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011860731">来自：	<span class="blog_title"> u011860731的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kongwei521/article/details/51626589,BlogCommendHotData_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+		<h4 class="text-truncate oneline">
+				C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+				<span class="desc oneline">最近在做一个每天定点从FTP自动下载节目.xml并更新到数据库的功能。首先想到用 FileSystemWatcher来监控下载到某个目录中的文件是否发生改变，如果改变就执行相应的操作，然后用timer...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/kongwei521">来自：	<span class="blog_title"> kongwei521的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tostq/article/details/50110329,BlogCommendHotData_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+		<h4 class="text-truncate oneline">
+				（LaTex)CTex的初次使用心得及入门教程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+				<span class="desc oneline">摘要
+最近要发论文了，被知乎里人推荐使用论文编译软件（CTex、LaTex和Overleaf之类），瞬间感觉自己用Word简直Out了（书读少）。
+学校里也听说过LaTex，不过因为当时没怎么写过...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/tostq">来自：	<span class="blog_title"> tostq的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/rickypc/article/details/6014408,BlogCommendHotData_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+		<h4 class="text-truncate oneline">
+				如何编译64位( 64bit ) boost类库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9582</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+				<span class="desc oneline"> 64位windows平台，编译环境是VS2005，进入Visual Studio 2005 x64 Win64 Command Prompt（单纯的cmd也不一定不行，我没试）。把bjam.exe放...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/rickypc">来自：	<span class="blog_title"> rickypc的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/neonlight/article/details/5975764,BlogCommendHotData_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+		<h4 class="text-truncate oneline">
+				vsftpd匿名用户上传和下载的配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+				<span class="desc oneline">　　看到很多朋友配置vsftpd时不能使用匿名用户上传和下载（创建目录或删除、重命名文件夹），本文主要解决vsftpd的匿名用户权限配制问题。...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/neonlight">来自：	<span class="blog_title"> 九宫霓虹</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/flysharkym/article/details/51404730,BlogCommendHotData_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+		<h4 class="text-truncate oneline">
+				mybatis一级缓存(session cache)引发的问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+				<span class="desc oneline">mybatis一级缓存(session cache)引发的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/flysharkym">来自：	<span class="blog_title"> flysharkym的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jinping_shi/article/details/59613054,BlogCommendHotData_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+		<h4 class="text-truncate oneline">
+				高斯混合模型（GMM）及其EM算法的理解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+				<span class="desc oneline">一个例子高斯混合模型（Gaussian Mixed Model）指的是多个高斯分布函数的线性组合，理论上GMM可以拟合出任意类型的分布，通常用于解决同一集合下的数据包含多个不同的分布的情况（或者是同一...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jinping_shi">来自：	<span class="blog_title"> 小平子的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36892341/article/details/73918672,BlogCommendHotData_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+		<h4 class="text-truncate oneline">
+				linux上安装Docker(非常简单的安装方法)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					28万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+				<span class="desc oneline">最近比较有空，大四出来实习几个月了，作为实习狗的我，被叫去研究Docker了，汗汗！
+
+Docker的三大核心概念：镜像、容器、仓库
+镜像：类似虚拟机的镜像、用俗话说就是安装文件。
+容器：类似一个轻量...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_36892341">来自：	<span class="blog_title"> 我走小路的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/meng564764406/article/details/52444644,BlogCommendHotData_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+		<h4 class="text-truncate oneline">
+				将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+				<span class="desc oneline">本篇文章是根据我的上篇博客，给出的改进版，由于时间有限，仅做了一个简单的优化。相关文章：将excel导入数据库2018年4月1日，新增下载地址链接：点击打开源码下载地址十分抱歉，这个链接地址没有在这篇...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/meng564764406">来自：	<span class="blog_title"> Lynn_Blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wangpeng047/article/details/19624529,BlogCommendHotData_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+		<h4 class="text-truncate oneline">
+				HttpClient使用详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					81万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+				<span class="desc oneline">Http协议的重要性相信不用我多说了，HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wangpeng047">来自：	<span class="blog_title"> 鹏霄万里展雄飞</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Main_Stage/article/details/41989499,BlogCommendHotData_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+		<h4 class="text-truncate oneline">
+				Android圆形图片--自定义控件		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+				<span class="desc oneline">Android圆形图片--自定义控件</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Main_Stage">来自：	<span class="blog_title"> Main_Stage的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lch_vison/article/details/79112450,BlogCommendHotData_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+		<h4 class="text-truncate oneline">
+				ubuntu16.04环境Kdevelop安装和汉化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6239</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+				<span class="desc oneline">1、Kdevelop安装
+
+ 
+
+最简单的命令行安装，打开终端，执行
+
+ 
+
+
+sudo apt-get install kdevelop
+
+
+ 
+
+2、Kdevelop汉化
+
+不需要自己下载汉化包，...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lch_vison">来自：	<span class="blog_title"> lch_vision的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/klkxxy/article/details/78773980,BlogCommendHotData_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+		<h4 class="text-truncate oneline">
+				图片拉伸变形		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					332</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+				<span class="desc oneline">http://blog.csdn.net/abc649395594/article/details/50004991</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/klkxxy">来自：	<span class="blog_title"> klkxxy的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/pengjc2001/article/details/54924699,BlogCommendHotData_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+		<h4 class="text-truncate oneline">
+				三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+				<span class="desc oneline">阅读内容为：FX系列微型可编程控制器用户手册（通讯篇）中计算机链接功能章节。
+采用本方法通信，pc端的实现，其实就是，把操作按照协议（2种）翻译成相应的字符串，通过串口发送给plc。
+
+
+编写一应用程...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/pengjc2001">来自：	<span class="blog_title"> pengjc2001的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/updog/article/details/6625975,BlogCommendHotData_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+		<h4 class="text-truncate oneline">
+				实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+				<span class="desc oneline">本帖慢慢扩充……1. 假设是实现namespace Abc中的一个class，不要因为是在.cc中就肆无忌惮的在global scope或者namespace Abc{}中定义辅助变量和函数，或者ty...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq574857122/article/details/16361033,BlogCommendHotData_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+		<h4 class="text-truncate oneline">
+				强连通分量及缩点tarjan算法解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					66万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+				<span class="desc oneline">强连通分量：
+简言之 就是找环（每条边只走一次，两两可达）
+孤立的一个点也是一个连通分量 
+ 
+使用tarjan算法 在嵌套的多个环中优先得到最大环( 最小环就是每个孤立点）
+ 
+定义：
+int Ti...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq574857122">来自：	<span class="blog_title"> 九野的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013268685/article/details/41732447,BlogCommendHotData_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+		<h4 class="text-truncate oneline">
+				数据结构实验：栈实现计算器(表达式计算）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4049</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+				<span class="desc oneline">原创作品转载请注明出处
+欢迎抄袭，造福各位伸手党
+/*************************************************************************
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013268685">来自：	<span class="blog_title"> u013268685的专栏(有一种幸福叫AC，有一种期待叫AK)</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jiebaoabcabc/article/details/19242621,BlogCommendHotData_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+		<h4 class="text-truncate oneline">
+				简单linux字符设备驱动程序与编程小技巧(上)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					629</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+				<span class="desc oneline">这几天开始研究linux下的驱动程序编写了，遇到的问题也挺多的，好在linux是开源的，很多高人编写的技巧和思路都会在他们的源代码中体现，我也在他们的源码中学到了很多好东西，我归纳了下贴出来，希望自己...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gefangshuai/article/details/50328451,BlogCommendHotData_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+		<h4 class="text-truncate oneline">
+				关于SpringBoot bean无法注入的问题（与文件包位置有关）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					27万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+				<span class="desc oneline">问题场景描述整个项目通过Maven构建，大致结构如下：
+核心Spring框架一个module spring-boot-base
+service和dao一个module server-core
+提供系统...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gefangshuai">来自：	<span class="blog_title"> 开发随笔</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/autfish/article/details/52682778,BlogCommendHotData_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+		<h4 class="text-truncate oneline">
+				苹果充值常见的刷单手段和防范方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+				<span class="desc oneline">苹果充值的刷单现象在游戏行业非常普遍，很多团队挖空心思寻找漏洞以非法获利。常见的手段主要有以下六种：
+
+
+伪造充值凭据(receipt)以小额凭据骗取大额商品
+
+凭据重复使用
+凭据重复使用信用卡黑卡/...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/autfish">来自：	<span class="blog_title"> 分享知识、分享进步</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wuchengzeng/article/details/50037611,BlogCommendHotData_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+		<h4 class="text-truncate oneline">
+				jquery/js实现一个网页同时调用多个倒计时(最新的)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					54万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+				<span class="desc oneline">jquery/js实现一个网页同时调用多个倒计时(最新的)
+
+最近需要网页添加多个倒计时. 查阅网络,基本上都是千遍一律的不好用. 自己按需写了个.希望对大家有用. 有用请赞一个哦!
+
+
+
+//js
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wuchengzeng">来自：	<span class="blog_title"> Websites</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zp_00000/article/details/70207445,BlogCommendHotData_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+		<h4 class="text-truncate oneline">
+				VirtualBox COM获取对象失败		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+				<span class="desc oneline">错误详情
+
+
+
+
+
+1. 先来看看错误详情
+获取 VirtualBox COM 对象失败.应用程序将被中断.Failed to instantiate CLSID_VirtualBox ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zp_00000">来自：	<span class="blog_title"> 多点折腾少点抱怨</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014306011/article/details/51546236,BlogCommendHotData_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+		<h4 class="text-truncate oneline">
+				Eclipse如何安装WindowBuilder插件及如何使用WB		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-31</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6481</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+				<span class="desc oneline">Eclipse如何安装WindowBuilder插件及如何使用WB</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u014306011">来自：	<span class="blog_title"> 天命王子的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lubiaopan/article/details/6233517,BlogCommendHotData_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+		<h4 class="text-truncate oneline">
+				.NET和java的RSA互通，仅此而已		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+				<span class="desc oneline">RSA .net jva 互通 解决不能互通的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lubiaopan">来自：	<span class="blog_title"> lubiaopan的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xu__cg/article/details/52970885,BlogCommendHotData_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+		<h4 class="text-truncate oneline">
+				Java设计模式学习06——静态代理与动态代理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+				<span class="desc oneline">一、代理模式为某个对象提供一个代理，从而控制这个代理的访问。代理类和委托类具有共同的父类或父接口，这样在任何使用委托类对象的地方都可以使用代理类对象替代。代理类负责请求的预处理、过滤、将请求分配给委托...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xu__cg">来自：	<span class="blog_title"> 小小本科生成长之路</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/NYS001/article/details/12637201,BlogCommendHotData_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+		<h4 class="text-truncate oneline">
+				蜂窝小区最短距离的坐标系解法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+				<span class="desc oneline">如下图所示，蜂窝小区，以1为中心，顺时针编号，编号最大限定为100000。求任意两编号之间的最短距离。两个相邻小区的距离为1 示例：19到30的最短距离为5 实现如下三个接口： /**********...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/NYS001">来自：	<span class="blog_title"> NYS001的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Smile_qiqi/article/details/32724931,BlogCommendHotData_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+		<h4 class="text-truncate oneline">
+				魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+				<span class="desc oneline">畅所欲言！</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Smile_qiqi">来自：	<span class="blog_title"> Smile_qiqi的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zd0303/article/details/7058457,BlogCommendHotData_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+		<h4 class="text-truncate oneline">
+				MATLAB中注释一段程序		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+				<span class="desc oneline">在MATLAB中，可以注释一段程序。
+使用“%{”和“%}”。
+例如
+%{
+。。。
+%}
+即可。
+经典方法是用 if 0，但缺点是不够直观，注释掉的内容仍然保持代码的颜色。现在可以用
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zd0303">来自：	<span class="blog_title"> 知识小屋</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+                <div class="recommend-item-box type_hot_word">
+                                <div class="content clearfix">
+                    <div class="word float-left">
+                                                            <span>
+                        <a href="https://edu.csdn.net/courses/o5329_s5330_k " target="_blank">
+                        机器学习教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/courses/o280_s351_k " target="_blank">
+                        Objective-C培训                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o7115_s388_l0_t " target="_blank">
+                        交互设计视频教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/course/play/5599/104252 " target="_blank">
+                        颜色模型                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o363_l0_t " target="_blank">
+                        设计制作学习                    </a></span>
+                                                            </div>
+                </div>
+                                                </div>
+                            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+
+    <aside>
+	<div id="asideProfile" class="aside-box">
+    <!-- <h3 class="aside-title">个人资料</h3> -->
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/kzl_knight">
+              <img src="https://avatar.csdn.net/5/A/A/3_kzl_knight.jpg" class="avatar_pic">
+                              <img src="https://g.csdnimg.cn/static/user-reg-year/1x/1.png" class="user-years">
+                          </a>
+            
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/kzl_knight" target="_blank" class="" id="uid">kzl_knight</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a class="btn btn-sm btn-red-hollow attention" id="btnAttent">关注</a>
+            </span>
+        </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="49">
+                        <dt><a href="https://blog.csdn.net/kzl_knight?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/kzl_knight?t=1"><span class="count">49</span></a></dd>
+                    </dl>
+        <dl class="text-center" id="fanBox" title="36">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">36</span></dd>
+        </dl>
+        <dl class="text-center" title="12">
+            <dt>喜欢</dt>
+            <dd><span class="count">12</span></dd>
+        </dl>
+        <dl class="text-center" title="0">
+            <dt>评论</dt>
+            <dd><span class="count">0</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-3"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="52461">
+                5万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="996">
+                996            </dd>
+        </dl>
+        <dl title="73129">
+            <dt>排名：</dt>
+            <dd>7万+</dd>
+        </dl>
+    </div>
+        <div class="badge-box d-flex">
+        <span>勋章：</span>
+        <div class="badge d-flex">
+                                                        <div class="icon-badge" title="持之以恒">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                                   <p>持之以恒</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然月内发布4篇或4篇以上原创或翻译IT博文的用户。不积跬步无以至千里，不积小流无以成江海，程序人生的精彩需要坚持不懈地积累！                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv1">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                                   <p>勤写标兵Lv1</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布1篇到3篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv2">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                                   <p>勤写标兵Lv2</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布4篇到6篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv4">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                                   <p>勤写标兵Lv4</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布9篇以上（包括9篇）原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                             </div>
+        <script>
+            (function ($) {
+                setTimeout(function(){
+                    $('div.icon-badge.show-moment').removeClass('show-moment');
+                }, 5000);
+            })(window.jQuery)
+        </script>
+    </div>
+    </div>
+<div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+      <div id="kp_box_56" data-pid="56" data-track-view='{"mod":"kp_popu_56-876","con":",,"}' data-track-click='{"mod":"kp_popu_56-876","con":",,"}'><!-- 广告位：PC-博客内页左上视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6096221',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="//dup.baidustatic.com/js/os.js"></script></div>    </div>
+</div>
+<div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91402940" target="_blank">windows查看进程并结束</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91044758" target="_blank">[Nginx]反向代理</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91039990" target="_blank">[flask]1基础知识点</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90954216" target="_blank">uWSGI部署python项目</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90899356" target="_blank">[ubuntu18.04]维护mysql</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+<div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8966794">
+                    <span class="title oneline">web前端技术</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8916283">
+                    <span class="title oneline">linux基础</span>
+                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8917641">
+                    <span class="title oneline">python系统编程</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8930728">
+                    <span class="title oneline">Django</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8935344">
+                    <span class="title oneline">数据库</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8951492">
+                    <span class="title oneline">pycharm</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8959754">
+                    <span class="title oneline">csdn_python教学笔记2.0</span>
+                    <span class="count float-right">10篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971103">
+                    <span class="title oneline">csdn2.0课程笔记-1.python基础上</span>
+                    <span class="count float-right">9篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971104">
+                    <span class="title oneline">csdn2.0课程笔记-2.python基础下</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971107">
+                    <span class="title oneline">csdn2.0课程笔记-3.数据库操作</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971109">
+                    <span class="title oneline">csdn2.0课程笔记-4.Web前端技术</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971379">
+                    <span class="title oneline">项目实战</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971742">
+                    <span class="title oneline">csdn2.0课程笔记-Web选修</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8982378">
+                    <span class="title oneline">数据挖掘</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8989051">
+                    <span class="title oneline">web前端笔记</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9009953">
+                    <span class="title oneline">运维</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9012691">
+                    <span class="title oneline">Flask</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9021123">
+                    <span class="title oneline">win10</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+<div id="asideArchive" class="aside-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/06">
+                    2019年6月                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/05">
+                    2019年5月                    <span class="count float-right">42篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+    </div>
+<div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313005">1.3 Python运算符</a>
+					<p class="read">阅读数 <span>1564</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90441297">[Django项目案例]搭建用户与商品后台管理系统</a>
+					<p class="read">阅读数 <span>1526</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313521">1.4 Python的数据类型</a>
+					<p class="read">阅读数 <span>1514</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90512005">1.7 Python函数详解</a>
+					<p class="read">阅读数 <span>1499</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313615">1.5 Python分支结构</a>
+					<p class="read">阅读数 <span>1471</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+	<div id="asideFooter">
+			
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57" data-track-view='{"mod":"kp_popu_57-1158","con":",,"}' data-track-click='{"mod":"kp_popu_57-1158","con":",,"}'><!-- 广告位：PC-博客内页左下视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6272567',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="https://dup.baidustatic.com/js/os.js"></script></div>		</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<div class="tool-box vertical">
+	<ul class="meau-list">
+		<li class="btn-like-box ">
+			<button class=" low-height hover-box btn-like " title="点赞">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup"></use>
+				</svg>
+				<span class="hover-show text-box text">
+					<span class="no-active">点赞</span>
+					<span class="active">取消点赞</span>
+				</span>
+				<p>0</p>
+			</button>
+		</li>
+		<li class="to-commentBox">
+						<a class="btn-comments low-height hover-box" title="写评论" href="#commentBox">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg>
+				<span class="hover-show text">评论</span>
+				<p class="">
+										</p>
+			</a>
+		</li>
+		<li class="toc-container-box" id="liTocBox">
+			<a class="btn-toc low-height hover-box btn-comments" title="目录">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-contents"></use>
+				</svg>
+				<span class="hover-show text">目录</span>
+			</a>
+			<div class="toc-container">
+				<div class="pos-box">
+					<div class="icon-arrow"></div>
+					<div class="scroll-box">
+						<div class="toc-box"></div>
+					</div>
+				</div>
+				<div class="opt-box">
+					<button class="btn-opt prev nomore" title="向上">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronup"></use>
+						</svg>
+					</button>
+					<button class="btn-opt next">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevrondown"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<a class="btn-bookmark low-height hover-box btn-comments" title="收藏">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg>
+					<span class="hover-show text">收藏</span>
+				<!-- <span class="hover-show text-box text">
+					<span class="no-active">收藏</span>
+					<span class="active">取消收藏</span>
+				</span> -->
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<div class="weixin-qr btn-comments low-height hover-box" >
+        <a href="#" class="bds_weixin clear-share-style" data-cmd="weixin" title="手机看"></a>
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-usephone"></use>
+				</svg>
+				<span class="hover-show text text3">
+					手机看
+				</span>
+			</div>
+		</li>
+							<li class="widescreen-hide">
+				<a class="prev btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/89791285" title="【linux基础1】基本操作">
+					<svg class="icon hover-hide" aria-hidden="true">
+						<use xlink:href="#csdnc-chevronleft"></use>
+					</svg>
+					<span class="hover-show text text3">上一篇</span>
+				</a>
+			</li>
+								<li class="widescreen-hide">
+			<a class="next btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/89812720" title="【linux基础3】进程与服务器性能">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-chevronright"></use>
+				</svg>
+				<span class="hover-show text text3">下一篇</span>
+			</a>
+		</li>
+						<!-- 宽屏更多按钮 -->
+		<li class="widescreen-more">
+			<a class="btn-comments chat-ask-button low-height hover-box" title="快问" href="#chatqa">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-more"></use>
+				</svg>
+				<span class="hover-show text">更多</span>
+				
+			</a>
+			<ul class="widescreen-more-box">
+													<li class="widescreen-more">
+						<a class="btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/89791285" title="【linux基础1】基本操作">
+							<svg class="icon hover-hide" aria-hidden="true">
+								<use xlink:href="#csdnc-chevronleft"></use>
+							</svg>
+							<span class="hover-show text text3">上一篇</span>
+						</a>
+					</li>
+																<li class="widescreen-more">
+					<a class="btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/89812720" title="【linux基础3】进程与服务器性能">
+						<svg class="icon hover-hide" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronright"></use>
+						</svg>
+						<span class="hover-show text text3">下一篇</span>
+					</a>
+				</li>
+							</ul>
+		</li>
+	</ul>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script>
+    var recommendCount = 79;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var ChannelId = 12;
+    var articleId = "89791866";
+    var commentscount = 0;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/kzl_knight/article/details/89791866";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "【linux基础2】文件与权限 - kzl_knight的博客";
+    var needInsertBaidu = true;
+    // 代码段样式
+    var codeStyle = '';
+	var highlight = ["linux","\u57fa\u7840","\u6587\u4ef6","\u6743\u9650"];//高亮数组
+
+    var RecommendBlogExpertList = [{"user_name":"robinson_0612","nick_name":"Leshami","avatar":"https:\/\/avatar.csdn.net\/D\/F\/C\/3_robinson_0612.jpg","is_expert":true,"article_count":694,"rank":"64"},{"user_name":"weixin_40545512","nick_name":"shrekeee","avatar":"https:\/\/avatar.csdn.net\/9\/E\/6\/3_weixin_40545512.jpg","is_expert":false,"article_count":33,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"qq_37653144","nick_name":"___Blue_H","avatar":"https:\/\/avatar.csdn.net\/2\/D\/B\/3_qq_37653144.jpg","is_expert":false,"article_count":158,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"qq_33775402","nick_name":"\u8def\u4eba\u66b4\u813e\u6c14","avatar":"https:\/\/avatar.csdn.net\/0\/6\/9\/3_qq_33775402.jpg","is_expert":false,"article_count":83,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"qq_35131811","nick_name":"\u9ad8\u50b2\u7684\u5b64\u72ec","avatar":"https:\/\/avatar.csdn.net\/8\/9\/6\/3_qq_35131811.jpg","is_expert":false,"article_count":17,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"Allenlzcoder","nick_name":"Allenlzcoder","avatar":"https:\/\/avatar.csdn.net\/C\/7\/C\/3_allenlzcoder.jpg","is_expert":false,"article_count":458,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"qq_39719589","nick_name":"\u7fbd\u6bdb\u5927\u5927","avatar":"https:\/\/avatar.csdn.net\/A\/D\/D\/3_qq_39719589.jpg","is_expert":false,"article_count":33,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"u012719153","nick_name":"1024\u660e","avatar":"https:\/\/avatar.csdn.net\/0\/3\/3\/3_u012719153.jpg","is_expert":false,"article_count":47,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"edtwar","nick_name":"\u523a\u9aa8\u5bd2\u98ce\u523a","avatar":"https:\/\/avatar.csdn.net\/D\/3\/2\/3_edtwar.jpg","is_expert":false,"article_count":63,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"u014796999","nick_name":"\u5fae\u5c0f\u4e1c","avatar":"https:\/\/avatar.csdn.net\/8\/E\/E\/3_u014796999.jpg","is_expert":false,"article_count":285,"rank":"2000+"}];
+	var articleType = 1;
+	var CopyrightContent = '';
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+</body>
+
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+	<script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/pc_wap_common-45af74a22e.js" /></script>
+
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-84251d2950.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-fefc1403d5.min.js"></script>
+
+	<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-fc7383b956.min.js"></script>
+<script>
+ // 全局声明
+ if (window.csdn === undefined) {
+      window.csdn = {};
+    }
+    window.csdn.sideToolbar = {
+        options: {
+            report:{
+                isShow: true,
+            },
+            afterFinished: function(){
+                setTimeout(function () {
+                    var viphtml = '<a class="option-box" data-type="vip" href="https://mall.csdn.net/vip" target="_blank">'+
+                        '<img src="https://g.csdnimg.cn/side-toolbar/1.2/images/vip.png" alt="" srcset="">'+
+                        '<span class="show-txt">VIP<br>免广告</span>'+
+                        '</a>';
+                    $('.csdn-side-toolbar').prepend(viphtml)
+                },300)
+            }
+        }
+    }
+
+    $(function(){
+        $(document).on('click',"a.option-box[data-type='report']",function() {
+            showReport(false,articleTitles)
+        });
+    })
+</script>
+<script src="https://g.csdnimg.cn/side-toolbar/1.2/side-toolbar.js"></script>
+
+    <script src="//g.csdnimg.cn/??login-box/1.0.6/login-box.js,login-box/1.0.5/login-auto.js,copyright/1.0.3/copyright.js,baidu-search/1.0.0/baidu-search.js?t=20190307095522"  type="text/javascript"></script>
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+<script type="text/javascript">
+    </script>
+<script src="https://gh.bdstatic.com/static/gh/js/sdk/bword.min.js"></script>
+</html>

@@ -1,0 +1,3798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/kzl_knight/article/details/90438435"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+        <meta name="csdn-baidu-search"  content='{"autorun":true,"install":true,"keyword":"3.1 MySQL数据 - kzl_knight的博客"}'>
+    
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>3.1 MySQL数据 - kzl_knight的博客 - CSDN博客</title>
+
+        
+                    <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-caa11f8119.min.css">
+            
+        
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-9b39979775.min.css">
+        <script type="text/javascript">
+        var username = "kzl_knight";
+        var blog_address = "https://blog.csdn.net/kzl_knight";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "http://passport.csdn.net/account/login?from=https://blog.csdn.net/kzl_knight/article/details/90438435"
+        var blogUrl = "https://blog.csdn.net/";
+
+        var curSkin = "skin3-template";
+        // 第四范式所需数据
+        var articleTitles = "3.1 MySQL数据 - kzl_knight的博客";
+        
+        var nickName = "kzl_knight";
+        var isCorporate = false;
+        var subDomainBlogUrl = "https://blog.csdn.net/"
+        var digg_base_url = "https://blog.csdn.net/kzl_knight/phoenix/comment";
+        var articleDetailUrl = "https://blog.csdn.net/kzl_knight/article/details/90438435";
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+    <script src="//g.csdnimg.cn/??fixed-sidebar/1.1.3/fixed-sidebar.js,track/1.2.6/track.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body class="nodata " > 
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="kp_box_476" data-pid="476" data-track-view='{"mod":"kp_popu_476-845","con":",,"}' data-track-click='{"mod":"kp_popu_476-845","con":",,"}'><script src="//csdnimg.cn/public/common/indexSuperise/1.1.1/indexSuperise.js?20190111165312"></script><script>window.csdn.indexSuperise({smallMoveImg:'https://img-bss.csdn.net/1560915579293.png',bigMoveImg:'https://img-bss.csdn.net/1560915575919.png',link:'https://kunyu.csdn.net?p=476&a=845&c=394&k=&d=1&t=3&dest=https%3A%2F%2Fedu.csdn.net%2Ftopic%2Fai30%3Futm_source%3Dblogpopup',trackSuperId:476,smallMove:'notMove',trackSId:845});</script></div><link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript">
+	var NEWS_FEED = function(){}
+</script>
+
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/chart-3456820cac.css" />
+<div class="container clearfix" id="mainBox">
+			<div class="recommend-right">
+  <ul class="recommend-fixed-box">
+    
+  </ul>
+</div>	    <main>
+        <div class="blog-content-box">
+  <div class="article-header-box">
+    <div class="article-header">
+      <div class="article-title-box">
+        <span class="article-type type-1 float-left">原</span>        <h1 class="title-article">3.1 MySQL数据</h1>
+      </div>
+      <div class="article-info-box">
+        <div class="article-bar-top">
+                                                              <span class="time">2019年05月22日 15:57:42</span>
+          <a class="follow-nickName" href="https://me.csdn.net/kzl_knight" target="_blank">kzl_knight</a>
+          <span class="read-count">阅读数 1489</span>
+                  </div>
+        <div class="operating">
+                  </div>
+      </div>
+    </div>
+  </div>
+  <article class="baidu_pl">
+    <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod=popu_307 data-dsm="post">
+              <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-cd6c485e8b.css" />
+                              <div id="content_views" class="markdown_views prism-atom-one-dark">
+            <!-- flowchart 箭头图标 勿删 -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+            </svg>
+            <p></p><div class="toc"><h3>3.1 MySQL数据</h3><ul><ul><li><a href="#31_MySQL_1" rel="nofollow">3.1 MySQL数据</a></li><ul><li><a href="#311_MySQL_3" rel="nofollow">3.1.1 MySQL简介</a></li><li><a href="#312_SQL_80" rel="nofollow">3.1.2 SQL的基本操作</a></li><li><a href="#313_MySQL_148" rel="nofollow">3.1.3 MySQL数据结构类型及操作：</a></li><li><a href="#314_DML_310" rel="nofollow">3.1.4 数据的DML操作：添加数据，修改数据，删除数据</a></li><li><a href="#315_DQL_374" rel="nofollow">3.1.5 数据的DQL操作：数据查询</a></li><li><a href="#316__435" rel="nofollow">3.1.6 数据库授权、备份和恢复</a></li><li><a href="#317_MySQL_533" rel="nofollow">3.1.7 MySQL的多表联查</a></li><li><a href="#318_MySQL_630" rel="nofollow">3.1.8 MySQL的其他操作</a></li></ul></ul></ul></div><p></p>
+<h2><a id="31_MySQL_1"></a>3.1 MySQL数据</h2>
+<h3><a id="311_MySQL_3"></a>3.1.1 MySQL简介</h3>
+<ul>
+<li>
+<p>Mysql是最流行的RDBMS(Relational Database Management</p>
+</li>
+<li>
+<p>System：关系数据库管理系统)，特别是在WEB应用方面。 数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，</p>
+</li>
+<li>
+<p>每个数据库都有一个或多个不同的API用于创建，访问，管理，搜索和复制所保存的数据。</p>
+</li>
+<li>
+<p>所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据。</p>
+</li>
+<li>
+<p>RDBMS即关系数据库管理系统(Relational Database Management System)的特点：</p>
+<pre><code> 1.数据以表格的形式出现
+ 2.每行为各种记录名称
+ 3.每列为记录名称所对应的数据域
+ 4.许多的行和列组成一张表单
+ 5.若干的表单组成database 在我们开始学习MySQL 数据库前，让我们先了解下
+</code></pre>
+</li>
+<li>
+<p>RDBMS的一些术语：</p>
+<pre><code> 1. 数据查询语言（DQL:Data Query Language）：SELECT
+ 2. 数据操作语言（DML：Data Manipulation Language）：INSERT，UPDATE和DELETE
+ 3. 事务处理语言（TPL）：BEGIN TRANSACTION，COMMIT和ROLLBACK
+ 4. 数据控制语言（DCL）：GRANT（授权）或REVOKE（回收权限）
+ 5. 数据定义语言（DDL）：CREATE、ALTER和DROP
+ 6. 指针控制语言（CCL）：DECLARE CURSOR，FETCH INTO和UPDATE WHERE CURRENT用于对一个或多个表单独行的操作
+</code></pre>
+</li>
+</ul>
+<p><strong>SQL：</strong></p>
+<ul>
+<li>
+<p>SQL: 结构化查询语言(Structured Query Language)简称SQL,是最重要的关系数据库操作语言.</p>
+</li>
+<li>
+<p>有上百种数据库产品都支持SQL，如：MySQL、DB2、ORACLE、INGRES、SYBASE、SQLSERVER…</p>
+</li>
+<li>
+<p>结构化查询语言包含6个部分：</p>
+<blockquote>
+<pre><code>1. 数据查询语言（DQL:Data Query Language）：SELECT
+2. 数据操作语言（DML：Data Manipulation Language）：INSERT，UPDATE和DELETE
+3. 事务处理语言（TPL）：BEGIN TRANSACTION，COMMIT和ROLLBACK
+4. 数据控制语言（DCL）：GRANT（授权）或REVOKE（回收权限）
+5. 数据定义语言（DDL）：CREATE、ALTER和DROP
+6. 指针控制语言（CCL）：DECLARE CURSOR，FETCH INTO和
+</code></pre>
+</blockquote>
+<p>UPDATE WHERE CURRENT用于对一个或多个表单独行的操作</p>
+</li>
+<li>
+<p>在本节中，会让大家快速掌握Mysql的基本知识，并轻松使用Mysql数据库。</p>
+</li>
+</ul>
+<p><strong>mysql数据库的安装：</strong></p>
+<pre><code> 网址：https://www.mysql.com/downloads/ 下载，但是已经是商业版了 可下载 MariaDB 开源的   
+ https://downloads.mariadb.org
+</code></pre>
+<ul>
+<li>
+<p>建议Window上可以安装一个集成环境如：XAMPP：</p>
+<p><a href="https://www.apachefriends.org/zh_cn/download.html" rel="nofollow">https://www.apachefriends.org/zh_cn/download.html</a></p>
+</li>
+<li>
+<p>Ubuntu系统安装：sudo apt-get install mysql-server mysql-client</p>
+</li>
+<li>
+<p>服务的启动和停止<br>
+配置文件：windows下是：my.ini Linux下：mysqld.conf</p>
+</li>
+</ul>
+<p><strong>连接数据库：</strong></p>
+<pre><code>   mysql -h 主机名 -u 用户名  -p密码  库名
+
+   C:\&gt;mysql  --采用匿名账号和密码登陆本机服务
+   C:\&gt;mysql -h localhost -u root -proot   --采用root账号和root密码登陆本机服务
+   C:\&gt;mysql -u root -p   --推荐方式默认登陆本机
+     Enter password: ****
+
+   C:\&gt;mysql -u root -p mydb  --直接进入mydb数据库的方式登陆
+
+   SQL语句中的快捷键
+   \G 格式化输出（文本式，竖立显示）
+   \s 查看服务器端信息
+   \c 结束命令输入操作
+   \q 退出当前sql命令行模式
+   \h 查看帮助
+</code></pre>
+<h3><a id="312_SQL_80"></a>3.1.2 SQL的基本操作</h3>
+<p><strong>数据库操作：</strong></p>
+<pre><code> mysql&gt; show databases;                              --查看当前用户下的所有数据库
+
+ mysql&gt; create database [if not exists] 数据库名;  --创建数据库
+
+ mysql&gt; use test;                                 --选择进入test数据库
+ 
+ mysql&gt; show create database 数据库名\G               --查看建数据库语句
+ 
+ mysql&gt; select database();                           --查看当前所在的数据库位置
+ 
+ mysql&gt; drop database [if exists] 数据库名;           --删除一个数据库
+</code></pre>
+<p><strong>数据表操作：</strong></p>
+<pre><code>mysql&gt; show tables;             --查看当前库下的所有表格
+mysql&gt; desc tb1;                  --查看tb1的表结构。
+mysql&gt; show create table 表名\G  --查看表的建表语句。
+mysql&gt; create table demo(        --创建demo表格
+    -&gt; name varchar(16) not null,
+    -&gt; age int,
+    -&gt; sex enum('w','m') not null default 'm');
+Query OK, 0 rows affected (0.05 sec)
+
+mysql&gt; show columns from demo;  --查看表结构
+mysql&gt; desc demo;                  --查看表结构
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| name  | varchar(16)   | NO   |     | NULL    |       |
+| age   | int(11)       | YES  |     | NULL    |       |
+| sex   | enum('w','m') | NO   |     | m       |       |
++-------+---------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql&gt;drop table if exists mytab;  -- 尝试删除mytab表格
+</code></pre>
+<p><strong>数据操作：</strong></p>
+<pre><code>--添加一条数据
+mysql&gt; insert into demo(name,age,sex) values('zhangsan',20,'w');
+Query OK, 1 row affected (0.00 sec)
+
+--不指定字段名来添加数据
+mysql&gt; insert into demo values('lisi',22,'m'); 
+Query OK, 1 row affected (0.00 sec)
+
+--指定部分字段名来添加数据
+mysql&gt; insert into demo(name,age) values('wangwu',23); 
+Query OK, 1 row affected (0.00 sec)
+
+--批量添加数据
+mysql&gt; insert into demo(name,age,sex) values('aaa',21,'w'),("bbb",22,'m');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql&gt; select * from demo; --查询数据
+
+mysql&gt; update demo set age=24 where name='aaa';  --修改
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; delete from demo where name='bbb';  --删除
+Query OK, 1 row affected (0.00 sec)
+</code></pre>
+<h3><a id="313_MySQL_148"></a>3.1.3 MySQL数据结构类型及操作：</h3>
+<p><strong>MySQL的数据类型分为三个类：</strong><br>
+数值类型、字串类型、日期类型 。 还有一个特殊的值：NULL。</p>
+<pre><code>1 数值类型：
+    *tinyint(1字节) 0~255  -128~127
+    smallint(2字节)
+    mediumint(3字节)
+    *int(4字节)
+    bigint(8字节)
+    *float(4字节)   float(6,2)
+    *double(8字节)  
+    decimal(自定义)字串形数值
+
+2 字串类型
+    普通字串
+    *char    定长字串        char(8)  
+    *varchar 可变字串 varchar(8)
+
+    二进制类型
+    tinyblob
+    blob
+    mediumblob
+    longblob
+
+    文本类型
+    tinytext
+    *text      常用于&lt;textarea&gt;&lt;/textarea&gt;
+    mediumtext
+    longtext
+
+    *enum枚举
+    set集合
+
+3 时间和日期类型：
+    date  年月日
+    time  时分秒
+    *datetime 年月日时分秒
+    timestamp 时间戳
+    year 年
+
+4 NULL值
+    NULL意味着“没有值”或“未知值”
+    可以测试某个值是否为NULL
+    不能对NULL值进行算术计算
+    对NULL值进行算术运算，其结果还是NULL
+    0或NULL都意味着假，其余值都意味着真
+</code></pre>
+<p><strong>MySQL的运算符</strong></p>
+<pre><code> 算术运算符：+ - * / % 
+ 比较运算符：= &gt; &lt; &gt;= &lt;= &lt;&gt; != 
+ 数据库特有的比较：in，not in, is null,is not null,like, between and 
+ 逻辑运算符：and or not
+</code></pre>
+<p><strong>表的字段约束：</strong></p>
+<pre><code>unsigned 无符号(正数)
+zerofill 前导零填充
+auto_increment 自增
+default    默认值
+not null  非空
+PRIMARY KEY 主键 （非null并不重复）
+unique 唯一性   （可以为null但不重复）
+index 常规索引
+</code></pre>
+<p><strong>建表语句格式：</strong></p>
+<pre><code> create table 表名(
+   字段名 类型 [字段约束],
+   字段名 类型 [字段约束],
+   字段名 类型 [字段约束],
+   ...
+  );
+mysql&gt; create table stu(
+    -&gt; id int unsigned not null auto_increment primary key,
+    -&gt; name varchar(8) not null unique,
+    -&gt; age tinyint unsigned,
+    -&gt; sex enum('m','w') not null default 'm',
+    -&gt; classid char(6)
+    -&gt; );
+Query OK, 0 rows affected (0.05 sec)
+    
+    
+mysql&gt; desc stu;
++---------+---------------------+------+-----+---------+----------------+
+| Field   | Type                | Null | Key | Default | Extra          |
++---------+---------------------+------+-----+---------+----------------+
+| id      | int(10) unsigned    | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(8)          | NO   | UNI | NULL    |                |
+| age     | tinyint(3) unsigned | YES  |     | NULL    |                |
+| sex     | enum('m','w')       | NO   |     | m       |                |
+| classid | char(6)             | YES  |     | NULL    |                |
++---------+---------------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql&gt; show create table stu\G  --查看建表的语句
+*************************** 1. row ***************************
+       Table: stu
+Create Table: CREATE TABLE `stu` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(8) NOT NULL,
+  `age` tinyint(3) unsigned default NULL,
+  `sex` enum('m','w') NOT NULL default 'm',
+  `classid` char(6) default NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+1 row in set (0.00 sec)
+</code></pre>
+<p><strong>修改表结构:</strong></p>
+<pre><code>格式： alter table 表名 action（更改选项）;
+ 更改选项：
+    1. 添加字段：alter table 表名 add 字段名信息
+        例如：
+            -- 在user表的最后追加一个num字段 设置为int not null
+            mysql&gt; alter table user add num int not null;
+
+            -- 在user表的email字段后添加一个age字段，设置int not null default 20；
+            mysql&gt; alter table user add age int not null default 20 after email;
+
+            -- 在user表的最前面添加一个aa字段设置为int类型
+            mysql&gt; alter table user add aa int first;
+
+    2. 删除字段：alter table 表名 drop 被删除的字段名
+        例如：-- 删除user表的aa字段
+             mysql&gt; alter table user drop aa;
+
+    3. 修改字段：alter table 表名 change[modify] 被修改后的字段信息
+        其中：change可以修改字段名， modify 不修改
+        例如：
+        -- 修改user表中age字段信息（类型），（使用modify关键字的目的不修改字段名）
+        mysql&gt; alter table user modify age tinyint unsigned not null default 20;
+        -- 修改user表的num字段改为mm字段并添加了默认值（使用change可以改字段名）
+        mysql&gt; alter table user change num mm int not null default 10;
+
+    4. 添加和删除索引
+        -- 为user表中的name字段添加唯一性索引，索引名为uni_name;
+        mysql&gt; alter table user add unique uni_name(name);
+        -- 为user表中的email字段添加普通索引，索引名为index_eamil
+        mysql&gt; alter table user add index index_email(email);
+        -- 将user表中index_email的索引删除
+        mysql&gt; alter table user drop index index_email;
+
+    5. 更改表名称：
+        ALTER TABLE 旧表名 RENAME AS 新表名
+
+    6. 更改AUTO_INCREMENT初始值:
+        ALTER TABLE 表名称 AUTO_INCREMENT=1
+
+    7. 更改表类型：
+        ALTER TABLE 表名称 ENGINE="InnoDB"
+
+MySQL数据库中的表类型一般常用两种：MyISAM和InnoDB
+区别：MyISAM类型的数据文件有三个frm(结构)、MYD（数据）、MYI（索引）
+      MyISAM类型中的表数据增 删 改速度快，不支持事务，没有InnoDB安全。
+
+      InnoDB类型的数据文件只有一个 .frm
+      InnoDB类型的表数据增 删 改速度没有MyISAM的快，但支持事务，相对安全。
+</code></pre>
+<h3><a id="314_DML_310"></a>3.1.4 数据的DML操作：添加数据，修改数据，删除数据</h3>
+<p><strong>添加数据：</strong></p>
+<pre><code>格式： insert into 表名[(字段列表)] values(值列表...);
+
+--标准添加（指定所有字段，给定所有的值）
+mysql&gt; insert into stu(id,name,age,sex,classid) values(1,'zhangsan',20,'m','lamp138');
+Query OK, 1 row affected (0.13 sec)
+
+mysql&gt;
+--指定部分字段添加值
+mysql&gt; insert into stu(name,classid) value('lisi','lamp138');
+Query OK, 1 row affected (0.11 sec)
+
+-- 不指定字段添加值
+mysql&gt; insert into stu value(null,'wangwu',21,'w','lamp138');
+Query OK, 1 row affected (0.22 sec)
+
+-- 批量添加值
+mysql&gt; insert into stu values
+    -&gt; (null,'zhaoliu',25,'w','lamp94'),
+    -&gt; (null,'uu01',26,'m','lamp94'),
+    -&gt; (null,'uu02',28,'w','lamp92'),
+    -&gt; (null,'qq02',24,'m','lamp92'),
+    -&gt; (null,'uu03',32,'m','lamp138'),
+    -&gt; (null,'qq03',23,'w','lamp94'),
+    -&gt; (null,'aa',19,'m','lamp138');
+Query OK, 7 rows affected (0.27 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+</code></pre>
+<p><strong>修改操作：</strong></p>
+<pre><code> 格式：update 表名 set 字段1=值1,字段2=值2,字段n=值n... where 条件 
+
+-- 将id为11的age改为35，sex改为m值
+mysql&gt; update stu set age=35,sex='m' where id=11;
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+-- 将id值为12和14的数据值sex改为m，classid改为lamp92
+mysql&gt; update stu set sex='m',classid='lamp92' where id=12 or id=14 --等价于下面
+mysql&gt; update stu set sex='m',classid='lamp92' where id in(12,14);
+Query OK, 2 rows affected (0.09 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+</code></pre>
+<p><strong>删除操作:</strong></p>
+<pre><code>格式：delete from 表名 [where 条件]
+
+-- 删除stu表中id值为100的数据
+mysql&gt; delete from stu where id=100;
+Query OK, 0 rows affected (0.00 sec)
+
+-- 删除stu表中id值为20到30的数据
+mysql&gt; delete from stu where id&gt;=20 and id&lt;=30;
+Query OK, 0 rows affected (0.00 sec)
+
+-- 删除stu表中id值为20到30的数据（等级于上面写法）
+mysql&gt; delete from stu where id between 20 and 30;
+Query OK, 0 rows affected (0.00 sec)
+
+-- 删除stu表中id值大于200的数据
+mysql&gt; delete from stu where id&gt;200;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre>
+<h3><a id="315_DQL_374"></a>3.1.5 数据的DQL操作：数据查询</h3>
+<p>格式：</p>
+<pre><code>   select [字段列表]|* from 表名
+   [where 搜索条件]
+   [group by 分组字段 [having 子条件]]
+   [order by 排序 asc|desc]
+   [limit 分页参数]
+</code></pre>
+<p>各种查询：</p>
+<pre><code>	mysql&gt; select * from stu;
+    +----+----------+-----+-----+---------+
+    | id | name     | age | sex | classid |
+    +----+----------+-----+-----+---------+
+    |  1 | zhangsan |  20 | m   | lamp138 |
+    |  2 | lisi     |  20 | m   | lamp138 |
+    |  3 | wangwu   |  21 | w   | lamp138 |
+    |  4 | zhaoliu  |  25 | w   | lamp94  |
+    |  5 | uu01     |  26 | m   | lamp94  |
+    |  6 | uu02     |  28 | w   | lamp92  |
+    |  7 | qq02     |  24 | m   | lamp92  |
+    |  8 | uu03     |  32 | m   | lamp138 |
+    |  9 | qq03     |  23 | w   | lamp94  |
+    | 10 | aa       |  19 | m   | lamp138 |
+    | 11 | sad      |  35 | m   | lamp94  |
+    | 12 | tt       |  25 | m   | lamp92  |
+    | 13 | wer      |  25 | w   | lamp94  |
+    | 14 | xx       |  25 | m   | lamp92  |
+    | 15 | kk       |   0 | w   | lamp94  |
+    +----+----------+-----+-----+---------+
+    15 rows in set (0.00 sec)
+
+1. where条件查询
+1. 查询班级为lamp138期的学生信息
+mysql&gt; select * from stu where classid='lamp138';
+
+2. 查询lamp138期的男生信息（sex为m）
+mysql&gt; select * from stu where classid='lamp138' and sex='m';
+
+3. 查询id号值在10以上的学生信息
+mysql&gt; select * from  stu where id&gt;10;
+
+4. 查询年龄在20至25岁的学生信息
+mysql&gt; select * from stu where age&gt;=20 and age&lt;=25;
+mysql&gt; select * from stu where age between 20 and 25;
+
+5. 查询年龄不在20至25岁的学生信息
+mysql&gt; select * from stu where age not between 20 and 25;
+mysql&gt; select * from stu where age&lt;20 or age&gt;25;
+
+6. 查询id值为1,8,4,10,14的学生信息
+select * from stu where id in(1,8,4,10,14);
+mysql&gt; select * from stu where id=1 or id=8 or id=4 or id=10 or id=14;
+
+7. 查询lamp138和lamp94期的女生信息
+mysql&gt; select * from stu where classid in('lamp138','lamp94') and sex='w';
+mysql&gt; select * from stu where (classid='lamp138' or classid='lamp94') and sex='w
+</code></pre>
+<h3><a id="316__435"></a>3.1.6 数据库授权、备份和恢复</h3>
+<p><strong>授权：</strong></p>
+<pre><code>格式：grant 允许操作 on 库名.表名 to 账号@来源 identified by '密码';
+
+
+实例：创建zhangsan账号，密码123，授权lamp61库下所有表的增/删/改/查数据,来源地不限
+
+
+mysql&gt; grant select,insert,update,delete on lamp61.* to zhangsan@'%' identified by '123';
+
+
+mysql&gt; grant all on *.* to zhangsan@'%' identified by '123';
+       Query OK, 0 rows affected (0.00 sec)
+
+
+授权一个用户（zhangsan）密码123，可以对所有的库，所有的表做所有操作。
+
+
+mysql&gt; grant all on *.* to zhangsan@'%' identified by '123';
+       Query OK, 0 rows affected (0.17 sec)
+
+
+刷新生效，否则就要重启MySQL服务才可以。
+
+
+mysql&gt; flush privileges;
+       Query OK, 0 rows affected (0.00 sec)
+
+
+浏览当前MySQL用户信息
+
+
+mysql&gt; select user,host,password from mysql.user;
+
++----------+-----------------+-------------------------------------------+
+| user     | host            | password                                  |
++----------+-----------------+-------------------------------------------+
+| root     | localhost       | *23AE809DDACAF96AF0FD78ED04B6A265E05AA257 |
+| root     | 127.0.0.1       |                                           |
+|          | localhost       |                                           |
+| zhangsan | %               | *23AE809DDACAF96AF0FD78ED04B6A265E05AA257 |
+| admin    | 192.168.112.132 | *23AE809DDACAF96AF0FD78ED04B6A265E05AA257 |
++----------+-----------------+-------------------------------------------+
+5 rows in set (0.00 sec)
+
+移除一些权限
+revoke:只删除了用户权限，但没有删除这个用户
+mysql&gt; revoke insert,delete on *.* from admin@192.168.112.132 identified by'123';
+
+查看指定用户的权限信息
+mysql&gt; show grants for xbb@localhost;
++------------------------------------------------------------------------------------------------------------+
+| Grants for xbb@localhost                                                                                   |
++------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'xbb'@'localhost' IDENTIFIED BY PASSWORD '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257' |
++------------------------------------------------------------------------------------------------------------+
+
+drop user:删除了整个用户及其权限（包括数据字典中的数据）
+mysql&gt; drop user 'xbb'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select user,host from mysql.user;
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| root             | 127.0.0.1 |
+| debian-sys-maint | localhost |
+| root             | localhost |
+| root             | wangxg    |
++------------------+-----------+
+4 rows in set (0.00 sec)
+</code></pre>
+<p><strong>备份与恢复（导入和导出）</strong></p>
+<pre><code> 将lamp138库导出
+
+D:\&gt;mysqldump -u root -p lamp138 &gt;lamp138.sql Enter password:
+
+---- 将lamp138库中的stu表导出
+
+D:\&gt;mysqldump -u root -p lamp138 stu &gt;lamp138_stu.sql  Enter password:
+
+-- 将lamp138库导入
+
+D:\&gt;mysql -u root -p lamp138&lt;lamp138.sql
+
+Enter password:
+
+-- 将lamp138库中stu表导入
+
+D:\&gt;mysql -u root -p lamp138&lt;lamp138_stu.sql
+
+Enter password:
+</code></pre>
+<h3><a id="317_MySQL_533"></a>3.1.7 MySQL的多表联查</h3>
+<ul>
+<li>
+<p>表之间的关系有： 1.对1 1对多 多对多</p>
+<p>1.嵌套查询:一个查询的结果是另外sql查询的条件：</p>
+<pre><code>如：查询stu表中年龄最大的是谁？
+mysql&gt; select * from stu where age=(select max(age) from stu);
+mysql&gt; select * from stu where age in(select max(age) from stu); --（子查询结果是多条时使用in查询）
+     +----+------+------+-----+----------+
+     | id | name | age  | sex | classid  |
+     +----+------+------+-----+----------+
+     | 14 | abc  |   33 | w   | python01 |
+     +----+------+------+-----+----------+
+     1 row in set (0.01 sec)
+</code></pre>
+<p>2.where关联查询</p>
+<pre><code>已知：员工personnel表和部门department表，其中员工表中的did字段为部门表id主键关联。
+查询所有员工信息，并显示所属部门名称
+要求：显示字段：员工id  部门 姓名
+mysql&gt; select p.id,d.name,p.name from personnel p,department d where p.did = d.id;
+           +----+-----------+-----------+
+           | id | name      | name      |
+           +----+-----------+-----------+
+           |  2 | 人事部    | 李玉刚    |
+           | 10 | 人事部    | 阿杜      |
+           |  4 | 市场部    | 刘欢      |
+</code></pre>
+</li>
+</ul>
+<ol start="3">
+<li>
+<p>连接join查询</p>
+<pre><code>       左联：left join
+       右联：right join
+       内联：inner join
+   
+已知如下表所示，商品类别信息表（具有两层类别关系，通过pid表示，0表示一级类别）
+mysql&gt; select * from type;
+   	+----+-----------+------+
+   	| id | name      | pid  |
+   	+----+-----------+------+
+   	|  1 | 服装      |    0 |
+   	|  2 | 数码      |    0 |
+   	|  3 | 男装      |    1 |
+   	|  4 | 手机      |    2 |
+   	|  5 | 相机      |    2 |
+   	|  6 | 电脑      |    2 |
+   	|  7 | 女装      |    1 |
+   	|  8 | 童装      |    1 |
+   	|  9 | 食品      |    0 |
+   	| 10 | 零食      |    9 |
+   	| 11 | 特产      |    9 |
+   	| 12 | 休闲装    |    1 |
+   	+----+-----------+------+
+   	12 rows in set (0.00 sec)
+   	
+mysql&gt; desc type;
+   	+-------+------------------+------+-----+---------+----------------+
+   	| Field | Type             | Null | Key | Default | Extra          |
+   	+-------+------------------+------+-----+---------+----------------+
+   	| id    | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+   	| name  | varchar(16)      | NO   |     | NULL    |                |
+   	| pid   | int(10) unsigned | YES  |     | NULL    |                |
+   	+-------+------------------+------+-----+---------+----------------+
+   	3 rows in set (0.00 sec)
+</code></pre>
+</li>
+</ol>
+<ul>
+<li>
+<p>查询二级类别信息，并关联出他们的父类别名称</p>
+<pre><code> mysql&gt; select  t1.id,t1.name,t2.name  from type t1,type t2 where t1.pid!=0 and t1.pid=t2.id;
+ +----+-----------+--------+
+ | id | name      | name   |
+ +----+-----------+--------+
+ |  3 | 男装      | 服装   |
+ |  4 | 手机      | 数码   |
+ |  5 | 相机      | 数码   |
+ |  6 | 电脑      | 数码   |
+ |  7 | 女装      | 服装   |
+ |  8 | 童装      | 服装   |
+ | 10 | 零食      | 食品   |
+ | 11 | 特产      | 食品   |
+ | 12 | 休闲装    | 服装   |
+ +----+-----------+--------+
+ 9 rows in set (0.01 sec)
+</code></pre>
+</li>
+<li>
+<p>统计每个一级类别下都有多少个子类别。</p>
+<pre><code> mysql&gt; select t1.id,t1.name,count(t2.id) from type t1,type t2 where t1.pid=0 and t1.id=t2.pid group by t1.id;
+ +----+--------+--------------+
+ | id | name   | count(t2.id) |
+ +----+--------+--------------+
+ |  1 | 服装    |            4 |
+ |  2 | 数码    |            3 |
+ |  9 | 食品    |            2 |
+ +----+--------+--------------+
+ 3 rows in set (0.00 sec)
+</code></pre>
+</li>
+</ul>
+<h3><a id="318_MySQL_630"></a>3.1.8 MySQL的其他操作</h3>
+<ol>
+<li>
+<p>MySQL的表复制</p>
+<pre><code> 复制表结构
+ mysql&gt; create table 目标表名 like 原表名;
+
+ 复制表数据
+ mysql&gt; insert into 目标表名 select * from 原表名; 
+</code></pre>
+</li>
+<li>
+<p>数据表的索引</p>
+<pre><code> 创建索引
+	CREATE INDEX index_name ON table_name (column_list)
+	CREATE UNIQUE INDEX index_name ON table_name (column_list)
+
+	删除索引
+	DROP INDEX index_name ON talbe_name
+</code></pre>
+</li>
+<li>
+<p>mysql视图</p>
+<pre><code> 创建视图:
+ mysql&gt; create view v_t1 as select * from t1 where id&gt;4 and id&lt;11;
+ Query OK, 0 rows affected (0.00 sec)
+
+ view视图的帮助信息:
+ mysql&gt; ? view
+ ALTER VIEW
+ CREATE VIEW
+ DROP VIEW
+
+ 查看视图:
+ mysql&gt; show tables;
+
+ 删除视图v_t1:
+ mysql&gt; drop view v_t1;
+</code></pre>
+</li>
+<li>
+<p>MySQL的内置函数<br>
+<strong>字符串处理函数</strong></p>
+<hr>
+<pre><code> concat(s1,s2,…Sn) 连接s1,s2..Sn为一个字符串
+ insert(str,x,y,instr)将字符串str从第xx位置开始，y字符串的子字符串替换为字符串str
+ lower(str)将所有的字符串变为小写
+ upper(str)将所有的字符串变为大写
+ left(str,x)返回字符串中最左边的x个字符
+ rigth(str,y)返回字符串中最右边的x个字符
+ lpad(str,n,pad)用字符串pad对str最左边进行填充，直到长度为n个字符串长度
+ rpad(str,n,pad)用字符串pad对str最右边进行填充，直到长度为n个字符串长度
+ trim(str)  去掉左右两边的空格
+ ltrim(str) 去掉字符串str左侧的空格
+ rtrim(str) 去掉字符串str右侧的空格
+ repeat(str,x)   返回字符串str重复x次
+ replace(str,a,b)将字符串的的a替换成b
+ strcmp(s1,s2)   比较字符串s1和s2
+ substring(s,x,y)返回字符串指定的长度
+ length(str)  返回值为字符串str 的长度    
+</code></pre>
+<p><strong>数值函数</strong></p>
+<hr>
+<pre><code> abs(x)    返回x的绝对值
+ ceil(x)   返回大于x的最小整数值
+ floor(x)  返回小于x的最大整数值
+ mod(x,y)  返回x/y的取余结果
+ rand()    返回0~1之间的随机数
+ round(x,y)返回参数x的四舍五入的有y位小数的值
+ truncate(x,y) 返回x截断为y位小数的结果
+</code></pre>
+<p><strong>日期和时间函数</strong></p>
+<hr>
+<pre><code> curdate()  返回当前日期,按照’YYYY-MM-DD’格式
+ curtime()  返回当前时间,当前时间以'HH:MM:SS' 
+ now()      返回当前日期和时间,
+ unix_timestamp(date) 返回date时间的unix时间戳
+ from_unixtime(unix_timestamp[,format])    返回unix时间的时间
+ week(date)        返回日期是一年中的第几周
+ year(date)      返回日期的年份
+ hour(time)      返回time的小时值
+ minute(time)    返回日time的分钟值
+ monthname(date) 返回date的月份
+ date_fomat(date,fmt) 返回按字符串fmt格式化日期date值
+ date_add(date,INTERVAL,expr type) 返回一个日期或者时间值加上一个时间间隔的时间值
+ datediff(expr,expr2)   返回起始时间和结束时间的间隔天数
+ 
+ 统计时间戳647583423距离当前时间相差天数（生日天数（不考虑年份））
+ mysql&gt; select datediff(date_format(from_unixtime(647583423),"2017-%m-%d %h:%i:%s"),now());
+</code></pre>
+<p><strong>其他常用函数</strong></p>
+<hr>
+<pre><code> database() 返回当前数据库名
+ version()   返回当前服务器版本
+ user()        返回当前登陆用户名
+ inet_aton   返回当前IP地址的数字表示 inet_aton("192.168.80.250");
+ inet_ntoa(num) 返回当前数字表示的ip   inet_ntoa(3232256250);
+ password(str)  返回当前str的加密版本
+ md5(str)      返回字符串str的md5值
+</code></pre>
+</li>
+</ol>
+<p>5.MySQL的事务处理</p>
+<pre><code>	    关闭自动提交功能（开启手动事务）
+    	mysql&gt; set autocommit=0;
+    	从表t1中删除了一条记录
+    	mysql&gt; delete from t1 where id=11;
+    	此时做一个p1还原点:
+    	mysql&gt; savepoint p1;
+    	再次从表t1中删除一条记录:
+    	mysql&gt; delete from t1 where id=10;
+    	再次做一个p2还原点:
+    	mysql&gt; savepoint p2;
+    	此时恢复到p1还原点，当然后面的p2这些还原点自动会失效: 
+    	mysql&gt; rollback to p1;
+    	退回到最原始的还原点:
+    	mysql&gt; rollback;
+    	回滚
+    	
+    	开启自动事务提交（关闭手动事务）
+    	mysql&gt; set autocommit=1;
+</code></pre>
+<p>6.MySQL的触发器</p>
+<pre><code>	格式：
+	  触发器的定义：
+	  CREATE TRIGGER trigger_name trigger_time trigger_event
+	  ON tbl_name FOR EACH ROW trigger_stmt
+	
+	说明：
+	  trigger_name：触发器名称
+	  trigger_time:触发时间，可取值：BEFORE或AFTER
+	  trigger_event：触发事件，可取值：INSERT、UPDATE或DELETE。
+	  tb1_name：指定在哪个表上
+	  trigger_stmt：触发处理SQL语句。
+	
+	示例：
+	    mysql&gt; delimiter $$
+	    mysql&gt; create trigger del_stu before delete on stu for each row
+	        -&gt; begin
+	        -&gt;  insert into stu_bak values(old.id,old.name,old.sex,old.age,old.addtime);
+	        -&gt; end;
+	        -&gt; $$
+	    Query OK, 0 rows affected (0.05 sec)
+	
+	    mysql&gt; delimiter ;
+</code></pre>
+<p>7.mysql日志</p>
+<pre><code>	开启日志： 在mysql配置文件中开启：log-bin=mysql-bin
+	
+	查看bin-log日志:
+	mysql&gt;show binary logs;
+	
+	查看最后一个bin-log日志:
+	mysql&gt;show master status;
+	
+	此时就会多一个最新的bin-log日志
+	mysql&gt;flush logs;
+	
+	查看最后一个bin日志.
+	mysql&gt;show master status;
+	
+	mysql&gt;reset master;
+	清空所有的bin-log日志
+	执行查看bin-log日志
+	
+	备份数据:
+	mysqldump -uroot -pwei test -l -F '/tmp/test.sql'
+	其中：-F即flush logs，可以重新生成新的日志文件，当然包括log-bin日志 
+	
+	Linux关闭MySQL的命令
+	$mysql_dir/bin/mysqladmin -uroot -p shutdown
+	linux启动MySQL的命令
+	$mysql_dir/bin/mysqld_safe &amp;
+</code></pre>
+<p>8.有关慢查询操作：</p>
+<pre><code>	开户和设置慢查询时间:
+	vi /etc/my.cnf
+	log_slow_queries=slow.log
+	long_query_time=5
+	查看设置后是否生效
+	mysql&gt; show variables like "%quer%"; 
+	慢查询次数:
+	mysql&gt; show global status like "%quer%";
+
+
+**数据库的恢复**
+
+	1. 首先恢复最后一次的备份完整数据
+	   [root@localhost mnt]# mysql -u root -p mydemo&lt;mydemo_2017-7-26.sql 
+	   Enter password: 
+	
+	2. 查看bin-log日志
+	   [root@localhost data]# mysqlbinlog --no-defaults mysql-bin.000009;
+	   查找到恢复的节点
+	
+	3. 执行bin-log日志文件，恢复最后一块的增量数据。 
+	   [root@localhost data]# mysqlbinlog --no-defaults --stop-position="802" mysql-bin.000009|mysql -
+</code></pre>
+
+          </div>
+          <link href="https://csdnimg.cn/release/phoenix/mdeditor/markdown_views-e44c3c0e64.css" rel="stylesheet">
+                  </div>
+  </article>
+</div>
+
+<div class="hide-article-box hide-article-pos text-center">
+      <a class="" id="btn-readmore" data-track-view='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90438435,"}' data-track-click='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90438435,"}'>
+    展开阅读全文
+    <svg class="icon chevrondown" aria-hidden="true">
+        <use xlink:href="#csdnc-chevrondown"></use>
+      </svg>
+    </a>
+    </div>
+<script>
+  $(".MathJax").remove();
+  if ($('div.markdown_views pre.prettyprint code.hljs').length > 0) {
+    $('div.markdown_views')[0].className = 'markdown_views';
+  }
+</script>
+        <div id="dmp_ad_58"><div id="kp_box_58" data-pid="58" data-track-view='{"mod":"kp_popu_58-402","con":",,"}' data-track-click='{"mod":"kp_popu_58-402","con":",,"}'><div style="width:100%;background:#fff;border:3px solid #fff;padding:16px 0px 0px 0px;">
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<div id="three_ad1" class="mediav_ad" ></div>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 100,
+                showid : 'ztvJV8',
+                placeholderId: "three_ad1",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 0,
+                    imageWidth: 90,
+                    imageHeight: 68,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft YaHei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 20,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script>
+</div></div></div>        <a id="commentBox"></a>
+<div class="comment-box">
+	
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="javascript:void(0);" target="_blank">
+				<img class="show_loginbox" src="//g.csdnimg.cn/static/user-img/anonymous-User-img.png">
+			</a>
+		</div>
+		<form id="commentform">
+			<input type="hidden" id="comment_replyId">
+			<textarea class="comment-content" name="comment_content" id="comment_content" placeholder="想对作者说点什么"></textarea>
+			<div class="opt-box"> <!-- d-flex -->
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="90438435">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div style="display: none;" class="csdn-tracking-statistics tracking-click" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="txt-selected text-truncate">添加代码片</div>
+					<svg class="icon d-block" aria-hidden="true">
+						<use xlink:href="#csdnc-triangledown"></use>
+					</svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>  
+				<div class="right-box">
+					<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+					<input type="button" class="btn btn-sm btn-cancel d-none" value="取消回复">
+					<input type="submit" class="btn btn-sm btn-red btn-comment" value="发表评论">
+				</div>
+			</div>
+		</form>
+	</div>
+
+		<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div>
+		</div>
+	</div>
+</div>
+        <div class="recommend-box">
+                            	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/sdxiaohuzi/1638325,BlogCommendFromQuerySearch_0"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/sdxiaohuzi/1638325,BlogCommendFromQuerySearch_0"}'>
+		<a href="https://download.csdn.net/download/sdxiaohuzi/1638325" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>mysql数据</em>库命令					</h4>
+					<span class="data float-right">09-06</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据库命令mysql数据库命令mysql数据库命令mysql数据库命令mysql数据库命令mysql数据库命令				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/yezhouyong/2948278,BlogCommendFromQuerySearch_1"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/yezhouyong/2948278,BlogCommendFromQuerySearch_1"}'>
+		<a href="https://download.csdn.net/download/yezhouyong/2948278" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>mysql数据</em>的导入导出					</h4>
+					<span class="data float-right">12-29</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据的导入导出mysql数据的导入导出mysql数据的导入导出				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/sanjinme/9985698,BlogCommendFromQuerySearch_2"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/sanjinme/9985698,BlogCommendFromQuerySearch_2"}'>
+		<a href="https://download.csdn.net/download/sanjinme/9985698" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						node自动读取<em>MySQL数据</em>发送邮件					</h4>
+					<span class="data float-right">09-19</span>
+				</div>
+				<div class="desc oneline">
+						自动读取MySQL数据发送邮件自动读取MySQL数据发送邮件自动读取MySQL数据发送邮件自动读取MySQL数据发送邮件自动读取MySQL数据发送邮件				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/doney_dongxiang/1649644,BlogCommendFromQuerySearch_3"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/doney_dongxiang/1649644,BlogCommendFromQuerySearch_3"}'>
+		<a href="https://download.csdn.net/download/doney_dongxiang/1649644" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>MYSQL数据</em>为大进击					</h4>
+					<span class="data float-right">09-10</span>
+				</div>
+				<div class="desc oneline">
+						MYSQL数据为大进击，MYSQL数据为大进击，MYSQL数据为大进击，MYSQL数据为大进击，MYSQL数据为大进击				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_59" data-pid="59" data-track-view='{"mod":"kp_popu_59-860","con":",,SQL"}' data-track-click='{"mod":"kp_popu_59-860","con":",,SQL"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/109?positionId=59&queryWord=SQL" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/teng712/2677802,BlogCommendFromQuerySearch_4"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/teng712/2677802,BlogCommendFromQuerySearch_4"}'>
+		<a href="https://download.csdn.net/download/teng712/2677802" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						mysql 数据自动备份					</h4>
+					<span class="data float-right">09-07</span>
+				</div>
+				<div class="desc oneline">
+						实现mysql数据，资源文件 备份打包。
+实现mysql数据，资源文件 备份打包。
+实现mysql数据，资源文件 备份打包。				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/csu_tiankong/3274625,BlogCommendFromQuerySearch_5"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/csu_tiankong/3274625,BlogCommendFromQuerySearch_5"}'>
+		<a href="https://download.csdn.net/download/csu_tiankong/3274625" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						flex4 简单增删改实例 使用<em>mysql数据</em>库					</h4>
+					<span class="data float-right">05-13</span>
+				</div>
+				<div class="desc oneline">
+						flex4 简单增删改实例 使用mysql数据flex4 简单增删改实例 使用mysql数据flex4 简单增删改实例 使用mysql数据flex4 简单增删改实例 使用mysql数据flex4 简单增删改实例 使用mysql数据				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/catpanda_bt/1899645,BlogCommendFromQuerySearch_6"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/catpanda_bt/1899645,BlogCommendFromQuerySearch_6"}'>
+		<a href="https://download.csdn.net/download/catpanda_bt/1899645" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>MYSQL数据</em>库加载脚本方法					</h4>
+					<span class="data float-right">12-13</span>
+				</div>
+				<div class="desc oneline">
+						MYSQL数据库加载脚本方法MYSQL数据库加载脚本方法				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/lupeng0206/article/details/70087517,BlogCommendFromQuerySearch_7"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lupeng0206/article/details/70087517,BlogCommendFromQuerySearch_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lupeng0206/article/details/70087517" target="_blank" title="Linux CentOS6 64位升级3.1内核的方法记录">
+		<h4 class="text-truncate oneline">
+				Linux CentOS6 64位升级<em>3.1</em>内核的方法记录		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1708</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lupeng0206/article/details/70087517" target="_blank" title="Linux CentOS6 64位升级3.1内核的方法记录">
+				<span class="desc oneline">有些时候我们由于某些项目和软件配置的需要，需要将默认Linux系统的内核提高版本才可以安装需要的软件（比如docker需要内核3.10版本以上）。比如当前老左在CentOS664bit环境中内核默认是...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lupeng0206">来自：	<span class="blog_title"> lupeng0206的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/jianghuiyan/504002,BlogCommendFromQuerySearch_8"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/jianghuiyan/504002,BlogCommendFromQuerySearch_8"}'>
+		<a href="https://download.csdn.net/download/jianghuiyan/504002" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>mysql数据</em>连接池					</h4>
+					<span class="data float-right">06-19</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据连接池				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_60" data-pid="60" data-track-view='{"mod":"kp_popu_60-43","con":",,"}' data-track-click='{"mod":"kp_popu_60-43","con":",,"}'><div id="three_ad8" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 84,
+                showid : 'Afihld',
+                placeholderId: "three_ad8",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/liangzonghua/9508035,BlogCommendFromQuerySearch_9"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/liangzonghua/9508035,BlogCommendFromQuerySearch_9"}'>
+		<a href="https://download.csdn.net/download/liangzonghua/9508035" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						mysql主从同步					</h4>
+					<span class="data float-right">05-02</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据主从同步				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/shimafeiyun2/7640333,BlogCommendFromQuerySearch_10"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/shimafeiyun2/7640333,BlogCommendFromQuerySearch_10"}'>
+		<a href="https://download.csdn.net/download/shimafeiyun2/7640333" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>MySQL数据</em>库使用命令					</h4>
+					<span class="data float-right">07-16</span>
+				</div>
+				<div class="desc oneline">
+						MySQL数据库命令				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+			<div class="recommend-item-box blog-expert-recommend-box">
+			<div class="d-flex">
+				<div class="blog-expert-recommend">
+					<div class="blog-expert">
+						<div class="blog-expert-flexbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/ham007/187675,BlogCommendFromQuerySearch_11"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/ham007/187675,BlogCommendFromQuerySearch_11"}'>
+		<a href="https://download.csdn.net/download/ham007/187675" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						mysql图形文件					</h4>
+					<span class="data float-right">05-31</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据安装文件				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/frost_soda/article/details/80760230,BlogCommendFromQuerySearch_12"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/frost_soda/article/details/80760230,BlogCommendFromQuerySearch_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/frost_soda/article/details/80760230" target="_blank" title="《汇编语言》（王爽）检测点3.1">
+		<h4 class="text-truncate oneline">
+				《汇编语言》（王爽）检测点<em>3.1</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-21</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1067</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/frost_soda/article/details/80760230" target="_blank" title="《汇编语言》（王爽）检测点3.1">
+				<span class="desc oneline">(1)在Debug中，用“d0:01f”查看内存，结果如下下面程序执行前，AX=0,BX=0,写出每条汇编指令执行完后相关寄存器中的值。执行指令AXBXDSmovax,1000100000000mov...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/frost_soda">来自：	<span class="blog_title"> frost_soda的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/Cfreezhan/article/details/17740999,BlogCommendFromQuerySearch_13"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Cfreezhan/article/details/17740999,BlogCommendFromQuerySearch_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Cfreezhan/article/details/17740999" target="_blank" title="王爽 汇编语言 检测点 3.1">
+		<h4 class="text-truncate oneline">
+				王爽 汇编语言 检测点 <em>3.1</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5420</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Cfreezhan/article/details/17740999" target="_blank" title="王爽 汇编语言 检测点 3.1">
+				<span class="desc oneline">检测点3.1： 1）在Debug中用“d0:01f”查看内存，结果如下：下面的程序执行前，AX=0,BX=0,写出每条汇编指令执行完后相关寄存器中的值。Movax,1Movds,axMovax,[00...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Cfreezhan">来自：	<span class="blog_title"> free斩</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_61" data-pid="61" data-track-view='{"mod":"kp_popu_61-557","con":",,"}' data-track-click='{"mod":"kp_popu_61-557","con":",,"}'><div id="three_ad13" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'GNKXx7',
+                placeholderId: "three_ad13",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/stj35/article/details/81150657,BlogCommendFromQuerySearch_14"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/stj35/article/details/81150657,BlogCommendFromQuerySearch_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/stj35/article/details/81150657" target="_blank" title="王爽 汇编语言 检测点3.1 已验证">
+		<h4 class="text-truncate oneline">
+				王爽 汇编语言 检测点<em>3.1</em> 已验证		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					360</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/stj35/article/details/81150657" target="_blank" title="王爽 汇编语言 检测点3.1 已验证">
+				<span class="desc oneline">初学汇编，在阅读王爽的汇编语言的同时，也在做着书上的检测点。刚刚做完检测点3.1后，上网搜了一下检测点3.1的答案，发现第2题的搜到的答案和我自己做的答案，总是有点出入，而且连搜几个，有出入的地方还都...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/stj35">来自：	<span class="blog_title"> stj35的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/ncalien/2077311,BlogCommendFromQuerySearch_15"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/ncalien/2077311,BlogCommendFromQuerySearch_15"}'>
+		<a href="https://download.csdn.net/download/ncalien/2077311" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						ACDSee <em>3.1</em> 真正简体中文版.rar 带注册码					</h4>
+					<span class="data float-right">02-25</span>
+				</div>
+				<div class="desc oneline">
+						ACDSee 3.1 真正简体中文版.rar 带注册码				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/jiangbeicaizi000/article/details/81983931,BlogCommendFromQuerySearch_16"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jiangbeicaizi000/article/details/81983931,BlogCommendFromQuerySearch_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jiangbeicaizi000/article/details/81983931" target="_blank" title="USB 3.0、USB 3.1到底什么区别？彻底明白">
+		<h4 class="text-truncate oneline">
+				USB 3.0、USB <em>3.1</em>到底什么区别？彻底明白		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7609</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jiangbeicaizi000/article/details/81983931" target="_blank" title="USB 3.0、USB 3.1到底什么区别？彻底明白">
+				<span class="desc oneline"> 转自：http://tech.huanqiu.com/diginews/2016-06/9062788.html　　十多年前，USB总线进入主流视野，提供了一个全新的存储方向，并用一个统一的标准把众...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jiangbeicaizi000">来自：	<span class="blog_title"> jiangbeicaizi000的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_40101530/article/details/84402998,BlogCommendFromQuerySearch_17"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_40101530/article/details/84402998,BlogCommendFromQuerySearch_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_40101530/article/details/84402998" target="_blank" title="mysql数据">
+		<h4 class="text-truncate oneline">
+				<em>mysql数据</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					26</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_40101530/article/details/84402998" target="_blank" title="mysql数据">
+				<span class="desc oneline">  mysql数据库语言不区分大小写安装sudoapt-getinstallmysql-servermysql-client然后按照提示输入管理服务启动servicemysqlstart停止servi...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_40101530">来自：	<span class="blog_title"> weixin_40101530的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/baidu_28934315/9692075,BlogCommendFromQuerySearch_18"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/baidu_28934315/9692075,BlogCommendFromQuerySearch_18"}'>
+		<a href="https://download.csdn.net/download/baidu_28934315/9692075" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						apache-jmeter-<em>3.1</em>					</h4>
+					<span class="data float-right">11-24</span>
+				</div>
+				<div class="desc oneline">
+						开源轻巧，性能接口测试工具				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_62" data-pid="62" data-track-view='{"mod":"kp_popu_62-556","con":",,"}' data-track-click='{"mod":"kp_popu_62-556","con":",,"}'><div id="three_ad18" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'Afihld',
+                placeholderId: "three_ad18",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/labstar/2263793,BlogCommendFromQuerySearch_19"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/labstar/2263793,BlogCommendFromQuerySearch_19"}'>
+		<a href="https://download.csdn.net/download/labstar/2263793" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						真正的ACDSee<em>3.1</em>英文版 带注册码					</h4>
+					<span class="data float-right">04-20</span>
+				</div>
+				<div class="desc oneline">
+						版本 ©2000 ACD Systems, Ltd.
+ＡＣＤＳｅｅ３．１是一款共享软件，日前在各大网站都提供下载，下载后是一个５．２９ＭＢ的可执行文件。软件的安装十分方便，在安装过程中只需选择安装类型（典型，完全和定制），其余的工作就是一...				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/linghu9990/2945640,BlogCommendFromQuerySearch_20"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/linghu9990/2945640,BlogCommendFromQuerySearch_20"}'>
+		<a href="https://download.csdn.net/download/linghu9990/2945640" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						Borland C/C++ <em>3.1</em> 完整版(BC<em>3.1</em>)					</h4>
+					<span class="data float-right">12-28</span>
+				</div>
+				<div class="desc oneline">
+						可编译uCOS代码的borland c++ 编译器3.1版
+可直接用来编译生成16位程序				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/yyb83520365/10865339,BlogCommendFromQuerySearch_21"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/yyb83520365/10865339,BlogCommendFromQuerySearch_21"}'>
+		<a href="https://download.csdn.net/download/yyb83520365/10865339" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						mysql.data.zip 适用于.net2.0					</h4>
+					<span class="data float-right">12-20</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据动态库 适用于.net2.0 已测试可以使用mysql数据动态库 适用于.net2.0 已测试可以使用mysql数据动态库 适用于.net2.0 已测试可以使用				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/zzj196030/3304154,BlogCommendFromQuerySearch_22"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/zzj196030/3304154,BlogCommendFromQuerySearch_22"}'>
+		<a href="https://download.csdn.net/download/zzj196030/3304154" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						Windows <em>3.1</em> 简体中文版					</h4>
+					<span class="data float-right">05-23</span>
+				</div>
+				<div class="desc oneline">
+						要安装就要把压缩文件解压刻到一张用过的CD，用Windows 98启动盘引导计算机打开CD\Win31\SINPCHIN\Setup.exe
+按两次空格开始安装...				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_42789446/article/details/82219443,BlogCommendFromQuerySearch_23"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_42789446/article/details/82219443,BlogCommendFromQuerySearch_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_42789446/article/details/82219443" target="_blank" title="tomcat7不支持version=3.1的修改方法">
+		<h4 class="text-truncate oneline">
+				tomcat7不支持version=<em>3.1</em>的修改方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					979</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_42789446/article/details/82219443" target="_blank" title="tomcat7不支持version=3.1的修改方法">
+				<span class="desc oneline"> 在项目工作空间中，在所在项目文件.setting下org.eclipse.wst.common.project.facet.core.prefs.xml&amp;amp;lt;?xmlversion=&amp;qu...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_42789446">来自：	<span class="blog_title"> 小草无敌超人强</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_63" data-pid="63" data-track-view='{"mod":"kp_popu_63-1059","con":",,"}' data-track-click='{"mod":"kp_popu_63-1059","con":",,"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/234?positionId=63&queryWord=" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/Q563573095/article/details/79715175,BlogCommendFromQuerySearch_24"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Q563573095/article/details/79715175,BlogCommendFromQuerySearch_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Q563573095/article/details/79715175" target="_blank" title="Servlet3.1版本新特性">
+		<h4 class="text-truncate oneline">
+				Servlet<em>3.1</em>版本新特性		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-27</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1455</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Q563573095/article/details/79715175" target="_blank" title="Servlet3.1版本新特性">
+				<span class="desc oneline">@WebService1、serviceName：对外发布的服务名，指定WebService的服务名称：wsdl:service。缺省值为Java类的简单名称+Service。（字符串）2、endpo...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Q563573095">来自：	<span class="blog_title"> Q563573095的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/jiujieqiao/article/details/46841065,BlogCommendFromQuerySearch_25"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jiujieqiao/article/details/46841065,BlogCommendFromQuerySearch_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jiujieqiao/article/details/46841065" target="_blank" title="Servlet 3.1 新特性示例">
+		<h4 class="text-truncate oneline">
+				Servlet <em>3.1</em> 新特性示例		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					494</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jiujieqiao/article/details/46841065" target="_blank" title="Servlet 3.1 新特性示例">
+				<span class="desc oneline">点击打开链接</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jiujieqiao">来自：	<span class="blog_title"> jiujieqiao的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/lessf/8952817,BlogCommendFromQuerySearch_26"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/lessf/8952817,BlogCommendFromQuerySearch_26"}'>
+		<a href="https://download.csdn.net/download/lessf/8952817" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						Microsoft XNA Framework <em>3.1</em>					</h4>
+					<span class="data float-right">08-02</span>
+				</div>
+				<div class="desc oneline">
+						XNA 是微软发布的游戏开发框架，是xbox360和windows phone7游戏开发必装的组件，一些PC游戏需要XNA环境才能运行，请在运行前安装此程序。				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/love_old_yoghourt/9974854,BlogCommendFromQuerySearch_27"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/love_old_yoghourt/9974854,BlogCommendFromQuerySearch_27"}'>
+		<a href="https://download.csdn.net/download/love_old_yoghourt/9974854" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						mysql管理工具					</h4>
+					<span class="data float-right">09-12</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据管理工具（navicat）                                                    !!!!!!!!!!!!!!!!!!!!				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/zhouyuping3732998/7663621,BlogCommendFromQuerySearch_28"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/zhouyuping3732998/7663621,BlogCommendFromQuerySearch_28"}'>
+		<a href="https://download.csdn.net/download/zhouyuping3732998/7663621" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						ADO连<em>MYSQL数据</em>					</h4>
+					<span class="data float-right">07-22</span>
+				</div>
+				<div class="desc oneline">
+						ADO连MYSQL数据				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_64" data-pid="64" data-track-view='{"mod":"kp_popu_64-1251","con":",,"}' data-track-click='{"mod":"kp_popu_64-1251","con":",,"}'><!-- T28 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T28_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T28  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T28_render", "T28");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_34232363/article/details/87545339,BlogCommendFromQuerySearch_29"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_34232363/article/details/87545339,BlogCommendFromQuerySearch_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_34232363/article/details/87545339" target="_blank" title="LinuxCentOS664位升级3.1内核的方法记录">
+		<h4 class="text-truncate oneline">
+				LinuxCentOS664位升级<em>3.1</em>内核的方法记录		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					66</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_34232363/article/details/87545339" target="_blank" title="LinuxCentOS664位升级3.1内核的方法记录">
+				<span class="desc oneline">有些时候咱们因为某些项目与软体配置的需要，需要将默认Linux系统的内核提升版本才能部署需要的软体（譬如docker需要内核3.10版本以上）。譬如当前伏笔主机在CentOS664bit环境中内核默认...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_34232363">来自：	<span class="blog_title"> weixin_34232363的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/xubingtao/7051445,BlogCommendFromQuerySearch_30"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/xubingtao/7051445,BlogCommendFromQuerySearch_30"}'>
+		<a href="https://download.csdn.net/download/xubingtao/7051445" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						servlet<em>3.1</em> api					</h4>
+					<span class="data float-right">03-17</span>
+				</div>
+				<div class="desc oneline">
+						该文档来自官网，经本人制作成chm格式，方便使用。				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/taiwan111111/1218764,BlogCommendFromQuerySearch_31"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/taiwan111111/1218764,BlogCommendFromQuerySearch_31"}'>
+		<a href="https://download.csdn.net/download/taiwan111111/1218764" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						Microsoft Windows Installer <em>3.1</em> 简体版.rar					</h4>
+					<span class="data float-right">04-17</span>
+				</div>
+				<div class="desc oneline">
+						Microsoft Windows Installer 3.1 简体版.rarMicrosoft Windows Installer 3.1 简体版.rarMicrosoft Windows Installer 3.1 简体版.rarMi...				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/yj1981/article/details/644892,BlogCommendFromQuerySearch_32"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/yj1981/article/details/644892,BlogCommendFromQuerySearch_32"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/yj1981/article/details/644892" target="_blank" title="王爽《汇编语言》答案 检测点3.1">
+		<h4 class="text-truncate oneline">
+				王爽《汇编语言》答案 检测点<em>3.1</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2456</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/yj1981/article/details/644892" target="_blank" title="王爽《汇编语言》答案 检测点3.1">
+				<span class="desc oneline">1.2662,e626,e626,266e,d6e6,fd48,2ecc,0,e6,0,26,ac分析：在dos实模式下。0001：0000＝0000：00102.  movax,6226h     ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/yj1981">来自：	<span class="blog_title"> yj1981的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/ye3312/1490297,BlogCommendFromQuerySearch_33"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/ye3312/1490297,BlogCommendFromQuerySearch_33"}'>
+		<a href="https://download.csdn.net/download/ye3312/1490297" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>mysql数据</em>备份恢复,E零数据备份v1.0,℡嗄沬°					</h4>
+					<span class="data float-right">07-15</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据备份恢复,mysql数据备份恢复,可以分卷导入导出,自定义每卷的大小.				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_65" data-pid="65" data-track-view='{"mod":"kp_popu_65-1252","con":",,"}' data-track-click='{"mod":"kp_popu_65-1252","con":",,"}'><!-- T33 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T33_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T33  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T33_render", "T33");
+</script></div></div>
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/sunhongyezi/6025259,BlogCommendFromQuerySearch_34"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/sunhongyezi/6025259,BlogCommendFromQuerySearch_34"}'>
+		<a href="https://download.csdn.net/download/sunhongyezi/6025259" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>mysql数据</em>库工具					</h4>
+					<span class="data float-right">08-28</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据的图形界面工具				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/chinasanduo/8836459,BlogCommendFromQuerySearch_35"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/chinasanduo/8836459,BlogCommendFromQuerySearch_35"}'>
+		<a href="https://download.csdn.net/download/chinasanduo/8836459" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						FreeRadius数据表详解					</h4>
+					<span class="data float-right">06-25</span>
+				</div>
+				<div class="desc oneline">
+						FreeRadius MySQL数据的解释				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/fengce1234/2149751,BlogCommendFromQuerySearch_36"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/fengce1234/2149751,BlogCommendFromQuerySearch_36"}'>
+		<a href="https://download.csdn.net/download/fengce1234/2149751" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						微软公式编辑器 (Microsoft Equation Eidtor) v<em>3.1</em> 中文版					</h4>
+					<span class="data float-right">03-21</span>
+				</div>
+				<div class="desc oneline">
+						微软公式编辑器 (Microsoft Equation Eidtor) v3.1 中文版微软公式编辑器 (Microsoft Equation Eidtor) v3.1 中文版				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_30567265/9116809,BlogCommendFromQuerySearch_37"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_30567265/9116809,BlogCommendFromQuerySearch_37"}'>
+		<a href="https://download.csdn.net/download/qq_30567265/9116809" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						phpmyadmin 64位					</h4>
+					<span class="data float-right">09-18</span>
+				</div>
+				<div class="desc oneline">
+						phpmyadmin 快速创建MySql数据				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/fanhuijie1020/9490842,BlogCommendFromQuerySearch_38"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/fanhuijie1020/9490842,BlogCommendFromQuerySearch_38"}'>
+		<a href="https://download.csdn.net/download/fanhuijie1020/9490842" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						mysql安装工具					</h4>
+					<span class="data float-right">04-14</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据查看修改工具				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_66" data-pid="66" data-track-view='{"mod":"kp_popu_66-881","con":",,"}' data-track-click='{"mod":"kp_popu_66-881","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T38_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T38  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T38_render", "T38");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/sinat_27746419/article/details/75350049,BlogCommendFromQuerySearch_39"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sinat_27746419/article/details/75350049,BlogCommendFromQuerySearch_39"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sinat_27746419/article/details/75350049" target="_blank" title="关于 USB 3.1 、USB Type-C 你需要知道的几点">
+		<h4 class="text-truncate oneline">
+				关于 USB <em>3.1</em> 、USB Type-C 你需要知道的几点		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-19</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4992</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sinat_27746419/article/details/75350049" target="_blank" title="关于 USB 3.1 、USB Type-C 你需要知道的几点">
+				<span class="desc oneline">很少有一种技术或标准能像通用串行总线（UniversalSerialBus）那样无处不在，没错，它就是我们所熟悉的USB。在接近20年的时间里，USB始终承担着伟大的作用，帮我们不停的传输数据和电量，...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sinat_27746419">来自：	<span class="blog_title"> 撒哈拉的初学者的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/iteye_11504/article/details/82513951,BlogCommendFromQuerySearch_40"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/iteye_11504/article/details/82513951,BlogCommendFromQuerySearch_40"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/iteye_11504/article/details/82513951" target="_blank" title="Spring MVC 3.0版本和3.1版本的一点小区别">
+		<h4 class="text-truncate oneline">
+				Spring MVC 3.0版本和<em>3.1</em>版本的一点小区别		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					135</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/iteye_11504/article/details/82513951" target="_blank" title="Spring MVC 3.0版本和3.1版本的一点小区别">
+				<span class="desc oneline">先上代码：主要是控制器：@ControllerpublicclassAccountController{	privateMap&amp;amp;lt;Long,Account&amp;amp;gt;accounts=...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/iteye_11504">来自：	<span class="blog_title"> 心有猛虎，细嗅蔷薇</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/wenwst/10757512,BlogCommendFromQuerySearch_41"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/wenwst/10757512,BlogCommendFromQuerySearch_41"}'>
+		<a href="https://download.csdn.net/download/wenwst/10757512" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						k8s.gcr.io/pause:<em>3.1</em>					</h4>
+					<span class="data float-right">11-01</span>
+				</div>
+				<div class="desc oneline">
+						使用方法请关注blog: https://blog.csdn.net/wenwst 导入命令： #docker load &lt; pause.3.1.tar  # docker tag da86e6ba6ca1 k8s.gcr.io/p...				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_26000555/10946366,BlogCommendFromQuerySearch_42"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_26000555/10946366,BlogCommendFromQuerySearch_42"}'>
+		<a href="https://download.csdn.net/download/qq_26000555/10946366" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						Windows<em>3.1</em>中文版					</h4>
+					<span class="data float-right">01-31</span>
+				</div>
+				<div class="desc oneline">
+						不是Windows3.2（原生中文版）是纯正的Windows3.1.稀有资源				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/weixin_42106770/10399269,BlogCommendFromQuerySearch_43"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/weixin_42106770/10399269,BlogCommendFromQuerySearch_43"}'>
+		<a href="https://download.csdn.net/download/weixin_42106770/10399269" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						mysql-connector-java-5.1.7					</h4>
+					<span class="data float-right">05-08</span>
+				</div>
+				<div class="desc oneline">
+						同步mysql数据到solr				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_67" data-pid="67" data-track-view='{"mod":"kp_popu_67-882","con":",,"}' data-track-click='{"mod":"kp_popu_67-882","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T43_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T43  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T43_render", "T43");
+</script></div></div>
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_36235279/9755196,BlogCommendFromQuerySearch_44"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_36235279/9755196,BlogCommendFromQuerySearch_44"}'>
+		<a href="https://download.csdn.net/download/qq_36235279/9755196" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>mysql数据</em>库脚本示例					</h4>
+					<span class="data float-right">02-15</span>
+				</div>
+				<div class="desc oneline">
+						mysql数据脚本示例				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/wengjixi/10689762,BlogCommendFromQuerySearch_45"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/wengjixi/10689762,BlogCommendFromQuerySearch_45"}'>
+		<a href="https://download.csdn.net/download/wengjixi/10689762" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						k8s pause-<em>3.1</em>					</h4>
+					<span class="data float-right">09-27</span>
+				</div>
+				<div class="desc oneline">
+						pause-3.1镜像，镜像使用方法：
+docker load -i pause-3.1.tar.gz				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/u011135103/10233457,BlogCommendFromQuerySearch_46"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/u011135103/10233457,BlogCommendFromQuerySearch_46"}'>
+		<a href="https://download.csdn.net/download/u011135103/10233457" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						Microsoft 公式编辑器 ——Microsoft equation <em>3.1</em>					</h4>
+					<span class="data float-right">01-31</span>
+				</div>
+				<div class="desc oneline">
+						绿色版数学编辑器，是Microsoft equation 3.1版本，和mathType的效果一样，独立运行，编辑的公式能不能在.doc中再次编辑没测，				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_19202285/7976669,BlogCommendFromQuerySearch_47"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_19202285/7976669,BlogCommendFromQuerySearch_47"}'>
+		<a href="https://download.csdn.net/download/qq_19202285/7976669" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						LedPlay显示屏编辑系统 <em>3.1</em>					</h4>
+					<span class="data float-right">09-26</span>
+				</div>
+				<div class="desc oneline">
+						LedPlay显示屏编辑系统 3.1				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_41848822/10289758,BlogCommendFromQuerySearch_48"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_41848822/10289758,BlogCommendFromQuerySearch_48"}'>
+		<a href="https://download.csdn.net/download/qq_41848822/10289758" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						WINDOWS_<em>3.1</em>					</h4>
+					<span class="data float-right">03-16</span>
+				</div>
+				<div class="desc oneline">
+						win3.1需要运行在dos平台上，否则不能自主引导。
+所以需要先安装dos，推荐dos7.1，支持fat32.。。
+安装完dos后再运行simpchin里的setup.exe
+安装完成后，就可以直接进入c:\windows\win来启动...				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_68" data-pid="68" data-track-view='{"mod":"kp_popu_68-883","con":",,"}' data-track-click='{"mod":"kp_popu_68-883","con":",,"}'><!-- T48 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T48_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T48  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T48_render", "T48");
+</script></div></div>
+	
+	<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/yangximing/11140522,BlogCommendFromQuerySearch_49"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/yangximing/11140522,BlogCommendFromQuerySearch_49"}'>
+		<a href="https://download.csdn.net/download/yangximing/11140522" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						qt操作mysql实例					</h4>
+					<span class="data float-right">04-24</span>
+				</div>
+				<div class="desc oneline">
+						qt实现mysql数据的操作                                                                                                         ...				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/f907279313/article/details/32133257,BlogCommendHotData_0"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/f907279313/article/details/32133257,BlogCommendHotData_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+		<h4 class="text-truncate oneline">
+				STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+				<span class="desc oneline">IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结
+一，网上下载的例程，跳转部分的代码有差异，尤其是用的汇编那句
+二，关于跳转部分的代码的理解（转）
+三，关于跳转时能否不用按键，用软件标志位...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/f907279313">来自：	<span class="blog_title"> Super_Demo的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/sundacheng1989/article/details/17925431,BlogCommendHotData_1"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sundacheng1989/article/details/17925431,BlogCommendHotData_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+		<h4 class="text-truncate oneline">
+				在64位Win7操作系统中安装Microsoft Access Engine的解决方案		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+				<span class="desc oneline">现在的Win7系统中安装的一般都是32位的Office，因为微软推荐使用32位的Office，兼容性更强，稳定性更好。在使用Access作为数据库的时候，C#操作Access，如果Access是acc...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sundacheng1989">来自：	<span class="blog_title"> 写代码的蜗牛</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/crazy1235/article/details/44069267,BlogCommendHotData_2"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/crazy1235/article/details/44069267,BlogCommendHotData_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+		<h4 class="text-truncate oneline">
+				百度地图开发（五）之公交信息检索 + 路线规划		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+				<span class="desc oneline">转载请注明出处：
+    在上一篇blog中介绍过POI检索的使用，本篇blog主要介绍公交信息检索和线路规划的内容。
+公交信息检索
+    实际上，公交信息检索与POI检索、在线建议检索非常相似，也...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/crazy1235">来自：	<span class="blog_title"> crazy_jack</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/u011860731/article/details/48733073,BlogCommendHotData_3"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011860731/article/details/48733073,BlogCommendHotData_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+		<h4 class="text-truncate oneline">
+				ThreadLocal的设计理念与作用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+				<span class="desc oneline">Java中的ThreadLocal类允许我们创建只能被同一个线程读写的变量。因此，如果一段代码含有一个ThreadLocal变量的引用，即使两个线程同时执行这段代码，它们也无法访问到对方的Thread...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011860731">来自：	<span class="blog_title"> u011860731的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/kongwei521/article/details/51626589,BlogCommendHotData_4"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kongwei521/article/details/51626589,BlogCommendHotData_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+		<h4 class="text-truncate oneline">
+				C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+				<span class="desc oneline">最近在做一个每天定点从FTP自动下载节目.xml并更新到数据库的功能。首先想到用 FileSystemWatcher来监控下载到某个目录中的文件是否发生改变，如果改变就执行相应的操作，然后用timer...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/kongwei521">来自：	<span class="blog_title"> kongwei521的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/tostq/article/details/50110329,BlogCommendHotData_5"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tostq/article/details/50110329,BlogCommendHotData_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+		<h4 class="text-truncate oneline">
+				（LaTex)CTex的初次使用心得及入门教程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+				<span class="desc oneline">摘要
+最近要发论文了，被知乎里人推荐使用论文编译软件（CTex、LaTex和Overleaf之类），瞬间感觉自己用Word简直Out了（书读少）。
+学校里也听说过LaTex，不过因为当时没怎么写过...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/tostq">来自：	<span class="blog_title"> tostq的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/rickypc/article/details/6014408,BlogCommendHotData_6"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/rickypc/article/details/6014408,BlogCommendHotData_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+		<h4 class="text-truncate oneline">
+				如何编译64位( 64bit ) boost类库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9582</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+				<span class="desc oneline"> 64位windows平台，编译环境是VS2005，进入Visual Studio 2005 x64 Win64 Command Prompt（单纯的cmd也不一定不行，我没试）。把bjam.exe放...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/rickypc">来自：	<span class="blog_title"> rickypc的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/neonlight/article/details/5975764,BlogCommendHotData_7"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/neonlight/article/details/5975764,BlogCommendHotData_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+		<h4 class="text-truncate oneline">
+				vsftpd匿名用户上传和下载的配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+				<span class="desc oneline">　　看到很多朋友配置vsftpd时不能使用匿名用户上传和下载（创建目录或删除、重命名文件夹），本文主要解决vsftpd的匿名用户权限配制问题。...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/neonlight">来自：	<span class="blog_title"> 九宫霓虹</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/flysharkym/article/details/51404730,BlogCommendHotData_8"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/flysharkym/article/details/51404730,BlogCommendHotData_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+		<h4 class="text-truncate oneline">
+				mybatis一级缓存(session cache)引发的问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+				<span class="desc oneline">mybatis一级缓存(session cache)引发的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/flysharkym">来自：	<span class="blog_title"> flysharkym的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/jinping_shi/article/details/59613054,BlogCommendHotData_9"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jinping_shi/article/details/59613054,BlogCommendHotData_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+		<h4 class="text-truncate oneline">
+				高斯混合模型（GMM）及其EM算法的理解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+				<span class="desc oneline">一个例子高斯混合模型（Gaussian Mixed Model）指的是多个高斯分布函数的线性组合，理论上GMM可以拟合出任意类型的分布，通常用于解决同一集合下的数据包含多个不同的分布的情况（或者是同一...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jinping_shi">来自：	<span class="blog_title"> 小平子的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36892341/article/details/73918672,BlogCommendHotData_10"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36892341/article/details/73918672,BlogCommendHotData_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+		<h4 class="text-truncate oneline">
+				linux上安装Docker(非常简单的安装方法)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					28万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+				<span class="desc oneline">最近比较有空，大四出来实习几个月了，作为实习狗的我，被叫去研究Docker了，汗汗！
+
+Docker的三大核心概念：镜像、容器、仓库
+镜像：类似虚拟机的镜像、用俗话说就是安装文件。
+容器：类似一个轻量...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_36892341">来自：	<span class="blog_title"> 我走小路的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/meng564764406/article/details/52444644,BlogCommendHotData_11"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/meng564764406/article/details/52444644,BlogCommendHotData_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+		<h4 class="text-truncate oneline">
+				将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+				<span class="desc oneline">本篇文章是根据我的上篇博客，给出的改进版，由于时间有限，仅做了一个简单的优化。相关文章：将excel导入数据库2018年4月1日，新增下载地址链接：点击打开源码下载地址十分抱歉，这个链接地址没有在这篇...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/meng564764406">来自：	<span class="blog_title"> Lynn_Blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/wangpeng047/article/details/19624529,BlogCommendHotData_12"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wangpeng047/article/details/19624529,BlogCommendHotData_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+		<h4 class="text-truncate oneline">
+				HttpClient使用详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					81万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+				<span class="desc oneline">Http协议的重要性相信不用我多说了，HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wangpeng047">来自：	<span class="blog_title"> 鹏霄万里展雄飞</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/Main_Stage/article/details/41989499,BlogCommendHotData_13"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Main_Stage/article/details/41989499,BlogCommendHotData_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+		<h4 class="text-truncate oneline">
+				Android圆形图片--自定义控件		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+				<span class="desc oneline">Android圆形图片--自定义控件</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Main_Stage">来自：	<span class="blog_title"> Main_Stage的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/lch_vison/article/details/79112450,BlogCommendHotData_14"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lch_vison/article/details/79112450,BlogCommendHotData_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+		<h4 class="text-truncate oneline">
+				ubuntu16.04环境Kdevelop安装和汉化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6239</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+				<span class="desc oneline">1、Kdevelop安装
+
+ 
+
+最简单的命令行安装，打开终端，执行
+
+ 
+
+
+sudo apt-get install kdevelop
+
+
+ 
+
+2、Kdevelop汉化
+
+不需要自己下载汉化包，...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lch_vison">来自：	<span class="blog_title"> lch_vision的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/klkxxy/article/details/78773980,BlogCommendHotData_15"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/klkxxy/article/details/78773980,BlogCommendHotData_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+		<h4 class="text-truncate oneline">
+				图片拉伸变形		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					332</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+				<span class="desc oneline">http://blog.csdn.net/abc649395594/article/details/50004991</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/klkxxy">来自：	<span class="blog_title"> klkxxy的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/pengjc2001/article/details/54924699,BlogCommendHotData_16"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/pengjc2001/article/details/54924699,BlogCommendHotData_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+		<h4 class="text-truncate oneline">
+				三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+				<span class="desc oneline">阅读内容为：FX系列微型可编程控制器用户手册（通讯篇）中计算机链接功能章节。
+采用本方法通信，pc端的实现，其实就是，把操作按照协议（2种）翻译成相应的字符串，通过串口发送给plc。
+
+
+编写一应用程...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/pengjc2001">来自：	<span class="blog_title"> pengjc2001的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/updog/article/details/6625975,BlogCommendHotData_17"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/updog/article/details/6625975,BlogCommendHotData_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+		<h4 class="text-truncate oneline">
+				实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+				<span class="desc oneline">本帖慢慢扩充……1. 假设是实现namespace Abc中的一个class，不要因为是在.cc中就肆无忌惮的在global scope或者namespace Abc{}中定义辅助变量和函数，或者ty...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/qq574857122/article/details/16361033,BlogCommendHotData_18"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq574857122/article/details/16361033,BlogCommendHotData_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+		<h4 class="text-truncate oneline">
+				强连通分量及缩点tarjan算法解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					66万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+				<span class="desc oneline">强连通分量：
+简言之 就是找环（每条边只走一次，两两可达）
+孤立的一个点也是一个连通分量 
+ 
+使用tarjan算法 在嵌套的多个环中优先得到最大环( 最小环就是每个孤立点）
+ 
+定义：
+int Ti...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq574857122">来自：	<span class="blog_title"> 九野的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/u013268685/article/details/41732447,BlogCommendHotData_19"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013268685/article/details/41732447,BlogCommendHotData_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+		<h4 class="text-truncate oneline">
+				数据结构实验：栈实现计算器(表达式计算）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4049</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+				<span class="desc oneline">原创作品转载请注明出处
+欢迎抄袭，造福各位伸手党
+/*************************************************************************
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013268685">来自：	<span class="blog_title"> u013268685的专栏(有一种幸福叫AC，有一种期待叫AK)</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/jiebaoabcabc/article/details/19242621,BlogCommendHotData_20"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jiebaoabcabc/article/details/19242621,BlogCommendHotData_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+		<h4 class="text-truncate oneline">
+				简单linux字符设备驱动程序与编程小技巧(上)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					629</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+				<span class="desc oneline">这几天开始研究linux下的驱动程序编写了，遇到的问题也挺多的，好在linux是开源的，很多高人编写的技巧和思路都会在他们的源代码中体现，我也在他们的源码中学到了很多好东西，我归纳了下贴出来，希望自己...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/gefangshuai/article/details/50328451,BlogCommendHotData_21"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gefangshuai/article/details/50328451,BlogCommendHotData_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+		<h4 class="text-truncate oneline">
+				关于SpringBoot bean无法注入的问题（与文件包位置有关）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					27万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+				<span class="desc oneline">问题场景描述整个项目通过Maven构建，大致结构如下：
+核心Spring框架一个module spring-boot-base
+service和dao一个module server-core
+提供系统...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gefangshuai">来自：	<span class="blog_title"> 开发随笔</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/autfish/article/details/52682778,BlogCommendHotData_22"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/autfish/article/details/52682778,BlogCommendHotData_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+		<h4 class="text-truncate oneline">
+				苹果充值常见的刷单手段和防范方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+				<span class="desc oneline">苹果充值的刷单现象在游戏行业非常普遍，很多团队挖空心思寻找漏洞以非法获利。常见的手段主要有以下六种：
+
+
+伪造充值凭据(receipt)以小额凭据骗取大额商品
+
+凭据重复使用
+凭据重复使用信用卡黑卡/...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/autfish">来自：	<span class="blog_title"> 分享知识、分享进步</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/wuchengzeng/article/details/50037611,BlogCommendHotData_23"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wuchengzeng/article/details/50037611,BlogCommendHotData_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+		<h4 class="text-truncate oneline">
+				jquery/js实现一个网页同时调用多个倒计时(最新的)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					54万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+				<span class="desc oneline">jquery/js实现一个网页同时调用多个倒计时(最新的)
+
+最近需要网页添加多个倒计时. 查阅网络,基本上都是千遍一律的不好用. 自己按需写了个.希望对大家有用. 有用请赞一个哦!
+
+
+
+//js
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wuchengzeng">来自：	<span class="blog_title"> Websites</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/zp_00000/article/details/70207445,BlogCommendHotData_24"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zp_00000/article/details/70207445,BlogCommendHotData_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+		<h4 class="text-truncate oneline">
+				VirtualBox COM获取对象失败		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+				<span class="desc oneline">错误详情
+
+
+
+
+
+1. 先来看看错误详情
+获取 VirtualBox COM 对象失败.应用程序将被中断.Failed to instantiate CLSID_VirtualBox ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zp_00000">来自：	<span class="blog_title"> 多点折腾少点抱怨</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/u014306011/article/details/51546236,BlogCommendHotData_25"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014306011/article/details/51546236,BlogCommendHotData_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+		<h4 class="text-truncate oneline">
+				Eclipse如何安装WindowBuilder插件及如何使用WB		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-31</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6481</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+				<span class="desc oneline">Eclipse如何安装WindowBuilder插件及如何使用WB</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u014306011">来自：	<span class="blog_title"> 天命王子的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/lubiaopan/article/details/6233517,BlogCommendHotData_26"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lubiaopan/article/details/6233517,BlogCommendHotData_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+		<h4 class="text-truncate oneline">
+				.NET和java的RSA互通，仅此而已		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+				<span class="desc oneline">RSA .net jva 互通 解决不能互通的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lubiaopan">来自：	<span class="blog_title"> lubiaopan的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/xu__cg/article/details/52970885,BlogCommendHotData_27"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xu__cg/article/details/52970885,BlogCommendHotData_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+		<h4 class="text-truncate oneline">
+				Java设计模式学习06——静态代理与动态代理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+				<span class="desc oneline">一、代理模式为某个对象提供一个代理，从而控制这个代理的访问。代理类和委托类具有共同的父类或父接口，这样在任何使用委托类对象的地方都可以使用代理类对象替代。代理类负责请求的预处理、过滤、将请求分配给委托...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xu__cg">来自：	<span class="blog_title"> 小小本科生成长之路</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/NYS001/article/details/12637201,BlogCommendHotData_28"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/NYS001/article/details/12637201,BlogCommendHotData_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+		<h4 class="text-truncate oneline">
+				蜂窝小区最短距离的坐标系解法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+				<span class="desc oneline">如下图所示，蜂窝小区，以1为中心，顺时针编号，编号最大限定为100000。求任意两编号之间的最短距离。两个相邻小区的距离为1 示例：19到30的最短距离为5 实现如下三个接口： /**********...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/NYS001">来自：	<span class="blog_title"> NYS001的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/Smile_qiqi/article/details/32724931,BlogCommendHotData_29"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Smile_qiqi/article/details/32724931,BlogCommendHotData_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+		<h4 class="text-truncate oneline">
+				魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+				<span class="desc oneline">畅所欲言！</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Smile_qiqi">来自：	<span class="blog_title"> Smile_qiqi的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/zd0303/article/details/7058457,BlogCommendHotData_30"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zd0303/article/details/7058457,BlogCommendHotData_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+		<h4 class="text-truncate oneline">
+				MATLAB中注释一段程序		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+				<span class="desc oneline">在MATLAB中，可以注释一段程序。
+使用“%{”和“%}”。
+例如
+%{
+。。。
+%}
+即可。
+经典方法是用 if 0，但缺点是不够直观，注释掉的内容仍然保持代码的颜色。现在可以用
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zd0303">来自：	<span class="blog_title"> 知识小屋</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+                <div class="recommend-item-box type_hot_word">
+                                <div class="content clearfix">
+                    <div class="word float-left">
+                                                            <span>
+                        <a href="https://edu.csdn.net/courses/o5329_s5330_k " target="_blank">
+                        机器学习教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/courses/o280_s351_k " target="_blank">
+                        Objective-C培训                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o7115_s388_l0_t " target="_blank">
+                        交互设计视频教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/course/play/5599/104252 " target="_blank">
+                        颜色模型                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o363_l0_t " target="_blank">
+                        设计制作学习                    </a></span>
+                                                            </div>
+                </div>
+                                                <div class="content clearfix">
+                    <div class="float-left">
+                                        <span>
+                        <a href="https://www.csdn.net/gather_24/MtTaEg3sMDM5MS1ibG9n.html" target="_blank">
+                        mysql关联查询两次本表</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_10/MtjaIg3sMTUzMy1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+                        native底部 react</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_1b/Ntzagg1sOTU3LWRvd25sb2Fk.html" target="_blank">
+                        extjs glyph 图标</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/MtjaYgzsODktZWR1.html" target="_blank">
+                        mysql数据培训</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/MtTaUgxsMTEtZWR1.html" target="_blank">
+                        mysql数据培训</a>
+                    </span>
+                                        </div>
+                </div>
+                                </div>
+                            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+
+    <aside>
+	<div id="asideProfile" class="aside-box">
+    <!-- <h3 class="aside-title">个人资料</h3> -->
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/kzl_knight">
+              <img src="https://avatar.csdn.net/5/A/A/3_kzl_knight.jpg" class="avatar_pic">
+                              <img src="https://g.csdnimg.cn/static/user-reg-year/1x/1.png" class="user-years">
+                          </a>
+            
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/kzl_knight" target="_blank" class="" id="uid">kzl_knight</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a class="btn btn-sm btn-red-hollow attention" id="btnAttent">关注</a>
+            </span>
+        </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="49">
+                        <dt><a href="https://blog.csdn.net/kzl_knight?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/kzl_knight?t=1"><span class="count">49</span></a></dd>
+                    </dl>
+        <dl class="text-center" id="fanBox" title="36">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">36</span></dd>
+        </dl>
+        <dl class="text-center" title="12">
+            <dt>喜欢</dt>
+            <dd><span class="count">12</span></dd>
+        </dl>
+        <dl class="text-center" title="0">
+            <dt>评论</dt>
+            <dd><span class="count">0</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-3"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="52461">
+                5万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="996">
+                996            </dd>
+        </dl>
+        <dl title="73129">
+            <dt>排名：</dt>
+            <dd>7万+</dd>
+        </dl>
+    </div>
+        <div class="badge-box d-flex">
+        <span>勋章：</span>
+        <div class="badge d-flex">
+                                                        <div class="icon-badge" title="持之以恒">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                                   <p>持之以恒</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然月内发布4篇或4篇以上原创或翻译IT博文的用户。不积跬步无以至千里，不积小流无以成江海，程序人生的精彩需要坚持不懈地积累！                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv1">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                                   <p>勤写标兵Lv1</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布1篇到3篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv2">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                                   <p>勤写标兵Lv2</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布4篇到6篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv4">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                                   <p>勤写标兵Lv4</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布9篇以上（包括9篇）原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                             </div>
+        <script>
+            (function ($) {
+                setTimeout(function(){
+                    $('div.icon-badge.show-moment').removeClass('show-moment');
+                }, 5000);
+            })(window.jQuery)
+        </script>
+    </div>
+    </div>
+<div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+      <div id="kp_box_56" data-pid="56" data-track-view='{"mod":"kp_popu_56-876","con":",,"}' data-track-click='{"mod":"kp_popu_56-876","con":",,"}'><!-- 广告位：PC-博客内页左上视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6096221',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="//dup.baidustatic.com/js/os.js"></script></div>    </div>
+</div>
+<div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91402940" target="_blank">windows查看进程并结束</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91044758" target="_blank">[Nginx]反向代理</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91039990" target="_blank">[flask]1基础知识点</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90954216" target="_blank">uWSGI部署python项目</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90899356" target="_blank">[ubuntu18.04]维护mysql</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+<div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8966794">
+                    <span class="title oneline">web前端技术</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8916283">
+                    <span class="title oneline">linux基础</span>
+                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8917641">
+                    <span class="title oneline">python系统编程</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8930728">
+                    <span class="title oneline">Django</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8935344">
+                    <span class="title oneline">数据库</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8951492">
+                    <span class="title oneline">pycharm</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8959754">
+                    <span class="title oneline">csdn_python教学笔记2.0</span>
+                    <span class="count float-right">10篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971103">
+                    <span class="title oneline">csdn2.0课程笔记-1.python基础上</span>
+                    <span class="count float-right">9篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971104">
+                    <span class="title oneline">csdn2.0课程笔记-2.python基础下</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971107">
+                    <span class="title oneline">csdn2.0课程笔记-3.数据库操作</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971109">
+                    <span class="title oneline">csdn2.0课程笔记-4.Web前端技术</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971379">
+                    <span class="title oneline">项目实战</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971742">
+                    <span class="title oneline">csdn2.0课程笔记-Web选修</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8982378">
+                    <span class="title oneline">数据挖掘</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8989051">
+                    <span class="title oneline">web前端笔记</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9009953">
+                    <span class="title oneline">运维</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9012691">
+                    <span class="title oneline">Flask</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9021123">
+                    <span class="title oneline">win10</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+<div id="asideArchive" class="aside-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/06">
+                    2019年6月                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/05">
+                    2019年5月                    <span class="count float-right">42篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+    </div>
+<div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313005">1.3 Python运算符</a>
+					<p class="read">阅读数 <span>1564</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90441297">[Django项目案例]搭建用户与商品后台管理系统</a>
+					<p class="read">阅读数 <span>1526</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313521">1.4 Python的数据类型</a>
+					<p class="read">阅读数 <span>1514</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90512005">1.7 Python函数详解</a>
+					<p class="read">阅读数 <span>1499</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313615">1.5 Python分支结构</a>
+					<p class="read">阅读数 <span>1471</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+	<div id="asideFooter">
+			
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57" data-track-view='{"mod":"kp_popu_57-1158","con":",,"}' data-track-click='{"mod":"kp_popu_57-1158","con":",,"}'><!-- 广告位：PC-博客内页左下视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6272567',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="https://dup.baidustatic.com/js/os.js"></script></div>		</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<div class="tool-box vertical">
+	<ul class="meau-list">
+		<li class="btn-like-box ">
+			<button class=" low-height hover-box btn-like " title="点赞">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup"></use>
+				</svg>
+				<span class="hover-show text-box text">
+					<span class="no-active">点赞</span>
+					<span class="active">取消点赞</span>
+				</span>
+				<p>0</p>
+			</button>
+		</li>
+		<li class="to-commentBox">
+						<a class="btn-comments low-height hover-box" title="写评论" href="#commentBox">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg>
+				<span class="hover-show text">评论</span>
+				<p class="">
+										</p>
+			</a>
+		</li>
+		<li class="toc-container-box" id="liTocBox">
+			<a class="btn-toc low-height hover-box btn-comments" title="目录">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-contents"></use>
+				</svg>
+				<span class="hover-show text">目录</span>
+			</a>
+			<div class="toc-container">
+				<div class="pos-box">
+					<div class="icon-arrow"></div>
+					<div class="scroll-box">
+						<div class="toc-box"></div>
+					</div>
+				</div>
+				<div class="opt-box">
+					<button class="btn-opt prev nomore" title="向上">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronup"></use>
+						</svg>
+					</button>
+					<button class="btn-opt next">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevrondown"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<a class="btn-bookmark low-height hover-box btn-comments" title="收藏">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg>
+					<span class="hover-show text">收藏</span>
+				<!-- <span class="hover-show text-box text">
+					<span class="no-active">收藏</span>
+					<span class="active">取消收藏</span>
+				</span> -->
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<div class="weixin-qr btn-comments low-height hover-box" >
+        <a href="#" class="bds_weixin clear-share-style" data-cmd="weixin" title="手机看"></a>
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-usephone"></use>
+				</svg>
+				<span class="hover-show text text3">
+					手机看
+				</span>
+			</div>
+		</li>
+							<li class="widescreen-hide">
+				<a class="prev btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90405740" title="4.3 BootStrap案例实战">
+					<svg class="icon hover-hide" aria-hidden="true">
+						<use xlink:href="#csdnc-chevronleft"></use>
+					</svg>
+					<span class="hover-show text text3">上一篇</span>
+				</a>
+			</li>
+								<li class="widescreen-hide">
+			<a class="next btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/90438486" title="3.2 Python 连接数据库">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-chevronright"></use>
+				</svg>
+				<span class="hover-show text text3">下一篇</span>
+			</a>
+		</li>
+						<!-- 宽屏更多按钮 -->
+		<li class="widescreen-more">
+			<a class="btn-comments chat-ask-button low-height hover-box" title="快问" href="#chatqa">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-more"></use>
+				</svg>
+				<span class="hover-show text">更多</span>
+				
+			</a>
+			<ul class="widescreen-more-box">
+													<li class="widescreen-more">
+						<a class="btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90405740" title="4.3 BootStrap案例实战">
+							<svg class="icon hover-hide" aria-hidden="true">
+								<use xlink:href="#csdnc-chevronleft"></use>
+							</svg>
+							<span class="hover-show text text3">上一篇</span>
+						</a>
+					</li>
+																<li class="widescreen-more">
+					<a class="btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/90438486" title="3.2 Python 连接数据库">
+						<svg class="icon hover-hide" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronright"></use>
+						</svg>
+						<span class="hover-show text text3">下一篇</span>
+					</a>
+				</li>
+							</ul>
+		</li>
+	</ul>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script>
+    var recommendCount = 81;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var ChannelId = 31;
+    var articleId = "90438435";
+    var commentscount = 0;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/kzl_knight/article/details/90438435";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "3.1 MySQL数据 - kzl_knight的博客";
+    var needInsertBaidu = true;
+    // 代码段样式
+    var codeStyle = '';
+	var highlight = ["3.1","mysql\u6570\u636e"];//高亮数组
+
+    var RecommendBlogExpertList = [{"user_name":"lupeng0206","nick_name":"lupeng0206","avatar":"https:\/\/avatar.csdn.net\/4\/D\/1\/3_lupeng0206.jpg","is_expert":false,"article_count":35,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"frost_soda","nick_name":"frost_soda","avatar":"https:\/\/avatar.csdn.net\/C\/0\/3\/3_frost_soda.jpg","is_expert":false,"article_count":10,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"Cfreezhan","nick_name":"Cfreezhan","avatar":"https:\/\/avatar.csdn.net\/4\/C\/4\/3_cfreezhan.jpg","is_expert":false,"article_count":247,"rank":"7000+"},{"user_name":"stj35","nick_name":"stj35","avatar":"https:\/\/avatar.csdn.net\/E\/1\/4\/3_stj35.jpg","is_expert":false,"article_count":3,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"jiangbeicaizi000","nick_name":"jiangbeicaizi000","avatar":"https:\/\/avatar.csdn.net\/2\/8\/7\/3_jiangbeicaizi000.jpg","is_expert":false,"article_count":20,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"weixin_40101530","nick_name":"artist_123","avatar":"https:\/\/avatar.csdn.net\/8\/8\/E\/3_weixin_40101530.jpg","is_expert":false,"article_count":19,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"weixin_42789446","nick_name":"\u5c0f\u8349\u65e0\u654c\u8d85\u4eba\u5f3a","avatar":"https:\/\/avatar.csdn.net\/E\/9\/5\/3_weixin_42789446.jpg","is_expert":false,"article_count":17,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"Q563573095","nick_name":"Q563573095","avatar":"https:\/\/avatar.csdn.net\/A\/9\/8\/3_q563573095.jpg","is_expert":false,"article_count":79,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"jiujieqiao","nick_name":"jiujieqiao","avatar":"https:\/\/avatar.csdn.net\/8\/3\/3\/3_jiujieqiao.jpg","is_expert":false,"article_count":2,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"weixin_34232363","nick_name":"weixin_34232363","avatar":"https:\/\/avatar.csdn.net\/C\/3\/4\/3_weixin_34232363.jpg","is_expert":false,"article_count":5055,"rank":"\u5343\u91cc\u4e4b\u5916"}];
+	var articleType = 1;
+	var CopyrightContent = '';
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+</body>
+
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+	<script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/pc_wap_common-45af74a22e.js" /></script>
+
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-84251d2950.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-fefc1403d5.min.js"></script>
+
+	<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-fc7383b956.min.js"></script>
+<script>
+ // 全局声明
+ if (window.csdn === undefined) {
+      window.csdn = {};
+    }
+    window.csdn.sideToolbar = {
+        options: {
+            report:{
+                isShow: true,
+            },
+            afterFinished: function(){
+                setTimeout(function () {
+                    var viphtml = '<a class="option-box" data-type="vip" href="https://mall.csdn.net/vip" target="_blank">'+
+                        '<img src="https://g.csdnimg.cn/side-toolbar/1.2/images/vip.png" alt="" srcset="">'+
+                        '<span class="show-txt">VIP<br>免广告</span>'+
+                        '</a>';
+                    $('.csdn-side-toolbar').prepend(viphtml)
+                },300)
+            }
+        }
+    }
+
+    $(function(){
+        $(document).on('click',"a.option-box[data-type='report']",function() {
+            showReport(false,articleTitles)
+        });
+    })
+</script>
+<script src="https://g.csdnimg.cn/side-toolbar/1.2/side-toolbar.js"></script>
+
+    <script src="//g.csdnimg.cn/??login-box/1.0.6/login-box.js,login-box/1.0.5/login-auto.js,copyright/1.0.3/copyright.js,baidu-search/1.0.0/baidu-search.js?t=20190307095522"  type="text/javascript"></script>
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+<script type="text/javascript">
+    </script>
+<script src="https://gh.bdstatic.com/static/gh/js/sdk/bword.min.js"></script>
+</html>

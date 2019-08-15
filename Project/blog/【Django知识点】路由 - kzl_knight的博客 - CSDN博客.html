@@ -1,0 +1,3436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/kzl_knight/article/details/90260835"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+        <meta name="csdn-baidu-search"  content='{"autorun":true,"install":true,"keyword":"【Django知识点】路由 - kzl_knight的博客"}'>
+    
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>【Django知识点】路由 - kzl_knight的博客 - CSDN博客</title>
+
+        
+                    <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-caa11f8119.min.css">
+            
+            <script type="application/ld+json">{"@context":"https:\/\/ziyuan.baidu.com\/contexts\/cambrian.jsonld","@id":"https:\/\/blog.csdn.net\/kzl_knight\/article\/details\/90260835","appid":"1563894916825412","title":"\u3010Django\u77e5\u8bc6\u70b9\u3011\u8def\u7531 - kzl_knight\u7684\u535a\u5ba2","images":["https:\/\/img-blog.csdnimg.cn\/2019051611563173.png?x-oss-process=image\/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70","https:\/\/img-blog.csdnimg.cn\/20190516115650966.png","https:\/\/img-blog.csdnimg.cn\/20190516115715659.png"],"pubDate":"2019-06-26T21:10:23"}</script>
+        
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-9b39979775.min.css">
+        <script type="text/javascript">
+        var username = "kzl_knight";
+        var blog_address = "https://blog.csdn.net/kzl_knight";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "http://passport.csdn.net/account/login?from=https://blog.csdn.net/kzl_knight/article/details/90260835"
+        var blogUrl = "https://blog.csdn.net/";
+
+        var curSkin = "skin3-template";
+        // 第四范式所需数据
+        var articleTitles = "【Django知识点】路由 - kzl_knight的博客";
+        
+        var nickName = "kzl_knight";
+        var isCorporate = false;
+        var subDomainBlogUrl = "https://blog.csdn.net/"
+        var digg_base_url = "https://blog.csdn.net/kzl_knight/phoenix/comment";
+        var articleDetailUrl = "https://blog.csdn.net/kzl_knight/article/details/90260835";
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+    <script src="//g.csdnimg.cn/??fixed-sidebar/1.1.3/fixed-sidebar.js,track/1.2.6/track.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body class="nodata " > 
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="kp_box_476" data-pid="476" data-track-view='{"mod":"kp_popu_476-923","con":",,"}' data-track-click='{"mod":"kp_popu_476-923","con":",,"}'><script src="//csdnimg.cn/public/common/indexSuperise/1.1.1/indexSuperise.js?20190111165312"></script><script>window.csdn.indexSuperise({smallMoveImg:'https://img-bss.csdn.net/1560915497802.png',bigMoveImg:'https://img-bss.csdn.net/1560915494375.png',link:'https://kunyu.csdn.net?p=476&a=923&c=437&k=&d=1&t=3&dest=https%3A%2F%2Fedu.csdn.net%2Ftopic%2Fai30%3Futm_source%3Dblogpopup',trackSuperId:476,smallMove:'notMove',trackSId:923});</script></div><link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript">
+	var NEWS_FEED = function(){}
+</script>
+
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/chart-3456820cac.css" />
+<div class="container clearfix" id="mainBox">
+			<div class="recommend-right">
+  <ul class="recommend-fixed-box">
+    
+  </ul>
+</div>	    <main>
+        <div class="blog-content-box">
+  <div class="article-header-box">
+    <div class="article-header">
+      <div class="article-title-box">
+        <span class="article-type type-1 float-left">原</span>        <h1 class="title-article">【Django知识点】路由</h1>
+      </div>
+      <div class="article-info-box">
+        <div class="article-bar-top">
+                                                              <span class="time">2019年05月16日 11:58:36</span>
+          <a class="follow-nickName" href="https://me.csdn.net/kzl_knight" target="_blank">kzl_knight</a>
+          <span class="read-count">阅读数 1447</span>
+          
+                          <span class="tags-box artic-tag-box">
+                <span class="label">标签：</span>
+                                  <a data-track-click='{"mod":"popu_626","con":"Django"}' data-track-view='{"mod":"popu_626","con":"Django"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=Django&t=blog" target="_blank">Django                                    <a data-track-click='{"mod":"popu_626","con":"python"}' data-track-view='{"mod":"popu_626","con":"python"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=python&t=blog" target="_blank">python                                    <a data-track-click='{"mod":"popu_626","con":"路由"}' data-track-view='{"mod":"popu_626","con":"路由"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=路由&t=blog" target="_blank">路由                                    <a data-track-click='{"mod":"popu_626","con":"笔记"}' data-track-view='{"mod":"popu_626","con":"笔记"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=笔记&t=blog" target="_blank">笔记                                    <a data-track-click='{"mod":"popu_626","con":"知识点"}' data-track-view='{"mod":"popu_626","con":"知识点"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=知识点&t=blog" target="_blank">知识点                                  </a>
+              </span>
+                                      <div class="tags-box space">
+                <span class="label">个人分类：</span>
+                                  <a class="tag-link" href="https://blog.csdn.net/kzl_knight/article/category/8930728" target="_blank">Django                                  </a>
+              </div>
+                                          </div>
+        <div class="operating">
+                  </div>
+      </div>
+    </div>
+  </div>
+  <article class="baidu_pl">
+    <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod=popu_307 data-dsm="post">
+              <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-cd6c485e8b.css" />
+                              <div id="content_views" class="markdown_views prism-atom-one-dark">
+            <!-- flowchart 箭头图标 勿删 -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+            </svg>
+            <p></p><div class="toc"><h3>【Django知识点】路由</h3><ul><li><a href="#1_app_2" rel="nofollow">1 加载app的路由文件</a></li><li><a href="#2__15" rel="nofollow">2 无参数路由映射</a></li><li><a href="#3__17" rel="nofollow">3 根据索引接受参数</a></li><li><a href="#4__19" rel="nofollow">4 根据正则命名接受参数</a></li></ul></div><p></p>
+<h1><a id="1_app_2"></a>1 加载app的路由文件</h1>
+<pre><code class="prism language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url<span class="token punctuation">,</span>include
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^'</span><span class="token punctuation">,</span>include<span class="token punctuation">(</span><span class="token string">'myapp1.urls'</span><span class="token punctuation">,</span>namespace<span class="token operator">=</span><span class="token string">'myapp1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<pre><code>include:包含
+namespace:命名空间
+</code></pre>
+<h1><a id="2__15"></a>2 无参数路由映射</h1>
+<p><img src="https://img-blog.csdnimg.cn/2019051611563173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1><a id="3__17"></a>3 根据索引接受参数</h1>
+<p><img src="https://img-blog.csdnimg.cn/20190516115650966.png" alt="在这里插入图片描述"></p>
+<h1><a id="4__19"></a>4 根据正则命名接受参数</h1>
+<p><img src="https://img-blog.csdnimg.cn/20190516115715659.png" alt="在这里插入图片描述"><br>
+注：正则表达式分组命名：(?P&lt;别名&gt;正则表达式)</p>
+
+          </div>
+          <link href="https://csdnimg.cn/release/phoenix/mdeditor/markdown_views-e44c3c0e64.css" rel="stylesheet">
+                  </div>
+  </article>
+</div>
+
+<div class="hide-article-box hide-article-pos text-center">
+      <a class="" id="btn-readmore" data-track-view='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90260835,"}' data-track-click='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90260835,"}'>
+    展开阅读全文
+    <svg class="icon chevrondown" aria-hidden="true">
+        <use xlink:href="#csdnc-chevrondown"></use>
+      </svg>
+    </a>
+    </div>
+<script>
+  $(".MathJax").remove();
+  if ($('div.markdown_views pre.prettyprint code.hljs').length > 0) {
+    $('div.markdown_views')[0].className = 'markdown_views';
+  }
+</script>
+        <div id="dmp_ad_58"><div id="kp_box_58" data-pid="58" data-track-view='{"mod":"kp_popu_58-402","con":",,"}' data-track-click='{"mod":"kp_popu_58-402","con":",,"}'><div style="width:100%;background:#fff;border:3px solid #fff;padding:16px 0px 0px 0px;">
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<div id="three_ad1" class="mediav_ad" ></div>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 100,
+                showid : 'ztvJV8',
+                placeholderId: "three_ad1",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 0,
+                    imageWidth: 90,
+                    imageHeight: 68,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft YaHei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 20,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script>
+</div></div></div>        <a id="commentBox"></a>
+<div class="comment-box">
+	
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="javascript:void(0);" target="_blank">
+				<img class="show_loginbox" src="//g.csdnimg.cn/static/user-img/anonymous-User-img.png">
+			</a>
+		</div>
+		<form id="commentform">
+			<input type="hidden" id="comment_replyId">
+			<textarea class="comment-content" name="comment_content" id="comment_content" placeholder="想对作者说点什么"></textarea>
+			<div class="opt-box"> <!-- d-flex -->
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="90260835">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div style="display: none;" class="csdn-tracking-statistics tracking-click" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="txt-selected text-truncate">添加代码片</div>
+					<svg class="icon d-block" aria-hidden="true">
+						<use xlink:href="#csdnc-triangledown"></use>
+					</svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>  
+				<div class="right-box">
+					<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+					<input type="button" class="btn btn-sm btn-cancel d-none" value="取消回复">
+					<input type="submit" class="btn btn-sm btn-red btn-comment" value="发表评论">
+				</div>
+			</div>
+		</form>
+	</div>
+
+		<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div>
+		</div>
+	</div>
+</div>
+        <div class="recommend-box">
+                            <div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_41144008/article/details/78826745,BlogCommendFromThirdServiceAll_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_41144008/article/details/78826745" target="_blank" title="Django框架学习笔记（8.对应路由名称和路由分发）">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>框架学习笔记（8.对应<em>路由</em>名称和<em>路由</em>分发）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					999</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_41144008/article/details/78826745" target="_blank" title="Django框架学习笔记（8.对应路由名称和路由分发）">
+				<span class="desc oneline">name:   对URL路由关系进行命名，以后可以根据此名称生成自己想要的URL示例：urls.py(这里给index加入了第三个参数):fromdjango.conf.urlsimporturlfr...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_41144008">来自：	<span class="blog_title"> 一清的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/python_tty/article/details/46446749,BlogCommendFromThirdServiceAll_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/python_tty/article/details/46446749" target="_blank" title="Django知识点总结(一)">
+		<h4 class="text-truncate oneline">
+				<em>Django</em><em>知识点</em>总结(一)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1217</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/python_tty/article/details/46446749" target="_blank" title="Django知识点总结(一)">
+				<span class="desc oneline">1.django项目中Python的搜索路径    Python的搜索路径是指使用import语句时,Python搜索的系统目录清单    查看python的搜索路径:    &gt;&gt;&gt;importsys...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/python_tty">来自：	<span class="blog_title"> python_tty的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wsn564533648/article/details/79403766,BlogCommendFromThirdServiceAll_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wsn564533648/article/details/79403766" target="_blank" title="Django框架路由总结">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>框架<em>路由</em>总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					360</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wsn564533648/article/details/79403766" target="_blank" title="Django框架路由总结">
+				<span class="desc oneline">拿上面的Django项目当例子,真实的Django项目会有很多例如cmdb的应用，我这里就一个。Dynamic/urls.py是总的路由，在这里进行路由分发，分发到每一个应用中。总的路由文件由sett...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wsn564533648">来自：	<span class="blog_title"> 奋斗的Die Young</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wpb74521wrf/article/details/81129172,BlogCommendFromThirdServiceAll_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wpb74521wrf/article/details/81129172" target="_blank" title="Django框架知识点----大家拿笔记一下">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>框架<em>知识点</em>----大家拿笔记一下		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					159</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wpb74521wrf/article/details/81129172" target="_blank" title="Django框架知识点----大家拿笔记一下">
+				<span class="desc oneline">1.Django特点及环境的安装   特点:      重量级框架         Django原生提供了众多的功能组件，让开发更简便快速      MVT模式         Model      ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wpb74521wrf">来自：	<span class="blog_title"> wpb74521wrf的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_59" data-pid="59" data-track-view='{"mod":"kp_popu_59-859","con":",,Django"}' data-track-click='{"mod":"kp_popu_59-859","con":",,Django"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/108?positionId=59&queryWord=Django" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gavin3318/article/details/78264760,BlogCommendESEnWordWeight_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gavin3318/article/details/78264760" target="_blank" title="Django知识点汇总">
+		<h4 class="text-truncate oneline">
+				<em>Django</em><em>知识点</em>汇总		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1767</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gavin3318/article/details/78264760" target="_blank" title="Django知识点汇总">
+				<span class="desc oneline">Django知识点汇总目录一、wsgi接口二、中间件三、URL路由系统四、Template模板五、Views视图六、Model&amp;ORM七、Admin相关八、Http协议九、COOKIE与SESSION...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gavin3318">来自：	<span class="blog_title"> So begins a new age of knowledge</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Cs_hnu_scw/article/details/75267823,BlogCommendFromQuerySearch_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Cs_hnu_scw/article/details/75267823" target="_blank" title="Python+Django知识点总结">
+		<h4 class="text-truncate oneline">
+				Python+<em>Django</em><em>知识点</em>总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1123</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Cs_hnu_scw/article/details/75267823" target="_blank" title="Python+Django知识点总结">
+				<span class="desc oneline">下面是自己学习过程中的一些知识点，需要的可以看看，本人还是一个小菜鸟，由于需要就学习一下用Django框架还写个Web试试：1:运行服务器：pythonmanage.pyrunserver8080 (...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Cs_hnu_scw">来自：	<span class="blog_title"> Cs_hnu_scw的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sanganqi_wusuierzi/article/details/54810844,BlogCommendFromQuerySearch_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sanganqi_wusuierzi/article/details/54810844" target="_blank" title="交换与路由知识点总结（四）">
+		<h4 class="text-truncate oneline">
+				交换与<em>路由</em><em>知识点</em>总结（四）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1526</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sanganqi_wusuierzi/article/details/54810844" target="_blank" title="交换与路由知识点总结（四）">
+				<span class="desc oneline"></span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sanganqi_wusuierzi">来自：	<span class="blog_title"> 桑安琪的成长之路</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/ywq935/article/details/79085801,BlogCommendFromQuerySearch_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/ywq935/article/details/79085801" target="_blank" title="Django（四）、URL路由系统">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>（四）、URL<em>路由</em>系统		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					546</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/ywq935/article/details/79085801" target="_blank" title="Django（四）、URL路由系统">
+				<span class="desc oneline">前言接前几节内容，django处理一次请求完整的生命周期如下：-&gt;URL对应关系（匹配）-&gt;视图函数处理-&gt;返回用户字符串或html等内容其中第一个，即是url匹配，在django中，支持多种匹配方式...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/ywq935">来自：	<span class="blog_title"> ywq935的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_34322964/article/details/78235704,BlogCommendFromQuerySearch_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_34322964/article/details/78235704" target="_blank" title="Django中设置路由参数">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>中设置<em>路由</em>参数		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					772</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_34322964/article/details/78235704" target="_blank" title="Django中设置路由参数">
+				<span class="desc oneline">#-*-coding:utf-8-*-importsysreload(sys)sys.setdefaultencoding('utf8')fromdjango.conf.urlsimporturl#....</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_34322964">来自：	<span class="blog_title"> weixin_34322964的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_60" data-pid="60" data-track-view='{"mod":"kp_popu_60-43","con":",,"}' data-track-click='{"mod":"kp_popu_60-43","con":",,"}'><div id="three_ad8" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 84,
+                showid : 'Afihld',
+                placeholderId: "three_ad8",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/shentong1/article/details/78813557,BlogCommendFromQuerySearch_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/shentong1/article/details/78813557" target="_blank" title="Django框架全面讲解 -- Django 路由系统">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>框架全面讲解 -- <em>Django</em> <em>路由</em>系统		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1054</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/shentong1/article/details/78813557" target="_blank" title="Django框架全面讲解 -- Django 路由系统">
+				<span class="desc oneline">URL配置(URLconf)就像Django所支撑网站的目录。它的本质是URL模式以及要为该URL模式调用的视图函数之间的映射表；你就是以这种方式告诉Django，对于这个URL调用这段代码，对于那个...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/shentong1">来自：	<span class="blog_title"> shentong1的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Ayhan_huang/article/details/78345956,BlogCommendFromQuerySearch_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Ayhan_huang/article/details/78345956" target="_blank" title="获取Django所有路由">
+		<h4 class="text-truncate oneline">
+				获取<em>Django</em>所有<em>路由</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1329</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Ayhan_huang/article/details/78345956" target="_blank" title="获取Django所有路由">
+				<span class="desc oneline">直接上代码：fromdjango.urlsimportRegexURLPatterndefget_all_urls(patterns,pre_fix,is_firt_time=False,result...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Ayhan_huang">来自：	<span class="blog_title"> Ayhan_huang的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+			<div class="recommend-item-box blog-expert-recommend-box">
+			<div class="d-flex">
+				<div class="blog-expert-recommend">
+					<div class="blog-expert">
+						<div class="blog-expert-flexbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/miaoqinian/article/details/80919954,BlogCommendFromQuerySearch_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/miaoqinian/article/details/80919954" target="_blank" title="Django 创建一个子路由">
+		<h4 class="text-truncate oneline">
+				<em>Django</em> 创建一个子<em>路由</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					310</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/miaoqinian/article/details/80919954" target="_blank" title="Django 创建一个子路由">
+				<span class="desc oneline">1、首先：2、在子路文件下定义路径：fromdjango.conf.urlsimporturlfromblogimportviewsurlpatterns=[url(r'(.*)/$',views.h...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/miaoqinian">来自：	<span class="blog_title"> Monicx的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_29286967/article/details/80904532,BlogCommendFromQuerySearch_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_29286967/article/details/80904532" target="_blank" title="django-路由说明">
+		<h4 class="text-truncate oneline">
+				<em>django</em>-<em>路由</em>说明		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-03</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					269</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_29286967/article/details/80904532" target="_blank" title="django-路由说明">
+				<span class="desc oneline">路由说明1.路由定义位置Django的主要路由信息定义在工程同名目录下的urls.py文件中，该文件是Django解析路由的入口。每个子应用为了保持相对独立，可以在各个子应用中定义属于自己的urls....</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_29286967">来自：	<span class="blog_title"> qq_29286967的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wuxingpu5/article/details/77414577,BlogCommendFromQuerySearch_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wuxingpu5/article/details/77414577" target="_blank" title="django路由之分发子应用">
+		<h4 class="text-truncate oneline">
+				<em>django</em><em>路由</em>之分发子应用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-19</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1061</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wuxingpu5/article/details/77414577" target="_blank" title="django路由之分发子应用">
+				<span class="desc oneline">接上篇针对url过多的问题可以把各个url分发到各个应用下的urls项目下的urls&quot;&quot;&quot;Dajon_demoURLConfigurationThe`urlpatterns`listroutesURL...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wuxingpu5">来自：	<span class="blog_title"> 吴普的部落格</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_61" data-pid="61" data-track-view='{"mod":"kp_popu_61-557","con":",,"}' data-track-click='{"mod":"kp_popu_61-557","con":",,"}'><div id="three_ad13" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'GNKXx7',
+                placeholderId: "three_ad13",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/mildddd/article/details/79941888,BlogCommendFromQuerySearch_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/mildddd/article/details/79941888" target="_blank" title="Django urls路由与app子路由">
+		<h4 class="text-truncate oneline">
+				<em>Django</em> urls<em>路由</em>与app子<em>路由</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					465</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/mildddd/article/details/79941888" target="_blank" title="Django urls路由与app子路由">
+				<span class="desc oneline">前言在网页本身较少的情况下Django项目可以只使用单个app和项目自带的urls文件进行路由，但是在网页较为复杂或项目内有多个app的情况下就不太合适了，这时就需要在app中单独设置路由环境wind...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/mildddd">来自：	<span class="blog_title"> UncleGen的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/luanpeng825485697/article/details/79252182,BlogCommendFromQuerySearch_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/luanpeng825485697/article/details/79252182" target="_blank" title="python后台架构Django教程——路由映射urls">
+		<h4 class="text-truncate oneline">
+				python后台架构<em>Django</em>教程——<em>路由</em>映射urls		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-08</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5463</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/luanpeng825485697/article/details/79252182" target="_blank" title="python后台架构Django教程——路由映射urls">
+				<span class="desc oneline">全栈工程师开发手册（作者：栾鹏）本文衔接至python后台架构Django开发全解。有其他问题请先阅读：http://blog.csdn.net/luanpeng825485697/article/d...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/luanpeng825485697">来自：	<span class="blog_title"> 全栈工程师开发手册（原创）</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_38894162/article/details/85945999,BlogCommendFromQuerySearch_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_38894162/article/details/85945999" target="_blank" title="Python的Django框架设置动态路由">
+		<h4 class="text-truncate oneline">
+				Python的<em>Django</em>框架设置动态<em>路由</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					164</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_38894162/article/details/85945999" target="_blank" title="Python的Django框架设置动态路由">
+				<span class="desc oneline">re_path(r'^edit/(\w+)/(\w+)/$',views.edit,name='edit'),re_path(r'^edit/(?P&amp;amp;lt;a1&amp;amp;gt;\w+)/(?P...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_38894162">来自：	<span class="blog_title"> weixin_38894162的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gavin3318/article/details/78186998,BlogCommendFromQuerySearch_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gavin3318/article/details/78186998" target="_blank" title="Django 知识点思维导图">
+		<h4 class="text-truncate oneline">
+				<em>Django</em> <em>知识点</em>思维导图		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					738</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gavin3318/article/details/78186998" target="_blank" title="Django 知识点思维导图">
+				<span class="desc oneline">整理了下</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gavin3318">来自：	<span class="blog_title"> So begins a new age of knowledge</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/km_moon/article/details/84835874,BlogCommendFromQuerySearch_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/km_moon/article/details/84835874" target="_blank" title=" django学习知识点汇总（templates）">
+		<h4 class="text-truncate oneline">
+				 <em>django</em>学习<em>知识点</em>汇总（templates）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					73</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/km_moon/article/details/84835874" target="_blank" title=" django学习知识点汇总（templates）">
+				<span class="desc oneline">问题1：项目中存在多个app，每个app包括相同的名称的html文件，在页面显示是，访问url会产出模板不是真正想访问的模板 模板一般放在app下的templates中，Django会自动去这个文件夹...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/km_moon">来自：	<span class="blog_title"> 记录点滴</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_62" data-pid="62" data-track-view='{"mod":"kp_popu_62-556","con":",,"}' data-track-click='{"mod":"kp_popu_62-556","con":",,"}'><div id="three_ad18" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'Afihld',
+                placeholderId: "three_ad18",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/huangql517/article/details/81011686,BlogCommendFromQuerySearch_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/huangql517/article/details/81011686" target="_blank" title="Django学习之路由分发和反向解析">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>学习之<em>路由</em>分发和反向解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					454</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/huangql517/article/details/81011686" target="_blank" title="Django学习之路由分发和反向解析">
+				<span class="desc oneline">1&amp;amp;gt;路由分发  我们之前学习的路由配置都是在项目的全局控制文件（项目名称目录下的urls.py），    这个一个文件当中配置映射关系，当一个项目的url越来越多时，比如项目当中一般都分...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/huangql517">来自：	<span class="blog_title"> huangql517的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sinat_29718177/article/details/79818402,BlogCommendFromQuerySearch_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sinat_29718177/article/details/79818402" target="_blank" title="Django路由机制">
+		<h4 class="text-truncate oneline">
+				<em>Django</em><em>路由</em>机制		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-08</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					407</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sinat_29718177/article/details/79818402" target="_blank" title="Django路由机制">
+				<span class="desc oneline">什么是路由对一个给定的URL进行定义，转换，传参，命名之后，找到相应处理函数的过程，也就是关联URL和处理函数的过程。Django的路由配置在settings.py文件中ROOT_URLCONF变量指...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sinat_29718177">来自：	<span class="blog_title"> Alex的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/huangql517/article/details/81010400,BlogCommendFromQuerySearch_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/huangql517/article/details/81010400" target="_blank" title="Django学习之路由配置和有名分组">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>学习之<em>路由</em>配置和有名分组		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					204</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/huangql517/article/details/81010400" target="_blank" title="Django学习之路由配置和有名分组">
+				<span class="desc oneline">1&amp;amp;gt;引子    URL配置本质也就是告诉Django，URL和调用函数之间的映射关系，对于客户端发来的请求，我应该  用哪一段逻辑代码来进行响应。  先看个例子，比如一个博客系统，我要看...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/huangql517">来自：	<span class="blog_title"> huangql517的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_41654985/article/details/80689816,BlogCommendFromQuerySearch_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_41654985/article/details/80689816" target="_blank" title="django 主子路由，路由传参，请求传参">
+		<h4 class="text-truncate oneline">
+				<em>django</em> 主子<em>路由</em>，<em>路由</em>传参，请求传参		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1109</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_41654985/article/details/80689816" target="_blank" title="django 主子路由，路由传参，请求传参">
+				<span class="desc oneline">一、主子路由1.主路由，当主路由很多的时候，效率变慢，维护起来相当麻烦2.项目文件夹中urls.py 把主路由当作调度分发路由的工具，去分发子路由fromdjango.conf.urlsimportu...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_41654985">来自：	<span class="blog_title"> 梦想家博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_42329277/article/details/81570039,BlogCommendFromQuerySearch_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_42329277/article/details/81570039" target="_blank" title="django路由 分解路径 正则匹配路径">
+		<h4 class="text-truncate oneline">
+				<em>django</em><em>路由</em> 分解路径 正则匹配路径		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					463</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_42329277/article/details/81570039" target="_blank" title="django路由 分解路径 正则匹配路径">
+				<span class="desc oneline">分发给对应项目fromdjango.urlsimportinclude#公共部分（部分发）path('admin/',admin.site.urls),#分发---把每个app单独的访问url分发给对...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_42329277">来自：	<span class="blog_title"> Zok的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_63" data-pid="63" data-track-view='{"mod":"kp_popu_63-555","con":",,"}' data-track-click='{"mod":"kp_popu_63-555","con":",,"}'><div id="three_ad23" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'GNKXx7',
+                placeholderId: "three_ad23",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011300968/article/details/75007733,BlogCommendFromQuerySearch_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011300968/article/details/75007733" target="_blank" title="django中的路由规则">
+		<h4 class="text-truncate oneline">
+				<em>django</em>中的<em>路由</em>规则		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					301</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011300968/article/details/75007733" target="_blank" title="django中的路由规则">
+				<span class="desc oneline">URL路由规则URL中参数命名与字典参数命名冲突处理是否捕捉URL参数嵌套URL参数...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011300968">来自：	<span class="blog_title"> u011300968的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/ywk_hax/article/details/83117576,BlogCommendFromQuerySearch_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/ywk_hax/article/details/83117576" target="_blank" title="Django笔记---Django中路由的匹配过程">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>笔记---<em>Django</em>中<em>路由</em>的匹配过程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					164</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/ywk_hax/article/details/83117576" target="_blank" title="Django笔记---Django中路由的匹配过程">
+				<span class="desc oneline">1.url地址的构成:  协议://域名:端口/路径/查询字符串         如:http://127.0.0.1:5000/users/index/?name=ywk&amp;amp;amp;age=2...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/ywk_hax">来自：	<span class="blog_title"> YWK的微博</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/huangql517/article/details/81025824,BlogCommendFromQuerySearch_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/huangql517/article/details/81025824" target="_blank" title="Django学习之自定义转化器与路由层总结">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>学习之自定义转化器与<em>路由</em>层总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-13</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					184</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/huangql517/article/details/81025824" target="_blank" title="Django学习之自定义转化器与路由层总结">
+				<span class="desc oneline">1&amp;amp;gt;path转化器  之前介绍的str、int、path等若不够用的情况下，我们也可以自己定义一个转化器  可以直接就在first_pro项目文件下面新建一个converter.py文件...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/huangql517">来自：	<span class="blog_title"> huangql517的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/guan__ye/article/details/80694803,BlogCommendFromQuerySearch_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/guan__ye/article/details/80694803" target="_blank" title="django与vue 前后端分离开发，自测一系列设置，跨域，路由中间件">
+		<h4 class="text-truncate oneline">
+				<em>django</em>与vue 前后端分离开发，自测一系列设置，跨域，<em>路由</em>中间件		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					685</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/guan__ye/article/details/80694803" target="_blank" title="django与vue 前后端分离开发，自测一系列设置，跨域，路由中间件">
+				<span class="desc oneline">路由中间件设置：本地设置路由是localhost:8000:首先在vue里开始设置：在confi文件夹下，设置dev.env.js代码如下：'usestrict'constmerge=require(...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/guan__ye">来自：	<span class="blog_title"> guan__ye的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq471011042/article/details/79368176,BlogCommendFromQuerySearch_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq471011042/article/details/79368176" target="_blank" title="【Django】路由分发（不同模块路由路径分离）">
+		<h4 class="text-truncate oneline">
+				【<em>Django</em>】<em>路由</em>分发（不同模块<em>路由</em>路径分离）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					353</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq471011042/article/details/79368176" target="_blank" title="【Django】路由分发（不同模块路由路径分离）">
+				<span class="desc oneline">【Django】路由分发（不同模块路由路径分离）</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq471011042">来自：	<span class="blog_title"> YoungfreeFJS的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_64" data-pid="64" data-track-view='{"mod":"kp_popu_64-1251","con":",,"}' data-track-click='{"mod":"kp_popu_64-1251","con":",,"}'><!-- T28 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T28_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T28  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T28_render", "T28");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_35264169/article/details/81139934,BlogCommendFromQuerySearch_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_35264169/article/details/81139934" target="_blank" title="django的url路由系统处理http请求过程的源码解析">
+		<h4 class="text-truncate oneline">
+				<em>django</em>的url<em>路由</em>系统处理http请求过程的源码解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-21</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					288</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_35264169/article/details/81139934" target="_blank" title="django的url路由系统处理http请求过程的源码解析">
+				<span class="desc oneline">浏览器发起请求django的服务端口监听到请求调用url匹配请求内容url(r'^index/$',index.as_view(),name='index'),根据匹配的请求内容url(r'^inde...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_35264169">来自：	<span class="blog_title"> weixin_35264169的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_42684307/article/details/81033321,BlogCommendFromQuerySearch_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_42684307/article/details/81033321" target="_blank" title="Django--路由说明">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>--<em>路由</em>说明		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-13</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					185</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_42684307/article/details/81033321" target="_blank" title="Django--路由说明">
+				<span class="desc oneline">1.路由定义位置Django的主要信息在同名目录下的urls.py文件中,该文件是Django解析路由的入口.每个子应用都保持相对的独立,可以在各个子应用中定义与自己的urls.py来保存各个子应用的...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_42684307">来自：	<span class="blog_title"> gy的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_34322964/article/details/78250356,BlogCommendFromQuerySearch_31"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_34322964/article/details/78250356" target="_blank" title="Django中配置异常显示页面==路由">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>中配置异常显示页面==<em>路由</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					334</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_34322964/article/details/78250356" target="_blank" title="Django中配置异常显示页面==路由">
+				<span class="desc oneline">1.urls.py中写入2.在setting.py中修改配置</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_34322964">来自：	<span class="blog_title"> weixin_34322964的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_43063753/article/details/88950914,BlogCommendFromQuerySearch_32"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_43063753/article/details/88950914" target="_blank" title="django知识点总结">
+		<h4 class="text-truncate oneline">
+				<em>django</em><em>知识点</em>总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					63</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_43063753/article/details/88950914" target="_blank" title="django知识点总结">
+				<span class="desc oneline">一、django创建项目CMD终端：Django_adminstartprojectsitename(文件名)通过类创建表pythonmanage.pymakemigrationspythonmana...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_43063753">来自：	<span class="blog_title"> QQ群166477105Python技术群</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zdc45625/article/details/87996670,BlogCommendFromQuerySearch_33"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zdc45625/article/details/87996670" target="_blank" title="Django-路由基础-多APP共存-路由分发-无名有名分组-反向解析-Django 2.x新特性">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>-<em>路由</em>基础-多APP共存-<em>路由</em>分发-无名有名分组-反向解析-<em>Django</em> 2.x新特性		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-27</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					93</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zdc45625/article/details/87996670" target="_blank" title="Django-路由基础-多APP共存-路由分发-无名有名分组-反向解析-Django 2.x新特性">
+				<span class="desc oneline">文章目录一、路由基础二、有名无名分组三、多app共存的路由分配四、多app共存时模板冲突问题五、创建app流程六、路由分发七、路由别名八、名称空间九、反向解析十、Django2.x新特性十一、自定义转...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zdc45625">来自：	<span class="blog_title"> zdc45625的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_65" data-pid="65" data-track-view='{"mod":"kp_popu_65-1252","con":",,"}' data-track-click='{"mod":"kp_popu_65-1252","con":",,"}'><!-- T33 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T33_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T33  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T33_render", "T33");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/cf313995/article/details/83105037,BlogCommendFromQuerySearch_34"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/cf313995/article/details/83105037" target="_blank" title="Django2.1入门教程(二)路由传递参数">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>2.1入门教程(二)<em>路由</em>传递参数		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2076</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/cf313995/article/details/83105037" target="_blank" title="Django2.1入门教程(二)路由传递参数">
+				<span class="desc oneline">1、先创建项目(django-adminstartprojectdjangourlparams)和app应用(pythonmanage.pystartappapp名称)2、在urlparams中创建u...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/cf313995">来自：	<span class="blog_title"> cf313995的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/longting_/article/details/80918661,BlogCommendFromQuerySearch_35"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/longting_/article/details/80918661" target="_blank" title="Django中路由命名与reverse反解析（逆向）">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>中<em>路由</em>命名与reverse反解析（逆向）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1156</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/longting_/article/details/80918661" target="_blank" title="Django中路由命名与reverse反解析（逆向）">
+				<span class="desc oneline">1.1路由命名：在定义路由的时候，可以为路由命名，方便查找特定视图的具体路径信息。1)在使用include函数定义路由时，可以使用namespace参数定义路由的命名空间，如：url(r'^users...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/longting_">来自：	<span class="blog_title"> longting_的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_39164720/article/details/82794069,BlogCommendFromQuerySearch_36"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_39164720/article/details/82794069" target="_blank" title="django路由小错误">
+		<h4 class="text-truncate oneline">
+				<em>django</em><em>路由</em>小错误		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					102</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_39164720/article/details/82794069" target="_blank" title="django路由小错误">
+				<span class="desc oneline">今天在撸代码的时候出来一个小问题，使用django的时候报了一个错误，废话不多说Traceback(mostrecentcalllast):File“/home/empty/.local/virtua...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_39164720">来自：	<span class="blog_title"> qq_39164720的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/getcomputerstyle/article/details/82469963,BlogCommendFromQuerySearch_37"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/getcomputerstyle/article/details/82469963" target="_blank" title="解决新版2.X django url路由不能匹配正则路径">
+		<h4 class="text-truncate oneline">
+				解决新版2.X <em>django</em> url<em>路由</em>不能匹配正则路径		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					616</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/getcomputerstyle/article/details/82469963" target="_blank" title="解决新版2.X django url路由不能匹配正则路径">
+				<span class="desc oneline">fromdjango.urlsimportpath,re_path#导入re_pathurlpatterns=[path('admin/',admin.site.urls),	re_path(r'\d...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/getcomputerstyle">来自：	<span class="blog_title"> getcomputerstyle的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013433245/article/details/81905585,BlogCommendFromQuerySearch_38"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013433245/article/details/81905585" target="_blank" title="3、django之配置文件、静态文件与路由">
+		<h4 class="text-truncate oneline">
+				3、<em>django</em>之配置文件、静态文件与<em>路由</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-21</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					196</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013433245/article/details/81905585" target="_blank" title="3、django之配置文件、静态文件与路由">
+				<span class="desc oneline">3.1配置文件(settings.py)3.2静态文件使用3.2.1配置静态文件的访问#静态⽂件访问的路由STATIC_URL='/static/'#配置静态⽂件加载⽬录STATICFILES_DIR...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013433245">来自：	<span class="blog_title"> 1324323927的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_66" data-pid="66" data-track-view='{"mod":"kp_popu_66-881","con":",,"}' data-track-click='{"mod":"kp_popu_66-881","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T38_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T38  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T38_render", "T38");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qyf__123/article/details/84676968,BlogCommendFromQuerySearch_39"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qyf__123/article/details/84676968" target="_blank" title="Django 框架 - 配置静态文件与路由">
+		<h4 class="text-truncate oneline">
+				<em>Django</em> 框架 - 配置静态文件与<em>路由</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					108</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qyf__123/article/details/84676968" target="_blank" title="Django 框架 - 配置静态文件与路由">
+				<span class="desc oneline">配置静态文件与路由配置文件BASE_DIRBASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))当前工程的根目录，Dj...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qyf__123">来自：	<span class="blog_title"> qyf__123的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_33404767/article/details/86601472,BlogCommendFromQuerySearch_40"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_33404767/article/details/86601472" target="_blank" title="Django路由层详解">
+		<h4 class="text-truncate oneline">
+				<em>Django</em><em>路由</em>层详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					701</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_33404767/article/details/86601472" target="_blank" title="Django路由层详解">
+				<span class="desc oneline">Django中路由的作用URL配置(URLconf)就是Django所支撑的网站的目录。它的本质是URL与要为该URL调用的视图函数之间的映射表；你就是以这种方式告诉Django，对于客户端发来的某个...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_33404767">来自：	<span class="blog_title"> Catalog_Spri的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011146423/article/details/82558397,BlogCommendFromQuerySearch_41"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011146423/article/details/82558397" target="_blank" title="Django 路由设置和前端页面互相关联的方法">
+		<h4 class="text-truncate oneline">
+				<em>Django</em> <em>路由</em>设置和前端页面互相关联的方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					516</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011146423/article/details/82558397" target="_blank" title="Django 路由设置和前端页面互相关联的方法">
+				<span class="desc oneline">urls.py文件urls.py用以管理URL请求路径与响应函数关联fromdjango.conf.urlsimporturl#Django2.0以前用url配置路由；#fromdjango.urls...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011146423">来自：	<span class="blog_title"> 爱人BT的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/km_moon/article/details/84835836,BlogCommendFromQuerySearch_42"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/km_moon/article/details/84835836" target="_blank" title="django学习知识点汇总（view）">
+		<h4 class="text-truncate oneline">
+				<em>django</em>学习<em>知识点</em>汇总（view）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					31</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/km_moon/article/details/84835836" target="_blank" title="django学习知识点汇总（view）">
+				<span class="desc oneline">问题1：模板渲染需要在views.py中添加    fromdjango.shortcutsimportrender  先app下新建templates文件夹，文件夹中包括的html页面就可以被渲染出...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/km_moon">来自：	<span class="blog_title"> 记录点滴</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lichji2016/article/details/84312764,BlogCommendFromQuerySearch_43"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lichji2016/article/details/84312764" target="_blank" title="django urls路由匹配分发">
+		<h4 class="text-truncate oneline">
+				<em>django</em> urls<em>路由</em>匹配分发		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-21</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					79</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lichji2016/article/details/84312764" target="_blank" title="django urls路由匹配分发">
+				<span class="desc oneline">djangourls路由匹配分发djangourls路由匹配分发 一.urls配置(URLconf)就像Django 所支撑网站的目录。它的本质是URL与要为该URL调用的视图函数之间的映射表；你就是...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lichji2016">来自：	<span class="blog_title"> lichji2016的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_67" data-pid="67" data-track-view='{"mod":"kp_popu_67-882","con":",,"}' data-track-click='{"mod":"kp_popu_67-882","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T43_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T43  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T43_render", "T43");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_34235457/article/details/87385609,BlogCommendFromQuerySearch_44"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_34235457/article/details/87385609" target="_blank" title="为django开发一套动态的路由系统">
+		<h4 class="text-truncate oneline">
+				为<em>django</em>开发一套动态的<em>路由</em>系统		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					34</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_34235457/article/details/87385609" target="_blank" title="为django开发一套动态的路由系统">
+				<span class="desc oneline">一、最基础的url映射urls.py：1fromdjango.conf.urlsimportinclude,url2fromdjango.contribimportadmin3fromapp01imp...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_34235457">来自：	<span class="blog_title"> weixin_34235457的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sun_dangyang/article/details/80591968,BlogCommendFromQuerySearch_45"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sun_dangyang/article/details/80591968" target="_blank" title="对Django Web开发中路由（ulr）配置 '^static/（？P&amp;lt;path&amp;gt;.*）' 的理解">
+		<h4 class="text-truncate oneline">
+				对<em>Django</em> Web开发中<em>路由</em>（ulr）配置 '^static/（？P&amp;lt;path&amp;gt;.*）' 的理解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1372</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sun_dangyang/article/details/80591968" target="_blank" title="对Django Web开发中路由（ulr）配置 '^static/（？P&amp;lt;path&amp;gt;.*）' 的理解">
+				<span class="desc oneline">    在Django静态文件管理中，开发过程中需要启用静态文件服务，在settings.py文件的INSTALLED_APPS中，启用静态文件管理模块‘django.contrib.staticfi...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sun_dangyang">来自：	<span class="blog_title"> 希望之光</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_33867131/article/details/80735366,BlogCommendFromQuerySearch_46"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_33867131/article/details/80735366" target="_blank" title="Django--urls.py路由配置详解">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>--urls.py<em>路由</em>配置详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-19</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					830</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_33867131/article/details/80735366" target="_blank" title="Django--urls.py路由配置详解">
+				<span class="desc oneline">urls.py是url分发器，路由配置文件：在这里面我们会构建起网站的目录（简单来说我们要做的事就是告诉Django，对于某段url该调用哪段代码）配置url的方式:(列表,推荐方式)urlpatte...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_33867131">来自：	<span class="blog_title"> 这样也好  从此天涯陌路  一别两欢</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/ZXW_Future/article/details/84557702,BlogCommendFromQuerySearch_47"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/ZXW_Future/article/details/84557702" target="_blank" title="Django的url路由过滤，使用中间件解决不同用户间的权限访问拒绝，">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>的url<em>路由</em>过滤，使用中间件解决不同用户间的权限访问拒绝，		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-26</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					351</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/ZXW_Future/article/details/84557702" target="_blank" title="Django的url路由过滤，使用中间件解决不同用户间的权限访问拒绝，">
+				<span class="desc oneline">一个网站一般会存在几种不同身份的用户，如可能会存在学生，教师，管理员等，每个用户的权限不一样，你当然不希望学生能够访问教师的页面或者看到管理员的管理页面，那么如何限制不同用户之间的路由过滤，或路由限制...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/ZXW_Future">来自：	<span class="blog_title"> 小书包大梦想的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_42329277/article/details/86602884,BlogCommendFromQuerySearch_48"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_42329277/article/details/86602884" target="_blank" title="Django2 路由分发Path源码解析">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>2 <em>路由</em>分发Path源码解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					119</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_42329277/article/details/86602884" target="_blank" title="Django2 路由分发Path源码解析">
+				<span class="desc oneline">早期版本早期版本路由配置都是用的url(),后面是path和re_path,也可以使用url()但是我们进入url后，会看到如下代码defurl(regex,view,kwargs=None,name...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_42329277">来自：	<span class="blog_title"> Zok的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_68" data-pid="68" data-track-view='{"mod":"kp_popu_68-883","con":",,"}' data-track-click='{"mod":"kp_popu_68-883","con":",,"}'><!-- T48 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T48_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T48  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T48_render", "T48");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_41989320/article/details/83117806,BlogCommendFromQuerySearch_49"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_41989320/article/details/83117806" target="_blank" title="DjangoCourse（二： 通过url路由，向视图函数传递参数）">
+		<h4 class="text-truncate oneline">
+				<em>Django</em>Course（二： 通过url<em>路由</em>，向视图函数传递参数）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1573</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_41989320/article/details/83117806" target="_blank" title="DjangoCourse（二： 通过url路由，向视图函数传递参数）">
+				<span class="desc oneline">urls.py文件中的这些地址，称为url路由，就是url地址。如何通过url路由，向视图函数(Functionviews)传递参数。直接在浏览器的url后，使用？和&amp;amp;amp;符号拼接参数，视...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_41989320">来自：	<span class="blog_title"> qq_41989320的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/f907279313/article/details/32133257,BlogCommendHotData_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+		<h4 class="text-truncate oneline">
+				STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+				<span class="desc oneline">IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结
+一，网上下载的例程，跳转部分的代码有差异，尤其是用的汇编那句
+二，关于跳转部分的代码的理解（转）
+三，关于跳转时能否不用按键，用软件标志位...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/f907279313">来自：	<span class="blog_title"> Super_Demo的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sundacheng1989/article/details/17925431,BlogCommendHotData_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+		<h4 class="text-truncate oneline">
+				在64位Win7操作系统中安装Microsoft Access Engine的解决方案		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+				<span class="desc oneline">现在的Win7系统中安装的一般都是32位的Office，因为微软推荐使用32位的Office，兼容性更强，稳定性更好。在使用Access作为数据库的时候，C#操作Access，如果Access是acc...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sundacheng1989">来自：	<span class="blog_title"> 写代码的蜗牛</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/crazy1235/article/details/44069267,BlogCommendHotData_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+		<h4 class="text-truncate oneline">
+				百度地图开发（五）之公交信息检索 + 路线规划		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+				<span class="desc oneline">转载请注明出处：
+    在上一篇blog中介绍过POI检索的使用，本篇blog主要介绍公交信息检索和线路规划的内容。
+公交信息检索
+    实际上，公交信息检索与POI检索、在线建议检索非常相似，也...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/crazy1235">来自：	<span class="blog_title"> crazy_jack</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011860731/article/details/48733073,BlogCommendHotData_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+		<h4 class="text-truncate oneline">
+				ThreadLocal的设计理念与作用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+				<span class="desc oneline">Java中的ThreadLocal类允许我们创建只能被同一个线程读写的变量。因此，如果一段代码含有一个ThreadLocal变量的引用，即使两个线程同时执行这段代码，它们也无法访问到对方的Thread...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011860731">来自：	<span class="blog_title"> u011860731的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kongwei521/article/details/51626589,BlogCommendHotData_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+		<h4 class="text-truncate oneline">
+				C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+				<span class="desc oneline">最近在做一个每天定点从FTP自动下载节目.xml并更新到数据库的功能。首先想到用 FileSystemWatcher来监控下载到某个目录中的文件是否发生改变，如果改变就执行相应的操作，然后用timer...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/kongwei521">来自：	<span class="blog_title"> kongwei521的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tostq/article/details/50110329,BlogCommendHotData_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+		<h4 class="text-truncate oneline">
+				（LaTex)CTex的初次使用心得及入门教程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+				<span class="desc oneline">摘要
+最近要发论文了，被知乎里人推荐使用论文编译软件（CTex、LaTex和Overleaf之类），瞬间感觉自己用Word简直Out了（书读少）。
+学校里也听说过LaTex，不过因为当时没怎么写过...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/tostq">来自：	<span class="blog_title"> tostq的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/rickypc/article/details/6014408,BlogCommendHotData_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+		<h4 class="text-truncate oneline">
+				如何编译64位( 64bit ) boost类库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9582</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+				<span class="desc oneline"> 64位windows平台，编译环境是VS2005，进入Visual Studio 2005 x64 Win64 Command Prompt（单纯的cmd也不一定不行，我没试）。把bjam.exe放...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/rickypc">来自：	<span class="blog_title"> rickypc的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/neonlight/article/details/5975764,BlogCommendHotData_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+		<h4 class="text-truncate oneline">
+				vsftpd匿名用户上传和下载的配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+				<span class="desc oneline">　　看到很多朋友配置vsftpd时不能使用匿名用户上传和下载（创建目录或删除、重命名文件夹），本文主要解决vsftpd的匿名用户权限配制问题。...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/neonlight">来自：	<span class="blog_title"> 九宫霓虹</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/flysharkym/article/details/51404730,BlogCommendHotData_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+		<h4 class="text-truncate oneline">
+				mybatis一级缓存(session cache)引发的问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+				<span class="desc oneline">mybatis一级缓存(session cache)引发的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/flysharkym">来自：	<span class="blog_title"> flysharkym的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jinping_shi/article/details/59613054,BlogCommendHotData_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+		<h4 class="text-truncate oneline">
+				高斯混合模型（GMM）及其EM算法的理解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+				<span class="desc oneline">一个例子高斯混合模型（Gaussian Mixed Model）指的是多个高斯分布函数的线性组合，理论上GMM可以拟合出任意类型的分布，通常用于解决同一集合下的数据包含多个不同的分布的情况（或者是同一...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jinping_shi">来自：	<span class="blog_title"> 小平子的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36892341/article/details/73918672,BlogCommendHotData_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+		<h4 class="text-truncate oneline">
+				linux上安装Docker(非常简单的安装方法)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					28万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+				<span class="desc oneline">最近比较有空，大四出来实习几个月了，作为实习狗的我，被叫去研究Docker了，汗汗！
+
+Docker的三大核心概念：镜像、容器、仓库
+镜像：类似虚拟机的镜像、用俗话说就是安装文件。
+容器：类似一个轻量...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_36892341">来自：	<span class="blog_title"> 我走小路的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/meng564764406/article/details/52444644,BlogCommendHotData_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+		<h4 class="text-truncate oneline">
+				将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+				<span class="desc oneline">本篇文章是根据我的上篇博客，给出的改进版，由于时间有限，仅做了一个简单的优化。相关文章：将excel导入数据库2018年4月1日，新增下载地址链接：点击打开源码下载地址十分抱歉，这个链接地址没有在这篇...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/meng564764406">来自：	<span class="blog_title"> Lynn_Blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wangpeng047/article/details/19624529,BlogCommendHotData_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+		<h4 class="text-truncate oneline">
+				HttpClient使用详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					81万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+				<span class="desc oneline">Http协议的重要性相信不用我多说了，HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wangpeng047">来自：	<span class="blog_title"> 鹏霄万里展雄飞</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Main_Stage/article/details/41989499,BlogCommendHotData_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+		<h4 class="text-truncate oneline">
+				Android圆形图片--自定义控件		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+				<span class="desc oneline">Android圆形图片--自定义控件</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Main_Stage">来自：	<span class="blog_title"> Main_Stage的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lch_vison/article/details/79112450,BlogCommendHotData_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+		<h4 class="text-truncate oneline">
+				ubuntu16.04环境Kdevelop安装和汉化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6239</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+				<span class="desc oneline">1、Kdevelop安装
+
+ 
+
+最简单的命令行安装，打开终端，执行
+
+ 
+
+
+sudo apt-get install kdevelop
+
+
+ 
+
+2、Kdevelop汉化
+
+不需要自己下载汉化包，...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lch_vison">来自：	<span class="blog_title"> lch_vision的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/klkxxy/article/details/78773980,BlogCommendHotData_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+		<h4 class="text-truncate oneline">
+				图片拉伸变形		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					332</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+				<span class="desc oneline">http://blog.csdn.net/abc649395594/article/details/50004991</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/klkxxy">来自：	<span class="blog_title"> klkxxy的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/pengjc2001/article/details/54924699,BlogCommendHotData_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+		<h4 class="text-truncate oneline">
+				三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+				<span class="desc oneline">阅读内容为：FX系列微型可编程控制器用户手册（通讯篇）中计算机链接功能章节。
+采用本方法通信，pc端的实现，其实就是，把操作按照协议（2种）翻译成相应的字符串，通过串口发送给plc。
+
+
+编写一应用程...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/pengjc2001">来自：	<span class="blog_title"> pengjc2001的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/updog/article/details/6625975,BlogCommendHotData_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+		<h4 class="text-truncate oneline">
+				实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+				<span class="desc oneline">本帖慢慢扩充……1. 假设是实现namespace Abc中的一个class，不要因为是在.cc中就肆无忌惮的在global scope或者namespace Abc{}中定义辅助变量和函数，或者ty...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq574857122/article/details/16361033,BlogCommendHotData_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+		<h4 class="text-truncate oneline">
+				强连通分量及缩点tarjan算法解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					66万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+				<span class="desc oneline">强连通分量：
+简言之 就是找环（每条边只走一次，两两可达）
+孤立的一个点也是一个连通分量 
+ 
+使用tarjan算法 在嵌套的多个环中优先得到最大环( 最小环就是每个孤立点）
+ 
+定义：
+int Ti...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq574857122">来自：	<span class="blog_title"> 九野的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013268685/article/details/41732447,BlogCommendHotData_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+		<h4 class="text-truncate oneline">
+				数据结构实验：栈实现计算器(表达式计算）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4049</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+				<span class="desc oneline">原创作品转载请注明出处
+欢迎抄袭，造福各位伸手党
+/*************************************************************************
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013268685">来自：	<span class="blog_title"> u013268685的专栏(有一种幸福叫AC，有一种期待叫AK)</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jiebaoabcabc/article/details/19242621,BlogCommendHotData_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+		<h4 class="text-truncate oneline">
+				简单linux字符设备驱动程序与编程小技巧(上)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					629</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+				<span class="desc oneline">这几天开始研究linux下的驱动程序编写了，遇到的问题也挺多的，好在linux是开源的，很多高人编写的技巧和思路都会在他们的源代码中体现，我也在他们的源码中学到了很多好东西，我归纳了下贴出来，希望自己...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gefangshuai/article/details/50328451,BlogCommendHotData_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+		<h4 class="text-truncate oneline">
+				关于SpringBoot bean无法注入的问题（与文件包位置有关）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					27万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+				<span class="desc oneline">问题场景描述整个项目通过Maven构建，大致结构如下：
+核心Spring框架一个module spring-boot-base
+service和dao一个module server-core
+提供系统...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gefangshuai">来自：	<span class="blog_title"> 开发随笔</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/autfish/article/details/52682778,BlogCommendHotData_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+		<h4 class="text-truncate oneline">
+				苹果充值常见的刷单手段和防范方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+				<span class="desc oneline">苹果充值的刷单现象在游戏行业非常普遍，很多团队挖空心思寻找漏洞以非法获利。常见的手段主要有以下六种：
+
+
+伪造充值凭据(receipt)以小额凭据骗取大额商品
+
+凭据重复使用
+凭据重复使用信用卡黑卡/...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/autfish">来自：	<span class="blog_title"> 分享知识、分享进步</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wuchengzeng/article/details/50037611,BlogCommendHotData_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+		<h4 class="text-truncate oneline">
+				jquery/js实现一个网页同时调用多个倒计时(最新的)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					54万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+				<span class="desc oneline">jquery/js实现一个网页同时调用多个倒计时(最新的)
+
+最近需要网页添加多个倒计时. 查阅网络,基本上都是千遍一律的不好用. 自己按需写了个.希望对大家有用. 有用请赞一个哦!
+
+
+
+//js
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wuchengzeng">来自：	<span class="blog_title"> Websites</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zp_00000/article/details/70207445,BlogCommendHotData_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+		<h4 class="text-truncate oneline">
+				VirtualBox COM获取对象失败		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+				<span class="desc oneline">错误详情
+
+
+
+
+
+1. 先来看看错误详情
+获取 VirtualBox COM 对象失败.应用程序将被中断.Failed to instantiate CLSID_VirtualBox ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zp_00000">来自：	<span class="blog_title"> 多点折腾少点抱怨</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014306011/article/details/51546236,BlogCommendHotData_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+		<h4 class="text-truncate oneline">
+				Eclipse如何安装WindowBuilder插件及如何使用WB		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-31</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6481</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+				<span class="desc oneline">Eclipse如何安装WindowBuilder插件及如何使用WB</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u014306011">来自：	<span class="blog_title"> 天命王子的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lubiaopan/article/details/6233517,BlogCommendHotData_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+		<h4 class="text-truncate oneline">
+				.NET和java的RSA互通，仅此而已		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+				<span class="desc oneline">RSA .net jva 互通 解决不能互通的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lubiaopan">来自：	<span class="blog_title"> lubiaopan的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xu__cg/article/details/52970885,BlogCommendHotData_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+		<h4 class="text-truncate oneline">
+				Java设计模式学习06——静态代理与动态代理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+				<span class="desc oneline">一、代理模式为某个对象提供一个代理，从而控制这个代理的访问。代理类和委托类具有共同的父类或父接口，这样在任何使用委托类对象的地方都可以使用代理类对象替代。代理类负责请求的预处理、过滤、将请求分配给委托...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xu__cg">来自：	<span class="blog_title"> 小小本科生成长之路</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/NYS001/article/details/12637201,BlogCommendHotData_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+		<h4 class="text-truncate oneline">
+				蜂窝小区最短距离的坐标系解法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+				<span class="desc oneline">如下图所示，蜂窝小区，以1为中心，顺时针编号，编号最大限定为100000。求任意两编号之间的最短距离。两个相邻小区的距离为1 示例：19到30的最短距离为5 实现如下三个接口： /**********...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/NYS001">来自：	<span class="blog_title"> NYS001的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Smile_qiqi/article/details/32724931,BlogCommendHotData_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+		<h4 class="text-truncate oneline">
+				魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+				<span class="desc oneline">畅所欲言！</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Smile_qiqi">来自：	<span class="blog_title"> Smile_qiqi的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zd0303/article/details/7058457,BlogCommendHotData_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+		<h4 class="text-truncate oneline">
+				MATLAB中注释一段程序		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+				<span class="desc oneline">在MATLAB中，可以注释一段程序。
+使用“%{”和“%}”。
+例如
+%{
+。。。
+%}
+即可。
+经典方法是用 if 0，但缺点是不够直观，注释掉的内容仍然保持代码的颜色。现在可以用
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zd0303">来自：	<span class="blog_title"> 知识小屋</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+                <div class="recommend-item-box type_hot_word">
+                                <div class="content clearfix">
+                    <div class="word float-left">
+                                                            <span>
+                        <a href="https://edu.csdn.net/courses/o5329_s5330_k " target="_blank">
+                        机器学习教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/courses/o280_s351_k " target="_blank">
+                        Objective-C培训                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o7115_s388_l0_t " target="_blank">
+                        交互设计视频教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/course/play/5599/104252 " target="_blank">
+                        颜色模型                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o363_l0_t " target="_blank">
+                        设计制作学习                    </a></span>
+                                                            </div>
+                </div>
+                                                <div class="content clearfix">
+                    <div class="float-left">
+                                        <span>
+                        <a href="https://www.csdn.net/gather_24/MtTaEg3sMDM5MS1ibG9n.html" target="_blank">
+                        mysql关联查询两次本表</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_10/MtjaIg3sMTUzMy1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+                        native底部 react</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_1b/Ntzagg1sOTU3LWRvd25sb2Fk.html" target="_blank">
+                        extjs glyph 图标</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/NtDaAg0sOTUtZWR1.html" target="_blank">
+                        django微信开发教程</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/NtjaEg0sOS1lZHUO0O0O.html" target="_blank">
+                        django教程python3</a>
+                    </span>
+                                        </div>
+                </div>
+                                </div>
+                            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+
+    <aside>
+	<div id="asideProfile" class="aside-box">
+    <!-- <h3 class="aside-title">个人资料</h3> -->
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/kzl_knight">
+              <img src="https://avatar.csdn.net/5/A/A/3_kzl_knight.jpg" class="avatar_pic">
+                              <img src="https://g.csdnimg.cn/static/user-reg-year/1x/1.png" class="user-years">
+                          </a>
+            
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/kzl_knight" target="_blank" class="" id="uid">kzl_knight</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a class="btn btn-sm btn-red-hollow attention" id="btnAttent">关注</a>
+            </span>
+        </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="49">
+                        <dt><a href="https://blog.csdn.net/kzl_knight?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/kzl_knight?t=1"><span class="count">49</span></a></dd>
+                    </dl>
+        <dl class="text-center" id="fanBox" title="36">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">36</span></dd>
+        </dl>
+        <dl class="text-center" title="12">
+            <dt>喜欢</dt>
+            <dd><span class="count">12</span></dd>
+        </dl>
+        <dl class="text-center" title="0">
+            <dt>评论</dt>
+            <dd><span class="count">0</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-3"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="52461">
+                5万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="996">
+                996            </dd>
+        </dl>
+        <dl title="73129">
+            <dt>排名：</dt>
+            <dd>7万+</dd>
+        </dl>
+    </div>
+        <div class="badge-box d-flex">
+        <span>勋章：</span>
+        <div class="badge d-flex">
+                                                        <div class="icon-badge" title="持之以恒">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                                   <p>持之以恒</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然月内发布4篇或4篇以上原创或翻译IT博文的用户。不积跬步无以至千里，不积小流无以成江海，程序人生的精彩需要坚持不懈地积累！                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv1">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                                   <p>勤写标兵Lv1</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布1篇到3篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv2">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                                   <p>勤写标兵Lv2</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布4篇到6篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv4">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                                   <p>勤写标兵Lv4</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布9篇以上（包括9篇）原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                             </div>
+        <script>
+            (function ($) {
+                setTimeout(function(){
+                    $('div.icon-badge.show-moment').removeClass('show-moment');
+                }, 5000);
+            })(window.jQuery)
+        </script>
+    </div>
+    </div>
+<div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+      <div id="kp_box_56" data-pid="56" data-track-view='{"mod":"kp_popu_56-876","con":",,"}' data-track-click='{"mod":"kp_popu_56-876","con":",,"}'><!-- 广告位：PC-博客内页左上视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6096221',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="//dup.baidustatic.com/js/os.js"></script></div>    </div>
+</div>
+<div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91402940" target="_blank">windows查看进程并结束</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91044758" target="_blank">[Nginx]反向代理</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91039990" target="_blank">[flask]1基础知识点</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90954216" target="_blank">uWSGI部署python项目</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90899356" target="_blank">[ubuntu18.04]维护mysql</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+<div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8966794">
+                    <span class="title oneline">web前端技术</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8916283">
+                    <span class="title oneline">linux基础</span>
+                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8917641">
+                    <span class="title oneline">python系统编程</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8930728">
+                    <span class="title oneline">Django</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8935344">
+                    <span class="title oneline">数据库</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8951492">
+                    <span class="title oneline">pycharm</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8959754">
+                    <span class="title oneline">csdn_python教学笔记2.0</span>
+                    <span class="count float-right">10篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971103">
+                    <span class="title oneline">csdn2.0课程笔记-1.python基础上</span>
+                    <span class="count float-right">9篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971104">
+                    <span class="title oneline">csdn2.0课程笔记-2.python基础下</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971107">
+                    <span class="title oneline">csdn2.0课程笔记-3.数据库操作</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971109">
+                    <span class="title oneline">csdn2.0课程笔记-4.Web前端技术</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971379">
+                    <span class="title oneline">项目实战</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971742">
+                    <span class="title oneline">csdn2.0课程笔记-Web选修</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8982378">
+                    <span class="title oneline">数据挖掘</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8989051">
+                    <span class="title oneline">web前端笔记</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9009953">
+                    <span class="title oneline">运维</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9012691">
+                    <span class="title oneline">Flask</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9021123">
+                    <span class="title oneline">win10</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+<div id="asideArchive" class="aside-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/06">
+                    2019年6月                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/05">
+                    2019年5月                    <span class="count float-right">42篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+    </div>
+<div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313005">1.3 Python运算符</a>
+					<p class="read">阅读数 <span>1564</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90441297">[Django项目案例]搭建用户与商品后台管理系统</a>
+					<p class="read">阅读数 <span>1526</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313521">1.4 Python的数据类型</a>
+					<p class="read">阅读数 <span>1514</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90512005">1.7 Python函数详解</a>
+					<p class="read">阅读数 <span>1499</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313615">1.5 Python分支结构</a>
+					<p class="read">阅读数 <span>1471</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+	<div id="asideFooter">
+			
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57" data-track-view='{"mod":"kp_popu_57-1158","con":",,"}' data-track-click='{"mod":"kp_popu_57-1158","con":",,"}'><!-- 广告位：PC-博客内页左下视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6272567',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="https://dup.baidustatic.com/js/os.js"></script></div>		</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<div class="tool-box vertical">
+	<ul class="meau-list">
+		<li class="btn-like-box ">
+			<button class=" low-height hover-box btn-like " title="点赞">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup"></use>
+				</svg>
+				<span class="hover-show text-box text">
+					<span class="no-active">点赞</span>
+					<span class="active">取消点赞</span>
+				</span>
+				<p>0</p>
+			</button>
+		</li>
+		<li class="to-commentBox">
+						<a class="btn-comments low-height hover-box" title="写评论" href="#commentBox">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg>
+				<span class="hover-show text">评论</span>
+				<p class="">
+										</p>
+			</a>
+		</li>
+		<li class="toc-container-box" id="liTocBox">
+			<a class="btn-toc low-height hover-box btn-comments" title="目录">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-contents"></use>
+				</svg>
+				<span class="hover-show text">目录</span>
+			</a>
+			<div class="toc-container">
+				<div class="pos-box">
+					<div class="icon-arrow"></div>
+					<div class="scroll-box">
+						<div class="toc-box"></div>
+					</div>
+				</div>
+				<div class="opt-box">
+					<button class="btn-opt prev nomore" title="向上">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronup"></use>
+						</svg>
+					</button>
+					<button class="btn-opt next">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevrondown"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<a class="btn-bookmark low-height hover-box btn-comments" title="收藏">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg>
+					<span class="hover-show text">收藏</span>
+				<!-- <span class="hover-show text-box text">
+					<span class="no-active">收藏</span>
+					<span class="active">取消收藏</span>
+				</span> -->
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<div class="weixin-qr btn-comments low-height hover-box" >
+        <a href="#" class="bds_weixin clear-share-style" data-cmd="weixin" title="手机看"></a>
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-usephone"></use>
+				</svg>
+				<span class="hover-show text text3">
+					手机看
+				</span>
+			</div>
+		</li>
+							<li class="widescreen-hide">
+				<a class="prev btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90260323" title="【Django知识点】项目搭建顺序">
+					<svg class="icon hover-hide" aria-hidden="true">
+						<use xlink:href="#csdnc-chevronleft"></use>
+					</svg>
+					<span class="hover-show text text3">上一篇</span>
+				</a>
+			</li>
+								<li class="widescreen-hide">
+			<a class="next btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/90268795" title="【Django知识点】admin管理基本操作">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-chevronright"></use>
+				</svg>
+				<span class="hover-show text text3">下一篇</span>
+			</a>
+		</li>
+						<!-- 宽屏更多按钮 -->
+		<li class="widescreen-more">
+			<a class="btn-comments chat-ask-button low-height hover-box" title="快问" href="#chatqa">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-more"></use>
+				</svg>
+				<span class="hover-show text">更多</span>
+				
+			</a>
+			<ul class="widescreen-more-box">
+													<li class="widescreen-more">
+						<a class="btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90260323" title="【Django知识点】项目搭建顺序">
+							<svg class="icon hover-hide" aria-hidden="true">
+								<use xlink:href="#csdnc-chevronleft"></use>
+							</svg>
+							<span class="hover-show text text3">上一篇</span>
+						</a>
+					</li>
+																<li class="widescreen-more">
+					<a class="btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/90268795" title="【Django知识点】admin管理基本操作">
+						<svg class="icon hover-hide" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronright"></use>
+						</svg>
+						<span class="hover-show text text3">下一篇</span>
+					</a>
+				</li>
+							</ul>
+		</li>
+	</ul>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script>
+    var recommendCount = 81;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var ChannelId = 31;
+    var articleId = "90260835";
+    var commentscount = 0;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/kzl_knight/article/details/90260835";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "【Django知识点】路由 - kzl_knight的博客";
+    var needInsertBaidu = true;
+    // 代码段样式
+    var codeStyle = '';
+	var highlight = ["django","\u77e5\u8bc6\u70b9","\u8def\u7531"];//高亮数组
+
+    var RecommendBlogExpertList = [{"user_name":"Cs_hnu_scw","nick_name":"Cs_hnu_scw","avatar":"https:\/\/avatar.csdn.net\/9\/2\/D\/3_cs_hnu_scw.jpg","is_expert":false,"article_count":100,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"sanganqi_wusuierzi","nick_name":"\u6851\u5b89\u742a","avatar":"https:\/\/avatar.csdn.net\/F\/6\/C\/3_sanganqi_wusuierzi.jpg","is_expert":false,"article_count":197,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"ywq935","nick_name":"ywq935","avatar":"https:\/\/avatar.csdn.net\/6\/0\/3\/3_ywq935.jpg","is_expert":false,"article_count":57,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"weixin_34322964","nick_name":"weixin_34322964","avatar":"https:\/\/avatar.csdn.net\/6\/3\/C\/3_weixin_34322964.jpg","is_expert":false,"article_count":90,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"shentong1","nick_name":"hust12-zoujm","avatar":"https:\/\/avatar.csdn.net\/6\/F\/0\/3_shentong1.jpg","is_expert":false,"article_count":123,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"Ayhan_huang","nick_name":"Ayhan_huang","avatar":"https:\/\/avatar.csdn.net\/D\/D\/2\/3_ayhan_huang.jpg","is_expert":false,"article_count":116,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"miaoqinian","nick_name":"miaoqinian","avatar":"https:\/\/avatar.csdn.net\/7\/1\/D\/3_miaoqinian.jpg","is_expert":false,"article_count":91,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"qq_29286967","nick_name":"dongge-destiny","avatar":"https:\/\/avatar.csdn.net\/0\/F\/E\/3_qq_29286967.jpg","is_expert":false,"article_count":87,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"wuxingpu5","nick_name":"wxp_2001","avatar":"https:\/\/avatar.csdn.net\/1\/7\/F\/3_wuxingpu5.jpg","is_expert":false,"article_count":191,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"mildddd","nick_name":"Uncle_Gen","avatar":"https:\/\/avatar.csdn.net\/0\/C\/4\/3_mildddd.jpg","is_expert":false,"article_count":29,"rank":"\u5343\u91cc\u4e4b\u5916"}];
+	var articleType = 1;
+	var CopyrightContent = '';
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+</body>
+
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+	<script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/pc_wap_common-45af74a22e.js" /></script>
+
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-84251d2950.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-fefc1403d5.min.js"></script>
+
+	<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-fc7383b956.min.js"></script>
+<script>
+ // 全局声明
+ if (window.csdn === undefined) {
+      window.csdn = {};
+    }
+    window.csdn.sideToolbar = {
+        options: {
+            report:{
+                isShow: true,
+            },
+            afterFinished: function(){
+                setTimeout(function () {
+                    var viphtml = '<a class="option-box" data-type="vip" href="https://mall.csdn.net/vip" target="_blank">'+
+                        '<img src="https://g.csdnimg.cn/side-toolbar/1.2/images/vip.png" alt="" srcset="">'+
+                        '<span class="show-txt">VIP<br>免广告</span>'+
+                        '</a>';
+                    $('.csdn-side-toolbar').prepend(viphtml)
+                },300)
+            }
+        }
+    }
+
+    $(function(){
+        $(document).on('click',"a.option-box[data-type='report']",function() {
+            showReport(false,articleTitles)
+        });
+    })
+</script>
+<script src="https://g.csdnimg.cn/side-toolbar/1.2/side-toolbar.js"></script>
+
+    <script src="//g.csdnimg.cn/??login-box/1.0.6/login-box.js,login-box/1.0.5/login-auto.js,copyright/1.0.3/copyright.js,baidu-search/1.0.0/baidu-search.js?t=20190307095522"  type="text/javascript"></script>
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+<script type="text/javascript">
+    </script>
+<script src="https://gh.bdstatic.com/static/gh/js/sdk/bword.min.js"></script>
+</html>

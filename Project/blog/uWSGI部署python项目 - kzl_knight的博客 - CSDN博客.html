@@ -1,0 +1,3399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/kzl_knight/article/details/90954216"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+        <meta name="csdn-baidu-search"  content='{"autorun":true,"install":true,"keyword":"uWSGI部署python项目 - kzl_knight的博客"}'>
+    
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>uWSGI部署python项目 - kzl_knight的博客 - CSDN博客</title>
+
+        
+                    <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-caa11f8119.min.css">
+            
+            <script type="application/ld+json">{"@context":"https:\/\/ziyuan.baidu.com\/contexts\/cambrian.jsonld","@id":"https:\/\/blog.csdn.net\/kzl_knight\/article\/details\/90954216","appid":"1563894916825412","title":"uWSGI\u90e8\u7f72python\u9879\u76ee - kzl_knight\u7684\u535a\u5ba2","images":["https:\/\/img-blog.csdnimg.cn\/20190605224541278.png?x-oss-process=image\/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70","https:\/\/img-blog.csdnimg.cn\/201906052249171.png?x-oss-process=image\/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70","https:\/\/img-blog.csdnimg.cn\/20190606143041401.png?x-oss-process=image\/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70"],"pubDate":"2019-06-26T21:10:21"}</script>
+        
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-9b39979775.min.css">
+        <script type="text/javascript">
+        var username = "kzl_knight";
+        var blog_address = "https://blog.csdn.net/kzl_knight";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "http://passport.csdn.net/account/login?from=https://blog.csdn.net/kzl_knight/article/details/90954216"
+        var blogUrl = "https://blog.csdn.net/";
+
+        var curSkin = "skin3-template";
+        // 第四范式所需数据
+        var articleTitles = "uWSGI部署python项目 - kzl_knight的博客";
+        
+        var nickName = "kzl_knight";
+        var isCorporate = false;
+        var subDomainBlogUrl = "https://blog.csdn.net/"
+        var digg_base_url = "https://blog.csdn.net/kzl_knight/phoenix/comment";
+        var articleDetailUrl = "https://blog.csdn.net/kzl_knight/article/details/90954216";
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+    <script src="//g.csdnimg.cn/??fixed-sidebar/1.1.3/fixed-sidebar.js,track/1.2.6/track.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body class="nodata " > 
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="kp_box_476" data-pid="476" data-track-view='{"mod":"kp_popu_476-845","con":",,"}' data-track-click='{"mod":"kp_popu_476-845","con":",,"}'><script src="//csdnimg.cn/public/common/indexSuperise/1.1.1/indexSuperise.js?20190111165312"></script><script>window.csdn.indexSuperise({smallMoveImg:'https://img-bss.csdn.net/1560915579293.png',bigMoveImg:'https://img-bss.csdn.net/1560915575919.png',link:'https://kunyu.csdn.net?p=476&a=845&c=394&k=&d=1&t=3&dest=https%3A%2F%2Fedu.csdn.net%2Ftopic%2Fai30%3Futm_source%3Dblogpopup',trackSuperId:476,smallMove:'notMove',trackSId:845});</script></div><link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript">
+	var NEWS_FEED = function(){}
+</script>
+
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/chart-3456820cac.css" />
+<div class="container clearfix" id="mainBox">
+			<div class="recommend-right">
+  <ul class="recommend-fixed-box">
+    
+  </ul>
+</div>	    <main>
+        <div class="blog-content-box">
+  <div class="article-header-box">
+    <div class="article-header">
+      <div class="article-title-box">
+        <span class="article-type type-1 float-left">原</span>        <h1 class="title-article">uWSGI部署python项目</h1>
+      </div>
+      <div class="article-info-box">
+        <div class="article-bar-top">
+                                                              <span class="time">2019年06月06日 15:26:32</span>
+          <a class="follow-nickName" href="https://me.csdn.net/kzl_knight" target="_blank">kzl_knight</a>
+          <span class="read-count">阅读数 70</span>
+                  </div>
+        <div class="operating">
+                  </div>
+      </div>
+    </div>
+  </div>
+  <article class="baidu_pl">
+    <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod=popu_307 data-dsm="post">
+              <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-cd6c485e8b.css" />
+                              <div id="content_views" class="markdown_views prism-atom-one-dark">
+            <!-- flowchart 箭头图标 勿删 -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+            </svg>
+            <p></p><div class="toc"><h3>uWSGI部署python项目</h3><ul><li><a href="#1_pipdjango_1" rel="nofollow">1 安装pip与django</a></li><li><a href="#2_django_6" rel="nofollow">2 创建一个简单的django项目</a></li><li><a href="#3__15" rel="nofollow">3 配置访问地址</a></li><li><a href="#4_runserver_21" rel="nofollow">4 以runserver的方式启动</a></li><li><a href="#5_ip_29" rel="nofollow">5 查看ip</a></li><li><a href="#6_uWSGI_34" rel="nofollow">6 安装uWSGI</a></li><li><a href="#7_uWSGI_40" rel="nofollow">7 通过uWSGI启动服务</a></li><ul><li><a href="#71__41" rel="nofollow">7.1 调试运行</a></li><li><a href="#72__51" rel="nofollow">7.2 后台运行与日志文件</a></li></ul><li><a href="#8_uwsgi_60" rel="nofollow">8 关闭uwsgi服务</a></li></ul></div><p></p>
+<h1><a id="1_pipdjango_1"></a>1 安装pip与django</h1>
+<pre><code class="prism language-cmd">apt install python3-pip
+pip3 install django==2.2.1
+</code></pre>
+<h1><a id="2_django_6"></a>2 创建一个简单的django项目</h1>
+<pre><code class="prism language-cmd">django-admin startproject proj
+cd proj/proj
+vi urls.py
+</code></pre>
+<p>添加红色部分的内容：<br>
+<img src="https://img-blog.csdnimg.cn/20190605224541278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1><a id="3__15"></a>3 配置访问地址</h1>
+<pre><code class="prism language-cmd">vi settings.py
+</code></pre>
+<p>设置ALLOWED_HOSTS = [’*’]，允许其他机器访问<br>
+<img src="https://img-blog.csdnimg.cn/201906052249171.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1><a id="4_runserver_21"></a>4 以runserver的方式启动</h1>
+<pre><code class="prism language-cmd">python3 manage.py runserver 0.0.0.0:80
+</code></pre>
+<p>注：</p>
+<ul>
+<li>0.0.0.0 表示允许外网访问</li>
+<li>80 端口在浏览器访问的时候，可以不指明</li>
+</ul>
+<h1><a id="5_ip_29"></a>5 查看ip</h1>
+<p>ifconfig<br>
+<img src="https://img-blog.csdnimg.cn/20190606143041401.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1><a id="6_uWSGI_34"></a>6 安装uWSGI</h1>
+<pre><code class="prism language-cmd">pip3 install uwsgi
+</code></pre>
+<h1><a id="7_uWSGI_40"></a>7 通过uWSGI启动服务</h1>
+<h2><a id="71__41"></a>7.1 调试运行</h2>
+<p>格式：</p>
+<ul>
+<li>uwsgi --http :【端口号】 --chdir 【项目路径】 --module 【wsgi文件】</li>
+</ul>
+<p>例如：</p>
+<pre><code class="prism language-cmd">uwsgi --http :80 --chdir /home/kzl/Desktop/proj --module proj.wsgi 
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190606150710486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2><a id="72__51"></a>7.2 后台运行与日志文件</h2>
+<p>格式：</p>
+<ul>
+<li>uwsgi --http :【端口号】 --chdir 【项目路径】 --module 【wsgi文件】–daemonize 【日志地址】</li>
+</ul>
+<p>例如：</p>
+<pre><code class="prism language-cmd">uwsgi --http :80 --chdir /home/kzl/Desktop/proj --module proj.wsgi --daemonize /root/a.log
+</code></pre>
+<h1><a id="8_uwsgi_60"></a>8 关闭uwsgi服务</h1>
+<p>1.得到进程id</p>
+<pre><code class="prism language-cmd">ps -ef | grep uwsgi
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190606152012618.png" alt="在这里插入图片描述"></p>
+<pre><code class="prism language-cmd">kill -9 2225
+</code></pre>
+
+          </div>
+          <link href="https://csdnimg.cn/release/phoenix/mdeditor/markdown_views-e44c3c0e64.css" rel="stylesheet">
+                  </div>
+  </article>
+</div>
+
+<div class="hide-article-box hide-article-pos text-center">
+      <a class="" id="btn-readmore" data-track-view='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90954216,"}' data-track-click='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90954216,"}'>
+    展开阅读全文
+    <svg class="icon chevrondown" aria-hidden="true">
+        <use xlink:href="#csdnc-chevrondown"></use>
+      </svg>
+    </a>
+    </div>
+<script>
+  $(".MathJax").remove();
+  if ($('div.markdown_views pre.prettyprint code.hljs').length > 0) {
+    $('div.markdown_views')[0].className = 'markdown_views';
+  }
+</script>
+        <div id="dmp_ad_58"><div id="kp_box_58" data-pid="58" data-track-view='{"mod":"kp_popu_58-402","con":",,"}' data-track-click='{"mod":"kp_popu_58-402","con":",,"}'><div style="width:100%;background:#fff;border:3px solid #fff;padding:16px 0px 0px 0px;">
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<div id="three_ad1" class="mediav_ad" ></div>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 100,
+                showid : 'ztvJV8',
+                placeholderId: "three_ad1",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 0,
+                    imageWidth: 90,
+                    imageHeight: 68,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft YaHei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 20,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script>
+</div></div></div>        <a id="commentBox"></a>
+<div class="comment-box">
+	
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="javascript:void(0);" target="_blank">
+				<img class="show_loginbox" src="//g.csdnimg.cn/static/user-img/anonymous-User-img.png">
+			</a>
+		</div>
+		<form id="commentform">
+			<input type="hidden" id="comment_replyId">
+			<textarea class="comment-content" name="comment_content" id="comment_content" placeholder="想对作者说点什么"></textarea>
+			<div class="opt-box"> <!-- d-flex -->
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="90954216">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div style="display: none;" class="csdn-tracking-statistics tracking-click" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="txt-selected text-truncate">添加代码片</div>
+					<svg class="icon d-block" aria-hidden="true">
+						<use xlink:href="#csdnc-triangledown"></use>
+					</svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>  
+				<div class="right-box">
+					<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+					<input type="button" class="btn btn-sm btn-cancel d-none" value="取消回复">
+					<input type="submit" class="btn btn-sm btn-red btn-comment" value="发表评论">
+				</div>
+			</div>
+		</form>
+	</div>
+
+		<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div>
+		</div>
+	</div>
+</div>
+        <div class="recommend-box">
+                            <div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/happymonica11/article/details/80394794,BlogCommendFromQuerySearch_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/happymonica11/article/details/80394794" target="_blank" title="python web开发笔记--如何采用uwsgi来部署你的Django项目">
+		<h4 class="text-truncate oneline">
+				<em>python</em> web开发笔记--如何采用<em>uwsgi</em>来<em>部署</em>你的Django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-21</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1214</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/happymonica11/article/details/80394794" target="_blank" title="python web开发笔记--如何采用uwsgi来部署你的Django项目">
+				<span class="desc oneline">    接上一文pythonweb开发笔记–MAC上Django+uwsgi构建总结,最近对于采用uwsgi进行成功部署自己的项目已经成功搞定，因此写下这篇博客，这绝对是一篇值得需要的人读的用心好博文...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/happymonica11">来自：	<span class="blog_title"> 婧萱</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/liubingger/article/details/77877041,BlogCommendFromQuerySearch_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/liubingger/article/details/77877041" target="_blank" title="nginx+uwsgi部署多个python应用">
+		<h4 class="text-truncate oneline">
+				nginx+<em>uwsgi</em><em>部署</em>多个<em>python</em>应用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2534</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/liubingger/article/details/77877041" target="_blank" title="nginx+uwsgi部署多个python应用">
+				<span class="desc oneline">nginx+uwsgi部署多个python应用2015-01-1217:35:52标签：python应用 shell参考文章：http://kb.cnblogs.com/page/86907/ (配置...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/liubingger">来自：	<span class="blog_title"> liubingger的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013899461/article/details/83540169,BlogCommendFromQuerySearch_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013899461/article/details/83540169" target="_blank" title="ubuntu部署python项目(virtualenv + flask + uwsgi + nginx)(附：部署过程中遇到的问题及解决方法)">
+		<h4 class="text-truncate oneline">
+				ubuntu<em>部署</em><em>python</em><em>项目</em>(virtualenv + flask + <em>uwsgi</em> + nginx)(附：<em>部署</em>过程中遇到的问题及解决方法)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					464</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013899461/article/details/83540169" target="_blank" title="ubuntu部署python项目(virtualenv + flask + uwsgi + nginx)(附：部署过程中遇到的问题及解决方法)">
+				<span class="desc oneline">以下为我部署pthonflask+virtualenv+uwsgi+nginx的艰苦之路（我使用的是ubuntu及python3.6）安装好python3.6后（上一编文章有讲啦）：创建python虚...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013899461">来自：	<span class="blog_title"> Kai辉的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box  recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/chenshufeng115/9832978,BlogCommendFromQuerySearch_3"}'>
+		<a href="https://download.csdn.net/download/chenshufeng115/9832978" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						centos下使用Nginx+<em>uWsgi</em><em>部署</em><em>Python</em> Flask<em>项目</em>的详细配置					</h4>
+					<span class="data float-right">05-04</span>
+				</div>
+				<div class="desc oneline">
+						在centos系统下，使用Nginx反向代理和uWsgi服务器部署Python Flask项目，这里记录了我配置的整个过程，亲测可用				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_59" data-pid="59" data-track-view='{"mod":"kp_popu_59-861","con":",,Python"}' data-track-click='{"mod":"kp_popu_59-861","con":",,Python"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/110?positionId=59&queryWord=Python" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_33591055/article/details/80646482,BlogCommendFromQuerySearch_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_33591055/article/details/80646482" target="_blank" title="【python项目部署】Nginx+uWSGI+Django部署">
+		<h4 class="text-truncate oneline">
+				【<em>python</em><em>项目</em><em>部署</em>】Nginx+<em>uWSGI</em>+Django<em>部署</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					531</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_33591055/article/details/80646482" target="_blank" title="【python项目部署】Nginx+uWSGI+Django部署">
+				<span class="desc oneline">前言Django开发实际线上部署的最优架构:Nginx+uWSGI+Django。采用动/静分离高效的WEB设计。WEB发展史回顾wsgi概念WSGI，全称WebServerGatewayInterf...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_33591055">来自：	<span class="blog_title"> 就叫一片白纸的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/win_turn/article/details/52994018,BlogCommendFromQuerySearch_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/win_turn/article/details/52994018" target="_blank" title="使用uwsgi+nginx部署django项目">
+		<h4 class="text-truncate oneline">
+				使用<em>uwsgi</em>+nginx<em>部署</em>django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2467</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/win_turn/article/details/52994018" target="_blank" title="使用uwsgi+nginx部署django项目">
+				<span class="desc oneline">环境搭建关于nginx、python、django、pip、setuptools、uwsgi安装，查看文章http://blog.csdn.net/win_turn/article/details/5...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/win_turn">来自：	<span class="blog_title"> win_turn的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zhuod/article/details/78212797,BlogCommendFromQuerySearch_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zhuod/article/details/78212797" target="_blank" title="在MAC使用Nginx+uWSGI部署Flask项目">
+		<h4 class="text-truncate oneline">
+				在MAC使用Nginx+<em>uWSGI</em><em>部署</em>Flask<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6812</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zhuod/article/details/78212797" target="_blank" title="在MAC使用Nginx+uWSGI部署Flask项目">
+				<span class="desc oneline">之前用Flask框架开发了一个Python的restfulapi服务器项目，使用Nginx和uWSGI部署起来感觉挺麻烦，过程中还因为对Flask框架和uwsgi的不熟悉，花了好长时间才把应用完全部署...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zhuod">来自：	<span class="blog_title"> 人生若只如初见</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sence_yxy/article/details/79216120,BlogCommendFromQuerySearch_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sence_yxy/article/details/79216120" target="_blank" title="Docker入门，如何部署Django uwsgi nginx应用">
+		<h4 class="text-truncate oneline">
+				Docker入门，如何<em>部署</em>Django <em>uwsgi</em> nginx应用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-31</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4738</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sence_yxy/article/details/79216120" target="_blank" title="Docker入门，如何部署Django uwsgi nginx应用">
+				<span class="desc oneline">有关docker的介绍啊，为什么要使用docker啊这些就不说了，因为当你点开这篇作文的时候，你自己心里已经有了答案。那么我们现在就打开电脑，撸起袖子开始docker入门吧。相关名词镜像（image）...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sence_yxy">来自：	<span class="blog_title"> Xander Ye的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wumian0123/article/details/88397297,BlogCommendFromQuerySearch_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wumian0123/article/details/88397297" target="_blank" title="Python uWSGI部署服务">
+		<h4 class="text-truncate oneline">
+				<em>Python</em> <em>uWSGI</em><em>部署</em>服务		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					113</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wumian0123/article/details/88397297" target="_blank" title="Python uWSGI部署服务">
+				<span class="desc oneline">什么是uWSGIuWSGI旨在为部署分布式集群的网络应用开发一套完整的解决方案。主要面向web及其标准服务。由于其可扩展性，能够被无限制的扩展用来支持更多平台和语言。uWSGI是一个web服务器，实现...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wumian0123">来自：	<span class="blog_title"> huang.xiao的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_60" data-pid="60" data-track-view='{"mod":"kp_popu_60-43","con":",,"}' data-track-click='{"mod":"kp_popu_60-43","con":",,"}'><div id="three_ad8" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 84,
+                showid : 'Afihld',
+                placeholderId: "three_ad8",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zhou592930059/article/details/80283224,BlogCommendFromQuerySearch_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zhou592930059/article/details/80283224" target="_blank" title="在Ubuntu16.04上使用uWSGI和nginx部署Django项目">
+		<h4 class="text-truncate oneline">
+				在Ubuntu16.04上使用<em>uWSGI</em>和nginx<em>部署</em>Django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					833</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zhou592930059/article/details/80283224" target="_blank" title="在Ubuntu16.04上使用uWSGI和nginx部署Django项目">
+				<span class="desc oneline">   前段时间简单学习了一下Django框架，跟着网上的视频和文档写了一个简单的博客想把它部署到我的服务器上。   直接上步骤吧。1、更新源sudoapt-getupdatesudoapt-getup...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zhou592930059">来自：	<span class="blog_title"> zhou592930059的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jw690114549/article/details/78279232,BlogCommendFromQuerySearch_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jw690114549/article/details/78279232" target="_blank" title="阿里云CentOS、Nginx、uWSGI、Flask部署简易博客">
+		<h4 class="text-truncate oneline">
+				阿里云CentOS、Nginx、<em>uWSGI</em>、Flask<em>部署</em>简易博客		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					893</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jw690114549/article/details/78279232" target="_blank" title="阿里云CentOS、Nginx、uWSGI、Flask部署简易博客">
+				<span class="desc oneline">利用阿里云服务器部署Flask个人博客。在CentOS7.2系统利用Nginx，uWSGI以及Flask应用来部署网站。...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jw690114549">来自：	<span class="blog_title"> 蒋狗的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+			<div class="recommend-item-box blog-expert-recommend-box">
+			<div class="d-flex">
+				<div class="blog-expert-recommend">
+					<div class="blog-expert">
+						<div class="blog-expert-flexbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zuimrs/article/details/79091518,BlogCommendFromQuerySearch_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zuimrs/article/details/79091518" target="_blank" title="从零开始搭建个人网站（6）nginx+uWSGI部署Django项目（上）">
+		<h4 class="text-truncate oneline">
+				从零开始搭建个人网站（6）nginx+<em>uWSGI</em><em>部署</em>Django<em>项目</em>（上）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4304</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zuimrs/article/details/79091518" target="_blank" title="从零开始搭建个人网站（6）nginx+uWSGI部署Django项目（上）">
+				<span class="desc oneline">Django虽然自带一个Server，但只能作为开发时测试使用，我们需要一个可以稳定而持续的服务器对网站进行部署，比如Apache,Nginx,lighttpd等，本篇将利用nginx和uWSGI部署...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zuimrs">来自：	<span class="blog_title"> zuimrs的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/github_38616039/article/details/80904466,BlogCommendFromQuerySearch_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/github_38616039/article/details/80904466" target="_blank" title="使用Nginx+Uwsgi在CentOS服务器上部署Python Flask应用">
+		<h4 class="text-truncate oneline">
+				使用Nginx+<em>Uwsgi</em>在CentOS服务器上<em>部署</em><em>Python</em> Flask应用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					711</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/github_38616039/article/details/80904466" target="_blank" title="使用Nginx+Uwsgi在CentOS服务器上部署Python Flask应用">
+				<span class="desc oneline">      写在开头        第一次用Flask做Web(也是第一次用Python做Web),在部署的时候遇到了不少问题,现在将过程就下来,供在这方面也有疑惑的人参考.         项目及服...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/github_38616039">来自：	<span class="blog_title"> github_38616039的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/p571912102/article/details/82025497,BlogCommendFromQuerySearch_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/p571912102/article/details/82025497" target="_blank" title="django+uwsgi+nginx 部署前后端分离项目的各种坑">
+		<h4 class="text-truncate oneline">
+				django+<em>uwsgi</em>+nginx <em>部署</em>前后端分离<em>项目</em>的各种坑		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/p571912102/article/details/82025497" target="_blank" title="django+uwsgi+nginx 部署前后端分离项目的各种坑">
+				<span class="desc oneline">使用虚拟环境部署，Python3，django==1.11.11， uwsgi，nginx 部署时使用的是宝塔平台 （公司用这个平台 ），服务器是阿里云 先放上配置文件 uwsgi[uwsgi]#使用...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/p571912102">来自：	<span class="blog_title"> p571912102的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_61" data-pid="61" data-track-view='{"mod":"kp_popu_61-557","con":",,"}' data-track-click='{"mod":"kp_popu_61-557","con":",,"}'><div id="three_ad13" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'GNKXx7',
+                placeholderId: "three_ad13",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/breavo_raw/article/details/82665978,BlogCommendFromQuerySearch_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/breavo_raw/article/details/82665978" target="_blank" title="Ubuntu下的Nginx + Uwsgi + Django项目部署详细流程">
+		<h4 class="text-truncate oneline">
+				Ubuntu下的Nginx + <em>Uwsgi</em> + Django<em>项目</em><em>部署</em>详细流程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2070</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/breavo_raw/article/details/82665978" target="_blank" title="Ubuntu下的Nginx + Uwsgi + Django项目部署详细流程">
+				<span class="desc oneline">前言这篇博客主要介绍标题中写明的项目部署流程，以及解决部署过程中可能遇到的一些问题，在开始之前，墙裂推荐这篇文档：SettingupDjangoandyourwebserverwithuWSGIand...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/breavo_raw">来自：	<span class="blog_title"> 泡泡茶壶的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lm_is_dc/article/details/80848912,BlogCommendFromQuerySearch_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lm_is_dc/article/details/80848912" target="_blank" title="云服务器部署Python项目(nginx+uwsgi+mysql+项目)">
+		<h4 class="text-truncate oneline">
+				云服务器<em>部署</em><em>Python</em><em>项目</em>(nginx+<em>uwsgi</em>+mysql+<em>项目</em>)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2809</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lm_is_dc/article/details/80848912" target="_blank" title="云服务器部署Python项目(nginx+uwsgi+mysql+项目)">
+				<span class="desc oneline">python项目部署到云服务器一、硬件准备云服务器，系统ubuntu_16_04。注意：要在安全组中开放Http的80端口。二、软件准备1、两个工具XShell：控制远程Linux主机，SSH工具；X...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lm_is_dc">来自：	<span class="blog_title"> 梁某</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq562029186/article/details/81347046,BlogCommendFromQuerySearch_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq562029186/article/details/81347046" target="_blank" title="使用uWSGI部署flask web(简单应用)">
+		<h4 class="text-truncate oneline">
+				使用<em>uWSGI</em><em>部署</em>flask web(简单应用)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					692</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq562029186/article/details/81347046" target="_blank" title="使用uWSGI部署flask web(简单应用)">
+				<span class="desc oneline">一般配置ini,保存为uwsgi.ini第一行配置中，单个uwsgi部署需要http，而不是官网上的scoket[uwsgi]http=:5000     #在浏览器上访问服务器ip:5000wsgi...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq562029186">来自：	<span class="blog_title"> 大西瓜Blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_39198406/article/details/79277580,BlogCommendFromQuerySearch_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_39198406/article/details/79277580" target="_blank" title="使用Nginx+uwsgi部署Django项目">
+		<h4 class="text-truncate oneline">
+				使用Nginx+<em>uwsgi</em><em>部署</em>Django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5021</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_39198406/article/details/79277580" target="_blank" title="使用Nginx+uwsgi部署Django项目">
+				<span class="desc oneline">前提条件1:假设我们有以下Django项目：项目名称：blog模型名称：article虚拟环境名称：django项目目录位置：/root/blog前提条件2:项目大体结构如下：(django)root...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_39198406">来自：	<span class="blog_title"> 李谦的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/myk082610/article/details/81906174,BlogCommendFromQuerySearch_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/myk082610/article/details/81906174" target="_blank" title="linux下使用uwsgi部署django项目时 静态文件不能正常加载">
+		<h4 class="text-truncate oneline">
+				linux下使用<em>uwsgi</em><em>部署</em>django<em>项目</em>时 静态文件不能正常加载		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-21</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2316</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/myk082610/article/details/81906174" target="_blank" title="linux下使用uwsgi部署django项目时 静态文件不能正常加载">
+				<span class="desc oneline">在linux下需要用python-admin来开django的服务，如果你是python3那么命令应为python3-adminmanage.pyrunserver可以正常访问页面，没有静态加载的问题...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/myk082610">来自：	<span class="blog_title"> myk082610的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_62" data-pid="62" data-track-view='{"mod":"kp_popu_62-556","con":",,"}' data-track-click='{"mod":"kp_popu_62-556","con":",,"}'><div id="three_ad18" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'Afihld',
+                placeholderId: "three_ad18",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/c2366994582/article/details/79382385,BlogCommendFromQuerySearch_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/c2366994582/article/details/79382385" target="_blank" title="在服务器上uwsgi+nginx部署Django项目">
+		<h4 class="text-truncate oneline">
+				在服务器上<em>uwsgi</em>+nginx<em>部署</em>Django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-26</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					471</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/c2366994582/article/details/79382385" target="_blank" title="在服务器上uwsgi+nginx部署Django项目">
+				<span class="desc oneline">Django项目开发完毕，开发完成后用如下命令收集所有的包pipfreeze&amp;amp;gt;plist.txt本地测试正常运行之就可以部署到服务器上，我把我的真个部署过程分享出来，从域名和服务器的购买...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/c2366994582">来自：	<span class="blog_title"> c2366994582的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_34964399/article/details/80646422,BlogCommendFromQuerySearch_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_34964399/article/details/80646422" target="_blank" title="在阿里云的centos7下通过nginx+uwsgi部署Django">
+		<h4 class="text-truncate oneline">
+				在阿里云的centos7下通过nginx+<em>uwsgi</em><em>部署</em>Django		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					999</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_34964399/article/details/80646422" target="_blank" title="在阿里云的centos7下通过nginx+uwsgi部署Django">
+				<span class="desc oneline">做这个着实把我坑了一把。照着网上的步骤做下去不是遇到了各种的bug，总之不能全信，要回看error很重要，这样就能get到你要的内容了。1安装虚拟环境 虚拟环境不一定要root权限，不过我此次都是用的...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_34964399">来自：	<span class="blog_title"> time</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/m0_37887449/article/details/73086899,BlogCommendFromQuerySearch_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/m0_37887449/article/details/73086899" target="_blank" title="从零开始在 Ubuntu 下部署 Nginx uWSGI Django 服务器">
+		<h4 class="text-truncate oneline">
+				从零开始在 Ubuntu 下<em>部署</em> Nginx <em>uWSGI</em> Django 服务器		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4406</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/m0_37887449/article/details/73086899" target="_blank" title="从零开始在 Ubuntu 下部署 Nginx uWSGI Django 服务器">
+				<span class="desc oneline">个人技术博客地址：http://songmingyao.com/从零开始在Ubuntu下部署NginxuWSGIDjango服务器...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/m0_37887449">来自：	<span class="blog_title"> 流月0的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box  recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/chenbin666/10974647,BlogCommendFromQuerySearch_22"}'>
+		<a href="https://download.csdn.net/download/chenbin666/10974647" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						Nginx+<em>Uwsgi</em>+Django+Vue<em>部署</em>					</h4>
+					<span class="data float-right">02-25</span>
+				</div>
+				<div class="desc oneline">
+						Nginx+Uwsgi+Django（python3）+Vue部署，一步步实现。网上找了N多篇文章都没成功，特意记录，以免其他同学踩坑				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_42215988/article/details/83068059,BlogCommendFromQuerySearch_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_42215988/article/details/83068059" target="_blank" title="Linux 使用uwsgi部署Django项目">
+		<h4 class="text-truncate oneline">
+				Linux 使用<em>uwsgi</em><em>部署</em>Django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					121</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_42215988/article/details/83068059" target="_blank" title="Linux 使用uwsgi部署Django项目">
+				<span class="desc oneline">项目结构： 1. 测试Django能否正常工作cd/srv/python/MySitepythonmanage.pyrunserver0.0.0.0:80002. 测试uwsgi是否能和django集...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_42215988">来自：	<span class="blog_title"> weixin_42215988的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_63" data-pid="63" data-track-view='{"mod":"kp_popu_63-1059","con":",,"}' data-track-click='{"mod":"kp_popu_63-1059","con":",,"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/234?positionId=63&queryWord=" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_39378885/article/details/79931045,BlogCommendFromQuerySearch_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_39378885/article/details/79931045" target="_blank" title="在Centos7云服务器上使用Nginx，uwsgi，部署Django项目">
+		<h4 class="text-truncate oneline">
+				在Centos7云服务器上使用Nginx，<em>uwsgi</em>，<em>部署</em>Django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-13</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					991</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_39378885/article/details/79931045" target="_blank" title="在Centos7云服务器上使用Nginx，uwsgi，部署Django项目">
+				<span class="desc oneline">Django项目部署到云服务器花了好长时间才搞定的，这路上到处都是坑呀1，准备工作：①，需要一台云服务器，我用的是腾讯的云服务器。系统：Centos7，其实都差不多。②，所需软件。为了避免出错，尽量使...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_39378885">来自：	<span class="blog_title"> 某嫌疑犯</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zstack_org/article/details/53125942,BlogCommendFromQuerySearch_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zstack_org/article/details/53125942" target="_blank" title="使用uWSGI Web服务器和Nginx部署Python WSGI应用">
+		<h4 class="text-truncate oneline">
+				使用<em>uWSGI</em> Web服务器和Nginx<em>部署</em><em>Python</em> WSGI应用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7070</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zstack_org/article/details/53125942" target="_blank" title="使用uWSGI Web服务器和Nginx部署Python WSGI应用">
+				<span class="desc oneline">ZStack云计算,我们在之前的《PythonWeb服务器对比》文章中介绍过，uWSGI是一个宏大的项目，它能做的事情远远超过提供Web服务。不过很多Web应用的部署仍然青睐于它，因为它功能丰富，容易...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zstack_org">来自：	<span class="blog_title"> zstack_org的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/fxjzzyo/article/details/80866878,BlogCommendFromQuerySearch_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/fxjzzyo/article/details/80866878" target="_blank" title="阿里云ubuntu系统下使用uwsgi+nginx部署django web项目示例">
+		<h4 class="text-truncate oneline">
+				阿里云ubuntu系统下使用<em>uwsgi</em>+nginx<em>部署</em>django web<em>项目</em>示例		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					413</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/fxjzzyo/article/details/80866878" target="_blank" title="阿里云ubuntu系统下使用uwsgi+nginx部署django web项目示例">
+				<span class="desc oneline">1.准备工作首先更新软件sudoapt-getupgrade安装虚拟环境sudoapt-getinstallpython-virtualenv安装nginxsudoapt-getinstallngin...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/fxjzzyo">来自：	<span class="blog_title"> fxjzzyo的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zuimrs/article/details/79145450,BlogCommendFromQuerySearch_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zuimrs/article/details/79145450" target="_blank" title="从零开始搭建个人网站（7）nginx+uWSGI部署Django项目（下）">
+		<h4 class="text-truncate oneline">
+				从零开始搭建个人网站（7）nginx+<em>uWSGI</em><em>部署</em>Django<em>项目</em>（下）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1069</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zuimrs/article/details/79145450" target="_blank" title="从零开始搭建个人网站（7）nginx+uWSGI部署Django项目（下）">
+				<span class="desc oneline">Django虽然自带一个Server，但只能作为开发时测试使用，我们需要一个可以稳定而持续的服务器对网站进行部署，比如Apache,Nginx,lighttpd等，本篇将利用nginx和uWSGI部署...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zuimrs">来自：	<span class="blog_title"> zuimrs的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_35034604/article/details/83543346,BlogCommendFromQuerySearch_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_35034604/article/details/83543346" target="_blank" title="阿里云（腾讯云）+Centos7.3部署多个Flask项目(nginx+uwsgi)">
+		<h4 class="text-truncate oneline">
+				阿里云（腾讯云）+Centos7.3<em>部署</em>多个Flask<em>项目</em>(nginx+<em>uwsgi</em>)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					550</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_35034604/article/details/83543346" target="_blank" title="阿里云（腾讯云）+Centos7.3部署多个Flask项目(nginx+uwsgi)">
+				<span class="desc oneline">近期做了一个代购管理平台，类似于微商后台管理系统，部署在了腾讯云上，后因为域名原因迁移到了阿里云。迁移过程部署的具体细节忘记了，导致又花了一点时间解决，于是乎特意在此总结下部署经验。部署环境：Cent...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_35034604">来自：	<span class="blog_title"> 编程之路</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_64" data-pid="64" data-track-view='{"mod":"kp_popu_64-1251","con":",,"}' data-track-click='{"mod":"kp_popu_64-1251","con":",,"}'><!-- T28 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T28_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T28  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T28_render", "T28");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xing851483876/article/details/84306953,BlogCommendFromQuerySearch_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xing851483876/article/details/84306953" target="_blank" title="阿里云部署Django项目（nginx+uWSGI）-2018.11">
+		<h4 class="text-truncate oneline">
+				阿里云<em>部署</em>Django<em>项目</em>（nginx+<em>uWSGI</em>）-2018.11		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1972</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xing851483876/article/details/84306953" target="_blank" title="阿里云部署Django项目（nginx+uWSGI）-2018.11">
+				<span class="desc oneline">前言：部署的前提是你的项目已经在本地完成可以运行了，我的本地环境是ubuntu16.04+python3.5+Django2.1.2+Mysql，在python虚拟环境（virtualenv）下建的项...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xing851483876">来自：	<span class="blog_title"> 老王の博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wangpeng2011314/article/details/80993178,BlogCommendFromQuerySearch_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wangpeng2011314/article/details/80993178" target="_blank" title="部署uwsgi+nginx+django遇到的坑">
+		<h4 class="text-truncate oneline">
+				<em>部署</em><em>uwsgi</em>+nginx+django遇到的坑		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1164</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wangpeng2011314/article/details/80993178" target="_blank" title="部署uwsgi+nginx+django遇到的坑">
+				<span class="desc oneline">DjangoNginx+uwsgi安装配置在前面的章节中我们使用 pythonmanage.pyrunserver 来运行服务器。这只适用测试环境中使用。正式发布的服务，我们需要一个可以稳定而持续的服...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wangpeng2011314">来自：	<span class="blog_title"> wangpeng2011314的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jeremyjone/article/details/80616577,BlogCommendFromQuerySearch_31"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jeremyjone/article/details/80616577" target="_blank" title="做python Web开发你要理解：WSGI &amp; uwsgi">
+		<h4 class="text-truncate oneline">
+				做<em>python</em> Web开发你要理解：WSGI &amp; <em>uwsgi</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2280</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jeremyjone/article/details/80616577" target="_blank" title="做python Web开发你要理解：WSGI &amp; uwsgi">
+				<span class="desc oneline">WSGI协议首先弄清下面几个概念：WSGI：全称是WebServerGatewayInterface，WSGI不是服务器，python模块，框架，API或者任何软件，只是一种规范，描述webserve...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jeremyjone">来自：	<span class="blog_title"> 小鹰的学习乐园</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zps007/article/details/77968480,BlogCommendFromQuerySearch_32"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zps007/article/details/77968480" target="_blank" title="配置搭建阿里云服务器nginx+uwsgi (python)">
+		<h4 class="text-truncate oneline">
+				配置搭建阿里云服务器nginx+<em>uwsgi</em> (<em>python</em>)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-13</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1991</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zps007/article/details/77968480" target="_blank" title="配置搭建阿里云服务器nginx+uwsgi (python)">
+				<span class="desc oneline">配置搭建阿里云服务器nginx+uwsgi(python)关于使用nginx+uwsgi搭建web服务器，网上有很多教程，但是对新手来说都有些不好理解。下面我总结了一下，纯基础、好使。首先理解一些基本...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zps007">来自：	<span class="blog_title"> zps007的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wang785994599/article/details/81571632,BlogCommendFromQuerySearch_33"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wang785994599/article/details/81571632" target="_blank" title="django+uwsgi+nginx远程服务器简单部署">
+		<h4 class="text-truncate oneline">
+				django+<em>uwsgi</em>+nginx远程服务器简单<em>部署</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					457</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wang785994599/article/details/81571632" target="_blank" title="django+uwsgi+nginx远程服务器简单部署">
+				<span class="desc oneline">  Step:1软件安装nginx,mysql,redis。redis默认配置即可，为了可以远程连接数据库需要进行以下操作（root用户为例）：grantallonroot.*to'root'@'%'...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wang785994599">来自：	<span class="blog_title"> wang785994599的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_65" data-pid="65" data-track-view='{"mod":"kp_popu_65-1252","con":",,"}' data-track-click='{"mod":"kp_popu_65-1252","con":",,"}'><!-- T33 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T33_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T33  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T33_render", "T33");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Heathy__/article/details/71721307,BlogCommendFromQuerySearch_34"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Heathy__/article/details/71721307" target="_blank" title="uwsgi的定时脚本任务">
+		<h4 class="text-truncate oneline">
+				<em>uwsgi</em>的定时脚本任务		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1015</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Heathy__/article/details/71721307" target="_blank" title="uwsgi的定时脚本任务">
+				<span class="desc oneline">uwsgi的定时任务</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Heathy__">来自：	<span class="blog_title"> Heathy__的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_39099718/article/details/79187688,BlogCommendFromQuerySearch_35"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_39099718/article/details/79187688" target="_blank" title="在腾讯云上用 nginx + uwsgi + django 搭建自己的网站">
+		<h4 class="text-truncate oneline">
+				在腾讯云上用 nginx + <em>uwsgi</em> + django 搭建自己的网站		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					724</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_39099718/article/details/79187688" target="_blank" title="在腾讯云上用 nginx + uwsgi + django 搭建自己的网站">
+				<span class="desc oneline">前言：之前在腾讯云弄了一个学生云主机和一个域名，后面又学了朋友python，所以就想建一个网站来玩玩。准备工作：一台安装了Ubuntu16.04的云服务器，一个域名（这里用buduannuli.cn）...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_39099718">来自：	<span class="blog_title"> qq_39099718的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zjw_python/article/details/78510005,BlogCommendFromQuerySearch_36"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zjw_python/article/details/78510005" target="_blank" title="Centos 7环境下使用nginx和uwsgi部署多站（最简单的方法）">
+		<h4 class="text-truncate oneline">
+				Centos 7环境下使用nginx和<em>uwsgi</em><em>部署</em>多站（最简单的方法）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2702</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zjw_python/article/details/78510005" target="_blank" title="Centos 7环境下使用nginx和uwsgi部署多站（最简单的方法）">
+				<span class="desc oneline">1.nginx直接在.conf文件中添加多个配置，有几个网站就在http配置文件里面添加几个server#第一个网站server{listen80;server_namewww.xxx1.com;#此...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zjw_python">来自：	<span class="blog_title"> zjw_python的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Wendy019900107/article/details/82112717,BlogCommendFromQuerySearch_37"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Wendy019900107/article/details/82112717" target="_blank" title="python学习笔记--开发与调试环境(2)搭建flask代码运行的docker环境">
+		<h4 class="text-truncate oneline">
+				<em>python</em>学习笔记--开发与调试环境(2)搭建flask代码运行的docker环境		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-27</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					798</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Wendy019900107/article/details/82112717" target="_blank" title="python学习笔记--开发与调试环境(2)搭建flask代码运行的docker环境">
+				<span class="desc oneline">1根据官网centos7的dockerimage生成uwsgiimage（1）在docker-host上建立，一个目录uwsig，进入目录新建一个dockerfile，内容如下###该dockerfi...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Wendy019900107">来自：	<span class="blog_title"> 123￥567</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/k527971724/article/details/82144754,BlogCommendFromQuerySearch_38"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/k527971724/article/details/82144754" target="_blank" title="【Flask】使用NginX+uWSGI+Flask在Linux上快速搭建网站后台">
+		<h4 class="text-truncate oneline">
+				【Flask】使用NginX+<em>uWSGI</em>+Flask在Linux上快速搭建网站后台		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					194</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/k527971724/article/details/82144754" target="_blank" title="【Flask】使用NginX+uWSGI+Flask在Linux上快速搭建网站后台">
+				<span class="desc oneline">网络上细致的教程已经有很多，在这里只做一个概览式的总结。从浏览器到后台一览图：在虚拟环境中安装Flask和uWSGI，在系统中安装NginX，在绿线标出的文件当中按图写好配置文件，即可完成后台搭建。运...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/k527971724">来自：	<span class="blog_title"> k527971724的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_66" data-pid="66" data-track-view='{"mod":"kp_popu_66-881","con":",,"}' data-track-click='{"mod":"kp_popu_66-881","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T38_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T38  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T38_render", "T38");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/yin8809/article/details/78437713,BlogCommendFromQuerySearch_39"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/yin8809/article/details/78437713" target="_blank" title="centos7下nginx+uwsgi部署django项目问题记录">
+		<h4 class="text-truncate oneline">
+				centos7下nginx+<em>uwsgi</em><em>部署</em>django<em>项目</em>问题记录		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-03</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1934</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/yin8809/article/details/78437713" target="_blank" title="centos7下nginx+uwsgi部署django项目问题记录">
+				<span class="desc oneline">环境：centos7x64   nginx-1.10.2+uwsgi项目：主要是自己尝试写的一个简单的CMDB项目，收集服务器信息，并进行简单的远程操作。部署目的：部署到服务器看看效果项目目录：/op...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/yin8809">来自：	<span class="blog_title"> yin8809的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/LemonXQ/article/details/85296678,BlogCommendFromQuerySearch_40"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/LemonXQ/article/details/85296678" target="_blank" title="【深度学习】基于Flask+Nginx+uWSGI实现CentOS服务端模型部署及预加载">
+		<h4 class="text-truncate oneline">
+				【深度学习】基于Flask+Nginx+<em>uWSGI</em>实现CentOS服务端模型<em>部署</em>及预加载		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					516</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/LemonXQ/article/details/85296678" target="_blank" title="【深度学习】基于Flask+Nginx+uWSGI实现CentOS服务端模型部署及预加载">
+				<span class="desc oneline">写在前面（感觉自从保研后，有一个世纪没更新博客了orz，趁复习周更新一波）　　之前在把训练好的算法模型部署到服务端后用的是直接调用py脚本的形式（好蠢TT），就是每次客户端传来请求时，直接执行pyth...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/LemonXQ">来自：	<span class="blog_title"> 计算机幻觉：）</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_42350970/article/details/84848288,BlogCommendFromQuerySearch_41"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_42350970/article/details/84848288" target="_blank" title="Django本身提供了runserver，为什么不能用来部署？(runserver与uWSGI的区别)">
+		<h4 class="text-truncate oneline">
+				Django本身提供了runserver，为什么不能用来<em>部署</em>？(runserver与<em>uWSGI</em>的区别)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					505</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_42350970/article/details/84848288" target="_blank" title="Django本身提供了runserver，为什么不能用来部署？(runserver与uWSGI的区别)">
+				<span class="desc oneline">1.runserver方法是调试Django时经常用到的运行方式，它使用Django自带的WSGIServer运行，主要在测试和开发中使用，并且runserver开启的方式也是单进程。2.uWSGI是...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_42350970">来自：	<span class="blog_title"> qq_42350970的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kkkf1190/article/details/50130803,BlogCommendFromQuerySearch_42"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/kkkf1190/article/details/50130803" target="_blank" title="简单配置nginx+uWSGI+python3+bottle环境新手教程">
+		<h4 class="text-truncate oneline">
+				简单配置nginx+<em>uWSGI</em>+<em>python</em>3+bottle环境新手教程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2947</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/kkkf1190/article/details/50130803" target="_blank" title="简单配置nginx+uWSGI+python3+bottle环境新手教程">
+				<span class="desc oneline">转载自郑晓_个人博客1.第一步：安装nginx。我这人比较懒，所以nginx安装我选择的是使用lnmp一键安装包。(百度搜索lnmp第一个就是)这样，nginx、mysql、php也都有了。安装照着它...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/kkkf1190">来自：	<span class="blog_title"> kkkf1190的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/youzi_yun/article/details/78538593,BlogCommendFromQuerySearch_43"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/youzi_yun/article/details/78538593" target="_blank" title="nginx  同时监听uwsgi服务器两个端口，实现一个服务器运行多个项目">
+		<h4 class="text-truncate oneline">
+				nginx  同时监听<em>uwsgi</em>服务器两个端口，实现一个服务器运行多个<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2910</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/youzi_yun/article/details/78538593" target="_blank" title="nginx  同时监听uwsgi服务器两个端口，实现一个服务器运行多个项目">
+				<span class="desc oneline">nginx同时监听uwsgi服务器两个端口，实现一个服务器运行多个项目在python项目中，如果想让一台服务器同时跑多个项目，要同时进行nginx和uwsgi服务器的配置...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/youzi_yun">来自：	<span class="blog_title"> 猴子饲养员的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_67" data-pid="67" data-track-view='{"mod":"kp_popu_67-882","con":",,"}' data-track-click='{"mod":"kp_popu_67-882","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T43_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T43  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T43_render", "T43");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_25046261/article/details/78974512,BlogCommendFromQuerySearch_44"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_25046261/article/details/78974512" target="_blank" title="Flask学习11：阿里云新手Flask + nginx + uwsgi + ubuntu的完整项目部署教程">
+		<h4 class="text-truncate oneline">
+				Flask学习11：阿里云新手Flask + nginx + <em>uwsgi</em> + ubuntu的完整<em>项目</em><em>部署</em>教程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					608</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_25046261/article/details/78974512" target="_blank" title="Flask学习11：阿里云新手Flask + nginx + uwsgi + ubuntu的完整项目部署教程">
+				<span class="desc oneline">Flask项目部署web工作原理客户端服务器(nginx)uWSGIPython(Flask)数据库nginx安装源码安装、apt-getinstall…sudo/usr/local/nginx/sb...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_25046261">来自：	<span class="blog_title"> 喜欢海</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/vic_torsun/article/details/70738600,BlogCommendFromQuerySearch_45"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/vic_torsun/article/details/70738600" target="_blank" title="在云服务器上从零搭建nginx+uwsgi+django服务器">
+		<h4 class="text-truncate oneline">
+				在云服务器上从零搭建nginx+<em>uwsgi</em>+django服务器		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2407</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/vic_torsun/article/details/70738600" target="_blank" title="在云服务器上从零搭建nginx+uwsgi+django服务器">
+				<span class="desc oneline">笔者使用腾讯云服务器，centos764位镜像，自带python2.7.5无需安装现在安装pipwget--no-check-certificatehttps://github.com/pypa/pi...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/vic_torsun">来自：	<span class="blog_title"> vic_torsun的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_41090453/article/details/83959862,BlogCommendFromQuerySearch_46"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_41090453/article/details/83959862" target="_blank" title="阿里云ECS部署python及flask(二）使用uwsgi emperor +Nginx部署自动启动多个web项目">
+		<h4 class="text-truncate oneline">
+				阿里云ECS<em>部署</em><em>python</em>及flask(二）使用<em>uwsgi</em> emperor +Nginx<em>部署</em>自动启动多个web<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					196</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_41090453/article/details/83959862" target="_blank" title="阿里云ECS部署python及flask(二）使用uwsgi emperor +Nginx部署自动启动多个web项目">
+				<span class="desc oneline">前提：本文是《阿里云ECS部署python及flask》的续文，单个python项目的uwsgi和nginx都已能成功配置。参考：https://segmentfault.com/a/11900000...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_41090453">来自：	<span class="blog_title"> cz_布衣的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/baidu_35085676/article/details/77160040,BlogCommendFromQuerySearch_47"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/baidu_35085676/article/details/77160040" target="_blank" title="解决nginx+uwsgi部署Django的所有问题">
+		<h4 class="text-truncate oneline">
+				解决nginx+<em>uwsgi</em><em>部署</em>Django的所有问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/baidu_35085676/article/details/77160040" target="_blank" title="解决nginx+uwsgi部署Django的所有问题">
+				<span class="desc oneline">最近，自己暑假写的小项目也算完毕了，想着投放到自己云服务器上，本来以为只要打开端口运行python3managerrunserver0.0.0.0:80就搞定了，最后才知道这只适用于Django的开发...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/baidu_35085676">来自：	<span class="blog_title"> 李余通的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013451157/article/details/78937088,BlogCommendFromQuerySearch_48"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013451157/article/details/78937088" target="_blank" title="【虚拟机/服务器】通过虚拟机Ubuntu Server+uWSGI+Nginx部署Django项目">
+		<h4 class="text-truncate oneline">
+				【虚拟机/服务器】通过虚拟机Ubuntu Server+<em>uWSGI</em>+Nginx<em>部署</em>Django<em>项目</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					315</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013451157/article/details/78937088" target="_blank" title="【虚拟机/服务器】通过虚拟机Ubuntu Server+uWSGI+Nginx部署Django项目">
+				<span class="desc oneline">前言1配置Xshell并连接UbuntuServer2配置UbuntuServer的基本环境1安装python-pip2安装Django3安装uWSGI4测试uWSGI5测试Django6配置并测试u...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013451157">来自：	<span class="blog_title"> 'Ablaze 的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_68" data-pid="68" data-track-view='{"mod":"kp_popu_68-883","con":",,"}' data-track-click='{"mod":"kp_popu_68-883","con":",,"}'><!-- T48 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T48_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T48  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T48_render", "T48");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tuxinhang/article/details/22318087,BlogCommendFromQuerySearch_49"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/tuxinhang/article/details/22318087" target="_blank" title="单个uwsgi进程服务多个Django应用">
+		<h4 class="text-truncate oneline">
+				单个<em>uwsgi</em>进程服务多个Django应用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-27</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3619</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/tuxinhang/article/details/22318087" target="_blank" title="单个uwsgi进程服务多个Django应用">
+				<span class="desc oneline">之前使用Nginx+uwsgi部署Django应用的方式是每个应用对应一个uwsgi进程，如果项目过多就会非常不便，现在想使uwsgi像php-fpm那样只启动一个进程就能处理所有的请求，现总结方法如...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/tuxinhang">来自：	<span class="blog_title"> tuxinhang的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/f907279313/article/details/32133257,BlogCommendHotData_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+		<h4 class="text-truncate oneline">
+				STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+				<span class="desc oneline">IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结
+一，网上下载的例程，跳转部分的代码有差异，尤其是用的汇编那句
+二，关于跳转部分的代码的理解（转）
+三，关于跳转时能否不用按键，用软件标志位...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/f907279313">来自：	<span class="blog_title"> Super_Demo的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sundacheng1989/article/details/17925431,BlogCommendHotData_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+		<h4 class="text-truncate oneline">
+				在64位Win7操作系统中安装Microsoft Access Engine的解决方案		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+				<span class="desc oneline">现在的Win7系统中安装的一般都是32位的Office，因为微软推荐使用32位的Office，兼容性更强，稳定性更好。在使用Access作为数据库的时候，C#操作Access，如果Access是acc...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sundacheng1989">来自：	<span class="blog_title"> 写代码的蜗牛</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/crazy1235/article/details/44069267,BlogCommendHotData_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+		<h4 class="text-truncate oneline">
+				百度地图开发（五）之公交信息检索 + 路线规划		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+				<span class="desc oneline">转载请注明出处：
+    在上一篇blog中介绍过POI检索的使用，本篇blog主要介绍公交信息检索和线路规划的内容。
+公交信息检索
+    实际上，公交信息检索与POI检索、在线建议检索非常相似，也...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/crazy1235">来自：	<span class="blog_title"> crazy_jack</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011860731/article/details/48733073,BlogCommendHotData_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+		<h4 class="text-truncate oneline">
+				ThreadLocal的设计理念与作用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+				<span class="desc oneline">Java中的ThreadLocal类允许我们创建只能被同一个线程读写的变量。因此，如果一段代码含有一个ThreadLocal变量的引用，即使两个线程同时执行这段代码，它们也无法访问到对方的Thread...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011860731">来自：	<span class="blog_title"> u011860731的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kongwei521/article/details/51626589,BlogCommendHotData_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+		<h4 class="text-truncate oneline">
+				C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+				<span class="desc oneline">最近在做一个每天定点从FTP自动下载节目.xml并更新到数据库的功能。首先想到用 FileSystemWatcher来监控下载到某个目录中的文件是否发生改变，如果改变就执行相应的操作，然后用timer...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/kongwei521">来自：	<span class="blog_title"> kongwei521的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tostq/article/details/50110329,BlogCommendHotData_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+		<h4 class="text-truncate oneline">
+				（LaTex)CTex的初次使用心得及入门教程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+				<span class="desc oneline">摘要
+最近要发论文了，被知乎里人推荐使用论文编译软件（CTex、LaTex和Overleaf之类），瞬间感觉自己用Word简直Out了（书读少）。
+学校里也听说过LaTex，不过因为当时没怎么写过...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/tostq">来自：	<span class="blog_title"> tostq的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/rickypc/article/details/6014408,BlogCommendHotData_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+		<h4 class="text-truncate oneline">
+				如何编译64位( 64bit ) boost类库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9582</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+				<span class="desc oneline"> 64位windows平台，编译环境是VS2005，进入Visual Studio 2005 x64 Win64 Command Prompt（单纯的cmd也不一定不行，我没试）。把bjam.exe放...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/rickypc">来自：	<span class="blog_title"> rickypc的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/neonlight/article/details/5975764,BlogCommendHotData_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+		<h4 class="text-truncate oneline">
+				vsftpd匿名用户上传和下载的配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+				<span class="desc oneline">　　看到很多朋友配置vsftpd时不能使用匿名用户上传和下载（创建目录或删除、重命名文件夹），本文主要解决vsftpd的匿名用户权限配制问题。...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/neonlight">来自：	<span class="blog_title"> 九宫霓虹</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/flysharkym/article/details/51404730,BlogCommendHotData_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+		<h4 class="text-truncate oneline">
+				mybatis一级缓存(session cache)引发的问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+				<span class="desc oneline">mybatis一级缓存(session cache)引发的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/flysharkym">来自：	<span class="blog_title"> flysharkym的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jinping_shi/article/details/59613054,BlogCommendHotData_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+		<h4 class="text-truncate oneline">
+				高斯混合模型（GMM）及其EM算法的理解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+				<span class="desc oneline">一个例子高斯混合模型（Gaussian Mixed Model）指的是多个高斯分布函数的线性组合，理论上GMM可以拟合出任意类型的分布，通常用于解决同一集合下的数据包含多个不同的分布的情况（或者是同一...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jinping_shi">来自：	<span class="blog_title"> 小平子的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36892341/article/details/73918672,BlogCommendHotData_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+		<h4 class="text-truncate oneline">
+				linux上安装Docker(非常简单的安装方法)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					28万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+				<span class="desc oneline">最近比较有空，大四出来实习几个月了，作为实习狗的我，被叫去研究Docker了，汗汗！
+
+Docker的三大核心概念：镜像、容器、仓库
+镜像：类似虚拟机的镜像、用俗话说就是安装文件。
+容器：类似一个轻量...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_36892341">来自：	<span class="blog_title"> 我走小路的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/meng564764406/article/details/52444644,BlogCommendHotData_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+		<h4 class="text-truncate oneline">
+				将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+				<span class="desc oneline">本篇文章是根据我的上篇博客，给出的改进版，由于时间有限，仅做了一个简单的优化。相关文章：将excel导入数据库2018年4月1日，新增下载地址链接：点击打开源码下载地址十分抱歉，这个链接地址没有在这篇...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/meng564764406">来自：	<span class="blog_title"> Lynn_Blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wangpeng047/article/details/19624529,BlogCommendHotData_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+		<h4 class="text-truncate oneline">
+				HttpClient使用详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					81万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+				<span class="desc oneline">Http协议的重要性相信不用我多说了，HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wangpeng047">来自：	<span class="blog_title"> 鹏霄万里展雄飞</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Main_Stage/article/details/41989499,BlogCommendHotData_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+		<h4 class="text-truncate oneline">
+				Android圆形图片--自定义控件		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+				<span class="desc oneline">Android圆形图片--自定义控件</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Main_Stage">来自：	<span class="blog_title"> Main_Stage的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lch_vison/article/details/79112450,BlogCommendHotData_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+		<h4 class="text-truncate oneline">
+				ubuntu16.04环境Kdevelop安装和汉化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6239</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+				<span class="desc oneline">1、Kdevelop安装
+
+ 
+
+最简单的命令行安装，打开终端，执行
+
+ 
+
+
+sudo apt-get install kdevelop
+
+
+ 
+
+2、Kdevelop汉化
+
+不需要自己下载汉化包，...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lch_vison">来自：	<span class="blog_title"> lch_vision的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/klkxxy/article/details/78773980,BlogCommendHotData_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+		<h4 class="text-truncate oneline">
+				图片拉伸变形		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					332</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+				<span class="desc oneline">http://blog.csdn.net/abc649395594/article/details/50004991</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/klkxxy">来自：	<span class="blog_title"> klkxxy的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/pengjc2001/article/details/54924699,BlogCommendHotData_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+		<h4 class="text-truncate oneline">
+				三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+				<span class="desc oneline">阅读内容为：FX系列微型可编程控制器用户手册（通讯篇）中计算机链接功能章节。
+采用本方法通信，pc端的实现，其实就是，把操作按照协议（2种）翻译成相应的字符串，通过串口发送给plc。
+
+
+编写一应用程...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/pengjc2001">来自：	<span class="blog_title"> pengjc2001的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/updog/article/details/6625975,BlogCommendHotData_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+		<h4 class="text-truncate oneline">
+				实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+				<span class="desc oneline">本帖慢慢扩充……1. 假设是实现namespace Abc中的一个class，不要因为是在.cc中就肆无忌惮的在global scope或者namespace Abc{}中定义辅助变量和函数，或者ty...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq574857122/article/details/16361033,BlogCommendHotData_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+		<h4 class="text-truncate oneline">
+				强连通分量及缩点tarjan算法解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					66万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+				<span class="desc oneline">强连通分量：
+简言之 就是找环（每条边只走一次，两两可达）
+孤立的一个点也是一个连通分量 
+ 
+使用tarjan算法 在嵌套的多个环中优先得到最大环( 最小环就是每个孤立点）
+ 
+定义：
+int Ti...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq574857122">来自：	<span class="blog_title"> 九野的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013268685/article/details/41732447,BlogCommendHotData_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+		<h4 class="text-truncate oneline">
+				数据结构实验：栈实现计算器(表达式计算）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4049</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+				<span class="desc oneline">原创作品转载请注明出处
+欢迎抄袭，造福各位伸手党
+/*************************************************************************
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013268685">来自：	<span class="blog_title"> u013268685的专栏(有一种幸福叫AC，有一种期待叫AK)</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jiebaoabcabc/article/details/19242621,BlogCommendHotData_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+		<h4 class="text-truncate oneline">
+				简单linux字符设备驱动程序与编程小技巧(上)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					629</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+				<span class="desc oneline">这几天开始研究linux下的驱动程序编写了，遇到的问题也挺多的，好在linux是开源的，很多高人编写的技巧和思路都会在他们的源代码中体现，我也在他们的源码中学到了很多好东西，我归纳了下贴出来，希望自己...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gefangshuai/article/details/50328451,BlogCommendHotData_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+		<h4 class="text-truncate oneline">
+				关于SpringBoot bean无法注入的问题（与文件包位置有关）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					27万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+				<span class="desc oneline">问题场景描述整个项目通过Maven构建，大致结构如下：
+核心Spring框架一个module spring-boot-base
+service和dao一个module server-core
+提供系统...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gefangshuai">来自：	<span class="blog_title"> 开发随笔</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/autfish/article/details/52682778,BlogCommendHotData_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+		<h4 class="text-truncate oneline">
+				苹果充值常见的刷单手段和防范方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+				<span class="desc oneline">苹果充值的刷单现象在游戏行业非常普遍，很多团队挖空心思寻找漏洞以非法获利。常见的手段主要有以下六种：
+
+
+伪造充值凭据(receipt)以小额凭据骗取大额商品
+
+凭据重复使用
+凭据重复使用信用卡黑卡/...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/autfish">来自：	<span class="blog_title"> 分享知识、分享进步</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wuchengzeng/article/details/50037611,BlogCommendHotData_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+		<h4 class="text-truncate oneline">
+				jquery/js实现一个网页同时调用多个倒计时(最新的)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					54万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+				<span class="desc oneline">jquery/js实现一个网页同时调用多个倒计时(最新的)
+
+最近需要网页添加多个倒计时. 查阅网络,基本上都是千遍一律的不好用. 自己按需写了个.希望对大家有用. 有用请赞一个哦!
+
+
+
+//js
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wuchengzeng">来自：	<span class="blog_title"> Websites</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zp_00000/article/details/70207445,BlogCommendHotData_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+		<h4 class="text-truncate oneline">
+				VirtualBox COM获取对象失败		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+				<span class="desc oneline">错误详情
+
+
+
+
+
+1. 先来看看错误详情
+获取 VirtualBox COM 对象失败.应用程序将被中断.Failed to instantiate CLSID_VirtualBox ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zp_00000">来自：	<span class="blog_title"> 多点折腾少点抱怨</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014306011/article/details/51546236,BlogCommendHotData_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+		<h4 class="text-truncate oneline">
+				Eclipse如何安装WindowBuilder插件及如何使用WB		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-31</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6481</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+				<span class="desc oneline">Eclipse如何安装WindowBuilder插件及如何使用WB</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u014306011">来自：	<span class="blog_title"> 天命王子的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lubiaopan/article/details/6233517,BlogCommendHotData_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+		<h4 class="text-truncate oneline">
+				.NET和java的RSA互通，仅此而已		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+				<span class="desc oneline">RSA .net jva 互通 解决不能互通的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lubiaopan">来自：	<span class="blog_title"> lubiaopan的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xu__cg/article/details/52970885,BlogCommendHotData_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+		<h4 class="text-truncate oneline">
+				Java设计模式学习06——静态代理与动态代理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+				<span class="desc oneline">一、代理模式为某个对象提供一个代理，从而控制这个代理的访问。代理类和委托类具有共同的父类或父接口，这样在任何使用委托类对象的地方都可以使用代理类对象替代。代理类负责请求的预处理、过滤、将请求分配给委托...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xu__cg">来自：	<span class="blog_title"> 小小本科生成长之路</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/NYS001/article/details/12637201,BlogCommendHotData_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+		<h4 class="text-truncate oneline">
+				蜂窝小区最短距离的坐标系解法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+				<span class="desc oneline">如下图所示，蜂窝小区，以1为中心，顺时针编号，编号最大限定为100000。求任意两编号之间的最短距离。两个相邻小区的距离为1 示例：19到30的最短距离为5 实现如下三个接口： /**********...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/NYS001">来自：	<span class="blog_title"> NYS001的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Smile_qiqi/article/details/32724931,BlogCommendHotData_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+		<h4 class="text-truncate oneline">
+				魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+				<span class="desc oneline">畅所欲言！</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Smile_qiqi">来自：	<span class="blog_title"> Smile_qiqi的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zd0303/article/details/7058457,BlogCommendHotData_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+		<h4 class="text-truncate oneline">
+				MATLAB中注释一段程序		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+				<span class="desc oneline">在MATLAB中，可以注释一段程序。
+使用“%{”和“%}”。
+例如
+%{
+。。。
+%}
+即可。
+经典方法是用 if 0，但缺点是不够直观，注释掉的内容仍然保持代码的颜色。现在可以用
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zd0303">来自：	<span class="blog_title"> 知识小屋</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+                <div class="recommend-item-box type_hot_word">
+                                <div class="content clearfix">
+                    <div class="word float-left">
+                                                            <span>
+                        <a href="https://edu.csdn.net/courses/o5329_s5330_k " target="_blank">
+                        机器学习教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/courses/o280_s351_k " target="_blank">
+                        Objective-C培训                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o7115_s388_l0_t " target="_blank">
+                        交互设计视频教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/course/play/5599/104252 " target="_blank">
+                        颜色模型                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o363_l0_t " target="_blank">
+                        设计制作学习                    </a></span>
+                                                            </div>
+                </div>
+                                                <div class="content clearfix">
+                    <div class="float-left">
+                                        <span>
+                        <a href="https://www.csdn.net/gather_24/MtTaEg3sMDM5MS1ibG9n.html" target="_blank">
+                        mysql关联查询两次本表</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_10/MtjaIg3sMTUzMy1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+                        native底部 react</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_1b/Ntzagg1sOTU3LWRvd25sb2Fk.html" target="_blank">
+                        extjs glyph 图标</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/NtDagg2sMi1lZHUO0O0O.html" target="_blank">
+                        python部署教程</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/NtDaUg2sNS1lZHUO0O0O.html" target="_blank">
+                        python项目开发实战</a>
+                    </span>
+                                        </div>
+                </div>
+                                </div>
+                            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+
+    <aside>
+	<div id="asideProfile" class="aside-box">
+    <!-- <h3 class="aside-title">个人资料</h3> -->
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/kzl_knight">
+              <img src="https://avatar.csdn.net/5/A/A/3_kzl_knight.jpg" class="avatar_pic">
+                              <img src="https://g.csdnimg.cn/static/user-reg-year/1x/1.png" class="user-years">
+                          </a>
+            
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/kzl_knight" target="_blank" class="" id="uid">kzl_knight</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a class="btn btn-sm btn-red-hollow attention" id="btnAttent">关注</a>
+            </span>
+        </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="49">
+                        <dt><a href="https://blog.csdn.net/kzl_knight?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/kzl_knight?t=1"><span class="count">49</span></a></dd>
+                    </dl>
+        <dl class="text-center" id="fanBox" title="36">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">36</span></dd>
+        </dl>
+        <dl class="text-center" title="12">
+            <dt>喜欢</dt>
+            <dd><span class="count">12</span></dd>
+        </dl>
+        <dl class="text-center" title="0">
+            <dt>评论</dt>
+            <dd><span class="count">0</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-3"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="52461">
+                5万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="996">
+                996            </dd>
+        </dl>
+        <dl title="73129">
+            <dt>排名：</dt>
+            <dd>7万+</dd>
+        </dl>
+    </div>
+        <div class="badge-box d-flex">
+        <span>勋章：</span>
+        <div class="badge d-flex">
+                                                        <div class="icon-badge" title="持之以恒">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                                   <p>持之以恒</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然月内发布4篇或4篇以上原创或翻译IT博文的用户。不积跬步无以至千里，不积小流无以成江海，程序人生的精彩需要坚持不懈地积累！                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv1">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                                   <p>勤写标兵Lv1</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布1篇到3篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv2">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                                   <p>勤写标兵Lv2</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布4篇到6篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv4">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                                   <p>勤写标兵Lv4</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布9篇以上（包括9篇）原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                             </div>
+        <script>
+            (function ($) {
+                setTimeout(function(){
+                    $('div.icon-badge.show-moment').removeClass('show-moment');
+                }, 5000);
+            })(window.jQuery)
+        </script>
+    </div>
+    </div>
+<div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+      <div id="kp_box_56" data-pid="56" data-track-view='{"mod":"kp_popu_56-703","con":",,"}' data-track-click='{"mod":"kp_popu_56-703","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 博客内页左上视窗-20181120 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="7700527946"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>    </div>
+</div>
+<div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91402940" target="_blank">windows查看进程并结束</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91044758" target="_blank">[Nginx]反向代理</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91039990" target="_blank">[flask]1基础知识点</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90899356" target="_blank">[ubuntu18.04]维护mysql</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90692758" target="_blank">[Django]中间件</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+<div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8966794">
+                    <span class="title oneline">web前端技术</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8916283">
+                    <span class="title oneline">linux基础</span>
+                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8917641">
+                    <span class="title oneline">python系统编程</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8930728">
+                    <span class="title oneline">Django</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8935344">
+                    <span class="title oneline">数据库</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8951492">
+                    <span class="title oneline">pycharm</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8959754">
+                    <span class="title oneline">csdn_python教学笔记2.0</span>
+                    <span class="count float-right">10篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971103">
+                    <span class="title oneline">csdn2.0课程笔记-1.python基础上</span>
+                    <span class="count float-right">9篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971104">
+                    <span class="title oneline">csdn2.0课程笔记-2.python基础下</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971107">
+                    <span class="title oneline">csdn2.0课程笔记-3.数据库操作</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971109">
+                    <span class="title oneline">csdn2.0课程笔记-4.Web前端技术</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971379">
+                    <span class="title oneline">项目实战</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971742">
+                    <span class="title oneline">csdn2.0课程笔记-Web选修</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8982378">
+                    <span class="title oneline">数据挖掘</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8989051">
+                    <span class="title oneline">web前端笔记</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9009953">
+                    <span class="title oneline">运维</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9012691">
+                    <span class="title oneline">Flask</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9021123">
+                    <span class="title oneline">win10</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+<div id="asideArchive" class="aside-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/06">
+                    2019年6月                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/05">
+                    2019年5月                    <span class="count float-right">42篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+    </div>
+<div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313005">1.3 Python运算符</a>
+					<p class="read">阅读数 <span>1564</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90441297">[Django项目案例]搭建用户与商品后台管理系统</a>
+					<p class="read">阅读数 <span>1526</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313521">1.4 Python的数据类型</a>
+					<p class="read">阅读数 <span>1514</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90512005">1.7 Python函数详解</a>
+					<p class="read">阅读数 <span>1499</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313615">1.5 Python分支结构</a>
+					<p class="read">阅读数 <span>1471</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+	<div id="asideFooter">
+			
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57" data-track-view='{"mod":"kp_popu_57-1158","con":",,"}' data-track-click='{"mod":"kp_popu_57-1158","con":",,"}'><!-- 广告位：PC-博客内页左下视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6272567',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="https://dup.baidustatic.com/js/os.js"></script></div>		</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<div class="tool-box vertical">
+	<ul class="meau-list">
+		<li class="btn-like-box ">
+			<button class=" low-height hover-box btn-like " title="点赞">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup"></use>
+				</svg>
+				<span class="hover-show text-box text">
+					<span class="no-active">点赞</span>
+					<span class="active">取消点赞</span>
+				</span>
+				<p>0</p>
+			</button>
+		</li>
+		<li class="to-commentBox">
+						<a class="btn-comments low-height hover-box" title="写评论" href="#commentBox">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg>
+				<span class="hover-show text">评论</span>
+				<p class="">
+										</p>
+			</a>
+		</li>
+		<li class="toc-container-box" id="liTocBox">
+			<a class="btn-toc low-height hover-box btn-comments" title="目录">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-contents"></use>
+				</svg>
+				<span class="hover-show text">目录</span>
+			</a>
+			<div class="toc-container">
+				<div class="pos-box">
+					<div class="icon-arrow"></div>
+					<div class="scroll-box">
+						<div class="toc-box"></div>
+					</div>
+				</div>
+				<div class="opt-box">
+					<button class="btn-opt prev nomore" title="向上">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronup"></use>
+						</svg>
+					</button>
+					<button class="btn-opt next">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevrondown"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<a class="btn-bookmark low-height hover-box btn-comments" title="收藏">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg>
+					<span class="hover-show text">收藏</span>
+				<!-- <span class="hover-show text-box text">
+					<span class="no-active">收藏</span>
+					<span class="active">取消收藏</span>
+				</span> -->
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<div class="weixin-qr btn-comments low-height hover-box" >
+        <a href="#" class="bds_weixin clear-share-style" data-cmd="weixin" title="手机看"></a>
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-usephone"></use>
+				</svg>
+				<span class="hover-show text text3">
+					手机看
+				</span>
+			</div>
+		</li>
+							<li class="widescreen-hide">
+				<a class="prev btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90899356" title="[ubuntu18.04]维护mysql">
+					<svg class="icon hover-hide" aria-hidden="true">
+						<use xlink:href="#csdnc-chevronleft"></use>
+					</svg>
+					<span class="hover-show text text3">上一篇</span>
+				</a>
+			</li>
+								<li class="widescreen-hide">
+			<a class="next btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/91039990" title="[flask]1基础知识点">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-chevronright"></use>
+				</svg>
+				<span class="hover-show text text3">下一篇</span>
+			</a>
+		</li>
+						<!-- 宽屏更多按钮 -->
+		<li class="widescreen-more">
+			<a class="btn-comments chat-ask-button low-height hover-box" title="快问" href="#chatqa">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-more"></use>
+				</svg>
+				<span class="hover-show text">更多</span>
+				
+			</a>
+			<ul class="widescreen-more-box">
+													<li class="widescreen-more">
+						<a class="btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90899356" title="[ubuntu18.04]维护mysql">
+							<svg class="icon hover-hide" aria-hidden="true">
+								<use xlink:href="#csdnc-chevronleft"></use>
+							</svg>
+							<span class="hover-show text text3">上一篇</span>
+						</a>
+					</li>
+																<li class="widescreen-more">
+					<a class="btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/91039990" title="[flask]1基础知识点">
+						<svg class="icon hover-hide" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronright"></use>
+						</svg>
+						<span class="hover-show text text3">下一篇</span>
+					</a>
+				</li>
+							</ul>
+		</li>
+	</ul>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script>
+    var recommendCount = 81;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var ChannelId = 12;
+    var articleId = "90954216";
+    var commentscount = 0;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/kzl_knight/article/details/90954216";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "uWSGI部署python项目 - kzl_knight的博客";
+    var needInsertBaidu = true;
+    // 代码段样式
+    var codeStyle = '';
+	var highlight = ["uwsgi","\u90e8\u7f72","python","\u9879\u76ee"];//高亮数组
+
+    var RecommendBlogExpertList = [{"user_name":"happymonica11","nick_name":"\u6676\u5fc3","avatar":"https:\/\/avatar.csdn.net\/E\/9\/1\/3_happymonica11.jpg","is_expert":false,"article_count":73,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"liubingger","nick_name":"\u72c2\u98d9\u7684\u5c0f\u9c7c","avatar":"https:\/\/avatar.csdn.net\/5\/B\/4\/3_liubingger.jpg","is_expert":false,"article_count":18,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"u013899461","nick_name":"Kalvin_csdn","avatar":"https:\/\/avatar.csdn.net\/D\/F\/E\/3_u013899461.jpg","is_expert":false,"article_count":13,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"qq_33591055","nick_name":"\u5c31\u53eb\u4e00\u7247\u767d\u7eb8","avatar":"https:\/\/avatar.csdn.net\/F\/7\/1\/3_qq_33591055.jpg","is_expert":false,"article_count":267,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"win_turn","nick_name":"win_turn","avatar":"https:\/\/avatar.csdn.net\/E\/F\/B\/3_win_turn.jpg","is_expert":false,"article_count":131,"rank":"6000+"},{"user_name":"zhuod","nick_name":"\u6211\u7528py","avatar":"https:\/\/avatar.csdn.net\/9\/9\/F\/3_zhuod.jpg","is_expert":false,"article_count":55,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"sence_yxy","nick_name":"xander-ye","avatar":"https:\/\/avatar.csdn.net\/E\/1\/C\/3_sence_yxy.jpg","is_expert":false,"article_count":2,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"wumian0123","nick_name":"Mestarxh","avatar":"https:\/\/avatar.csdn.net\/8\/8\/5\/3_wumian0123.jpg","is_expert":false,"article_count":27,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"zhou592930059","nick_name":"\u5c0f\u767d\u55b5","avatar":"https:\/\/avatar.csdn.net\/0\/B\/C\/3_zhou592930059.jpg","is_expert":false,"article_count":4,"rank":"\u5343\u91cc\u4e4b\u5916"},{"user_name":"jw690114549","nick_name":"\u848b\u72d7","avatar":"https:\/\/avatar.csdn.net\/5\/1\/6\/3_jw690114549.jpg","is_expert":false,"article_count":36,"rank":"\u5343\u91cc\u4e4b\u5916"}];
+	var articleType = 1;
+	var CopyrightContent = '';
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+</body>
+
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+	<script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/pc_wap_common-45af74a22e.js" /></script>
+
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-84251d2950.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-fefc1403d5.min.js"></script>
+
+	<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-fc7383b956.min.js"></script>
+<script>
+ // 全局声明
+ if (window.csdn === undefined) {
+      window.csdn = {};
+    }
+    window.csdn.sideToolbar = {
+        options: {
+            report:{
+                isShow: true,
+            },
+            afterFinished: function(){
+                setTimeout(function () {
+                    var viphtml = '<a class="option-box" data-type="vip" href="https://mall.csdn.net/vip" target="_blank">'+
+                        '<img src="https://g.csdnimg.cn/side-toolbar/1.2/images/vip.png" alt="" srcset="">'+
+                        '<span class="show-txt">VIP<br>免广告</span>'+
+                        '</a>';
+                    $('.csdn-side-toolbar').prepend(viphtml)
+                },300)
+            }
+        }
+    }
+
+    $(function(){
+        $(document).on('click',"a.option-box[data-type='report']",function() {
+            showReport(false,articleTitles)
+        });
+    })
+</script>
+<script src="https://g.csdnimg.cn/side-toolbar/1.2/side-toolbar.js"></script>
+
+    <script src="//g.csdnimg.cn/??login-box/1.0.6/login-box.js,login-box/1.0.5/login-auto.js,copyright/1.0.3/copyright.js,baidu-search/1.0.0/baidu-search.js?t=20190307095522"  type="text/javascript"></script>
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+<script type="text/javascript">
+    </script>
+<script src="https://gh.bdstatic.com/static/gh/js/sdk/bword.min.js"></script>
+</html>

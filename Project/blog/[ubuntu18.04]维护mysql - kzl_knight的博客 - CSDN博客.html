@@ -1,0 +1,3560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/kzl_knight/article/details/90899356"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+        <meta name="csdn-baidu-search"  content='{"autorun":true,"install":true,"keyword":"[ubuntu18.04]维护mysql - kzl_knight的博客"}'>
+    
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>[ubuntu18.04]维护mysql - kzl_knight的博客 - CSDN博客</title>
+
+        
+                    <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-caa11f8119.min.css">
+            
+            <script type="application/ld+json">{"@context":"https:\/\/ziyuan.baidu.com\/contexts\/cambrian.jsonld","@id":"https:\/\/blog.csdn.net\/kzl_knight\/article\/details\/90899356","appid":"1563894916825412","title":"[ubuntu18.04]\u7ef4\u62a4mysql - kzl_knight\u7684\u535a\u5ba2","images":["https:\/\/img-blog.csdnimg.cn\/20190605104137847.png?x-oss-process=image\/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70","https:\/\/img-blog.csdnimg.cn\/20190605105333725.png","https:\/\/img-blog.csdnimg.cn\/20190605110215314.png"],"pubDate":"2019-06-26T21:10:22"}</script>
+        
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-9b39979775.min.css">
+        <script type="text/javascript">
+        var username = "kzl_knight";
+        var blog_address = "https://blog.csdn.net/kzl_knight";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "http://passport.csdn.net/account/login?from=https://blog.csdn.net/kzl_knight/article/details/90899356"
+        var blogUrl = "https://blog.csdn.net/";
+
+        var curSkin = "skin3-template";
+        // 第四范式所需数据
+        var articleTitles = "[ubuntu18.04]维护mysql - kzl_knight的博客";
+        
+        var nickName = "kzl_knight";
+        var isCorporate = false;
+        var subDomainBlogUrl = "https://blog.csdn.net/"
+        var digg_base_url = "https://blog.csdn.net/kzl_knight/phoenix/comment";
+        var articleDetailUrl = "https://blog.csdn.net/kzl_knight/article/details/90899356";
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+    <script src="//g.csdnimg.cn/??fixed-sidebar/1.1.3/fixed-sidebar.js,track/1.2.6/track.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body class="nodata " > 
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="kp_box_476" data-pid="476" data-track-view='{"mod":"kp_popu_476-845","con":",,"}' data-track-click='{"mod":"kp_popu_476-845","con":",,"}'><script src="//csdnimg.cn/public/common/indexSuperise/1.1.1/indexSuperise.js?20190111165312"></script><script>window.csdn.indexSuperise({smallMoveImg:'https://img-bss.csdn.net/1560915579293.png',bigMoveImg:'https://img-bss.csdn.net/1560915575919.png',link:'https://kunyu.csdn.net?p=476&a=845&c=394&k=&d=1&t=3&dest=https%3A%2F%2Fedu.csdn.net%2Ftopic%2Fai30%3Futm_source%3Dblogpopup',trackSuperId:476,smallMove:'notMove',trackSId:845});</script></div><link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript">
+	var NEWS_FEED = function(){}
+</script>
+
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/chart-3456820cac.css" />
+<div class="container clearfix" id="mainBox">
+			<div class="recommend-right">
+  <ul class="recommend-fixed-box">
+    
+  </ul>
+</div>	    <main>
+        <div class="blog-content-box">
+  <div class="article-header-box">
+    <div class="article-header">
+      <div class="article-title-box">
+        <span class="article-type type-1 float-left">原</span>        <h1 class="title-article">[ubuntu18.04]维护mysql</h1>
+      </div>
+      <div class="article-info-box">
+        <div class="article-bar-top">
+                                                              <span class="time">2019年06月05日 13:51:01</span>
+          <a class="follow-nickName" href="https://me.csdn.net/kzl_knight" target="_blank">kzl_knight</a>
+          <span class="read-count">阅读数 76</span>
+                  </div>
+        <div class="operating">
+                  </div>
+      </div>
+    </div>
+  </div>
+  <article class="baidu_pl">
+    <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod=popu_307 data-dsm="post">
+              <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-cd6c485e8b.css" />
+                              <div id="content_views" class="markdown_views prism-atom-one-dark">
+            <!-- flowchart 箭头图标 勿删 -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+            </svg>
+            <p></p><div class="toc"><h3>ubuntu18.04 维护mysql</h3><ul><li><a href="#1_mysql_2" rel="nofollow">1 卸载mysql</a></li><li><a href="#2_mysql_14" rel="nofollow">2 安装mysql</a></li><ul><li><a href="#21_mysql_server_15" rel="nofollow">2.1 安装mysql_server</a></li><li><a href="#22_mysql_20" rel="nofollow">2.2 运行mysql安全脚本</a></li><li><a href="#23__24" rel="nofollow">2.3 安全配置</a></li><ul><li><a href="#231__25" rel="nofollow">2.3.1 是否启动验证密码插件</a></li><li><a href="#232__28" rel="nofollow">2.3.2 密码验证策略级别</a></li><li><a href="#233__31" rel="nofollow">2.3.3 设置密码</a></li><li><a href="#234__37" rel="nofollow">2.3.4 删除匿名用户</a></li><li><a href="#235__40" rel="nofollow">2.3.5 远程登录</a></li><li><a href="#236__43" rel="nofollow">2.3.6 测试数据库</a></li><li><a href="#237__46" rel="nofollow">2.3.7 重载特权表</a></li></ul><li><a href="#24_mysql_50" rel="nofollow">2.4 登录mysql</a></li></ul><li><a href="#3_mysql_59" rel="nofollow">3 mysql服务管理</a></li><li><a href="#4_mysql_66" rel="nofollow">4 mysql的配置文件</a></li><li><a href="#5_mysql_90" rel="nofollow">5 查看mysql信息</a></li><ul><li><a href="#51__91" rel="nofollow">5.1 运行状态</a></li><li><a href="#52__107" rel="nofollow">5.2 最大连接数</a></li><li><a href="#53__113" rel="nofollow">5.3 当前连接数</a></li><li><a href="#54__119" rel="nofollow">5.4 缓存大小</a></li><li><a href="#55__124" rel="nofollow">5.5 查看增删改查条数</a></li></ul><li><a href="#6__130" rel="nofollow">6 导出与导入数据库</a></li><ul><li><a href="#61__143" rel="nofollow">6.1 导出</a></li><li><a href="#62__154" rel="nofollow">6.2 导入</a></li></ul><li><a href="#7__174" rel="nofollow">7 配置远程连接</a></li><ul><li><a href="#71__176" rel="nofollow">7.1 修改配置文件</a></li><li><a href="#72__183" rel="nofollow">7.2 设置权限</a></li><li><a href="#73__204" rel="nofollow">7.3 查看权限</a></li><li><a href="#74__213" rel="nofollow">7.4 流程总结</a></li></ul></ul></div><p></p>
+<h1><a id="1_mysql_2"></a>1 卸载mysql</h1>
+<pre><code class="prism language-cmd">su root
+&gt; 输入密码
+sudo apt-get remove --purge mysql-\*
+&gt; 是否要继续 输出y
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605104137847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre><code class="prism language-cmd">sudo rm -f /etc/init.d/mysql
+</code></pre>
+<h1><a id="2_mysql_14"></a>2 安装mysql</h1>
+<h2><a id="21_mysql_server_15"></a>2.1 安装mysql_server</h2>
+<pre><code class="prism language-cmd">sudo apt update
+sudo apt install mysql-server
+</code></pre>
+<h2><a id="22_mysql_20"></a>2.2 运行mysql安全脚本</h2>
+<pre><code class="prism language-cmd">sudo mysql_secure_installation
+</code></pre>
+<h2><a id="23__24"></a>2.3 安全配置</h2>
+<h3><a id="231__25"></a>2.3.1 是否启动验证密码插件</h3>
+<p><img src="https://img-blog.csdnimg.cn/20190605105333725.png" alt="在这里插入图片描述"><br>
+输入y</p>
+<h3><a id="232__28"></a>2.3.2 密码验证策略级别</h3>
+<p><img src="https://img-blog.csdnimg.cn/20190605110215314.png" alt="在这里插入图片描述"><br>
+输入 0</p>
+<h3><a id="233__31"></a>2.3.3 设置密码</h3>
+<p><img src="https://img-blog.csdnimg.cn/2019060511025694.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>输入密码</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20190605111414653.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>输入y</li>
+</ul>
+<h3><a id="234__37"></a>2.3.4 删除匿名用户</h3>
+<p><img src="https://img-blog.csdnimg.cn/20190605111454326.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>输入y</li>
+</ul>
+<h3><a id="235__40"></a>2.3.5 远程登录</h3>
+<p><img src="https://img-blog.csdnimg.cn/20190605111559810.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>输入n（允许远程登录）</li>
+</ul>
+<h3><a id="236__43"></a>2.3.6 测试数据库</h3>
+<p><img src="https://img-blog.csdnimg.cn/20190605111640409.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>输入 y</li>
+</ul>
+<h3><a id="237__46"></a>2.3.7 重载特权表</h3>
+<p><img src="https://img-blog.csdnimg.cn/20190605111805409.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>输入y</li>
+</ul>
+<h2><a id="24_mysql_50"></a>2.4 登录mysql</h2>
+<pre><code class="prism language-cmd">mysql -uroot -p
+&gt; 输入密码
+</code></pre>
+<p>可以看到：<br>
+<img src="https://img-blog.csdnimg.cn/20190605111920237.png" alt="在这里插入图片描述"><br>
+注：ubuntu18.04 server版和desktop安装mysql的方式一样</p>
+<h1><a id="3_mysql_59"></a>3 mysql服务管理</h1>
+
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">service mysql stop</td>
+<td align="left">停止服务</td>
+</tr>
+<tr>
+<td align="left">service mysql start</td>
+<td align="left">开启服务</td>
+</tr>
+<tr>
+<td align="left">service mysql restart</td>
+<td align="left">重启服务</td>
+</tr>
+</tbody>
+</table><h1><a id="4_mysql_66"></a>4 mysql的配置文件</h1>
+<pre><code class="prism language-python">
+basedir <span class="token operator">=</span> <span class="token operator">/</span>usr<span class="token operator">/</span>				<span class="token comment"># 安装位置</span>
+datadir <span class="token operator">=</span> <span class="token operator">/</span>var<span class="token operator">/</span>lib<span class="token operator">/</span>mysql	<span class="token comment"># 数据库存储位置</span>
+port <span class="token operator">=</span> <span class="token number">3306</span>					<span class="token comment"># 端口</span>
+bind<span class="token operator">-</span>adress <span class="token operator">=</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span>		<span class="token comment"># 绑定地址，如果填127.0.0.1 只能从本机连接</span>
+max_connections <span class="token operator">=</span> <span class="token number">100</span>		<span class="token comment"># 最大连接数</span>
+slow_query_log <span class="token operator">=</span> <span class="token number">1</span>			<span class="token comment"># 1表示开启慢查询记录功能</span>
+slow_query_log_file <span class="token operator">=</span> slow<span class="token punctuation">.</span>log	<span class="token comment"># 慢查询记录文件</span>
+long_query_time <span class="token operator">=</span> <span class="token number">2</span>			<span class="token comment"># 超过2秒的为慢查询</span>
+innodb_buffer_pool_size <span class="token operator">=</span> 3G	<span class="token comment"># 默认引擎缓存，如果是专门的mysql服务器，这是为服务器总内存的70%</span>
+</code></pre>
+<p>mysql文件地址</p>
+<pre><code class="prism language-cmd">vi /etc/mysql/my.cnf
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605120044343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+注：红色框是包含引用配置文件夹，所以真实的配置文件在</p>
+<pre><code class="prism language-cmd">vi /etc/mysql/mysql.conf.d/mysqld.cnf
+</code></pre>
+<h1><a id="5_mysql_90"></a>5 查看mysql信息</h1>
+<h2><a id="51__91"></a>5.1 运行状态</h2>
+<pre><code class="prism language-cmd">mysql -uroot -p
+&gt;输入密码
+status
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605132540857.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Threads：1</td>
+<td align="left">线程数1</td>
+</tr>
+<tr>
+<td align="left">Questions：5</td>
+<td align="left">查询次数</td>
+</tr>
+<tr>
+<td align="left">Slow queries：0</td>
+<td align="left">慢查询次数</td>
+</tr>
+<tr>
+<td align="left">Queries per second avg：0.006</td>
+<td align="left">平均每秒的查询次数</td>
+</tr>
+</tbody>
+</table><h2><a id="52__107"></a>5.2 最大连接数</h2>
+<pre><code class="prism language-cmd">show variables like 'max_connections';
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605134008867.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>当前最大连接数：151</li>
+</ul>
+<h2><a id="53__113"></a>5.3 当前连接数</h2>
+<pre><code class="prism language-cmd">show global status like 'max_used_connections';
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605134540332.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>当前的连接数：1</li>
+</ul>
+<h2><a id="54__119"></a>5.4 缓存大小</h2>
+<pre><code class="prism language-cmd">show variables like 'innodb_buffer_pool_size';
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605134753572.png" alt="在这里插入图片描述"></p>
+<h2><a id="55__124"></a>5.5 查看增删改查条数</h2>
+<pre><code class="prism language-cmd">show status like 'innodb_rows_%';
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605134938139.png" alt="在这里插入图片描述"></p>
+<h1><a id="6__130"></a>6 导出与导入数据库</h1>
+<p>先创建一个test数据库，并在里面创建一个user表，并插入数据</p>
+<pre><code class="prism language-cmd">create database test;
+
+create table t_user ( 
+	id int primary key auto_increment,
+	username varchar(50)
+);
+
+insert into t_user (username) value ('name1');
+</code></pre>
+<h2><a id="61__143"></a>6.1 导出</h2>
+<p>格式：</p>
+<ul>
+<li>mysqldump -uroot -p 【数据库名】 &gt; 【导出sql地址】</li>
+</ul>
+<p>把test数据库导出</p>
+<pre><code class="prism language-cmd">mysqldump -uroot -p test &gt; test.sql
+&gt; 输入密码
+</code></pre>
+<h2><a id="62__154"></a>6.2 导入</h2>
+<p>流程：</p>
+<ul>
+<li>创建一个数据库</li>
+<li>把sql导入到数据库中</li>
+</ul>
+<p>格式：</p>
+<ul>
+<li>mysql -uroot -p 	【数据库名】 &lt; 【导入sql地址】</li>
+</ul>
+<p>例如：</p>
+<ul>
+<li>创建test2数据库</li>
+</ul>
+<pre><code class="prism language-cmd">mysql -uroot -p
+&gt;输入密码
+create database test2;
+exit;
+</code></pre>
+<ul>
+<li>导入test.sql</li>
+</ul>
+<pre><code class="prism language-cmd">mysql -uroot -p test2 &lt; test.sql
+</code></pre>
+<h1><a id="7__174"></a>7 配置远程连接</h1>
+<h2><a id="71__176"></a>7.1 修改配置文件</h2>
+<pre><code class="prism language-cmd">vi /etc/mysql/mysql.conf.d/mysqld.cnf
+</code></pre>
+<p>注释掉：bind-address = 127.0.0.1<br>
+（如果有这个配置，mysql只能本机访问）<br>
+<img src="https://img-blog.csdnimg.cn/20190605212158631.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t6bF9rbmlnaHQ=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2><a id="72__183"></a>7.2 设置权限</h2>
+<p>进入到mysql：</p>
+<pre><code class="prism language-cmd">grant all on *.* to root@"%" identified by "kzlKNIGHT_123";
+</code></pre>
+<p>命令说明：</p>
+<ul>
+<li>all 表示所有的权限，例如可以仅仅设置查的权限：select</li>
+<li>*.* 第一个*表示任意数据库，第二个*表示任意表</li>
+<li>to 后面的为哪个用户设置权限</li>
+<li>@后写可以连接的IP地址，%表示任何IP</li>
+<li>identified by “密码”</li>
+</ul>
+<p>注：</p>
+<ul>
+<li>validate_password_policy的默认值是1，需要8位，包括大小写字母、特殊字符、数字才可以。</li>
+<li>设置validate_password_policy=0
+<ul>
+<li>命令：set global validate_password_policy=0;</li>
+<li>这样密码只需要8位即可，但由于安全问题，不推荐</li>
+</ul>
+</li>
+<li>最后结尾一定要重启服务 service mysql restart</li>
+</ul>
+<h2><a id="73__204"></a>7.3 查看权限</h2>
+<pre><code class="prism language-cmd">use mysql
+select host,user from user;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20190605214352129.png" alt="在这里插入图片描述"><br>
+注意：</p>
+<ul>
+<li>上面的root和下面的root不是一个</li>
+<li>host是localhost表示只能本机登录</li>
+</ul>
+<h2><a id="74__213"></a>7.4 流程总结</h2>
+<ol>
+<li>vi /etc/mysql/mysql.conf.d/mysqld.cnf，注释掉bind-address</li>
+<li>登录mysql，添加用户及权限，例如：grant all on <em>.</em> to root@"%" identified by “kzlKNIGHT_123”;</li>
+<li>重启服务，service mysql restart</li>
+</ol>
+
+          </div>
+          <link href="https://csdnimg.cn/release/phoenix/mdeditor/markdown_views-e44c3c0e64.css" rel="stylesheet">
+                  </div>
+  </article>
+</div>
+
+<div class="hide-article-box hide-article-pos text-center">
+      <a class="" id="btn-readmore" data-track-view='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90899356,"}' data-track-click='{"mod":"popu_376","con":",https://blog.csdn.net/kzl_knight/article/details/90899356,"}'>
+    展开阅读全文
+    <svg class="icon chevrondown" aria-hidden="true">
+        <use xlink:href="#csdnc-chevrondown"></use>
+      </svg>
+    </a>
+    </div>
+<script>
+  $(".MathJax").remove();
+  if ($('div.markdown_views pre.prettyprint code.hljs').length > 0) {
+    $('div.markdown_views')[0].className = 'markdown_views';
+  }
+</script>
+        <div id="dmp_ad_58"><div id="kp_box_58" data-pid="58" data-track-view='{"mod":"kp_popu_58-402","con":",,"}' data-track-click='{"mod":"kp_popu_58-402","con":",,"}'><div style="width:100%;background:#fff;border:3px solid #fff;padding:16px 0px 0px 0px;">
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<div id="three_ad1" class="mediav_ad" ></div>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 100,
+                showid : 'ztvJV8',
+                placeholderId: "three_ad1",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 0,
+                    imageWidth: 90,
+                    imageHeight: 68,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft YaHei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 20,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script>
+</div></div></div>        <a id="commentBox"></a>
+<div class="comment-box">
+	
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="javascript:void(0);" target="_blank">
+				<img class="show_loginbox" src="//g.csdnimg.cn/static/user-img/anonymous-User-img.png">
+			</a>
+		</div>
+		<form id="commentform">
+			<input type="hidden" id="comment_replyId">
+			<textarea class="comment-content" name="comment_content" id="comment_content" placeholder="想对作者说点什么"></textarea>
+			<div class="opt-box"> <!-- d-flex -->
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="90899356">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div style="display: none;" class="csdn-tracking-statistics tracking-click" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="txt-selected text-truncate">添加代码片</div>
+					<svg class="icon d-block" aria-hidden="true">
+						<use xlink:href="#csdnc-triangledown"></use>
+					</svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>  
+				<div class="right-box">
+					<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+					<input type="button" class="btn btn-sm btn-cancel d-none" value="取消回复">
+					<input type="submit" class="btn btn-sm btn-red btn-comment" value="发表评论">
+				</div>
+			</div>
+		</form>
+	</div>
+
+		<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div>
+		</div>
+	</div>
+</div>
+        <div class="recommend-box">
+                            <div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixx3/article/details/80782479,BlogCommendFromBaidu_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixx3/article/details/80782479" target="_blank" title="Ubuntu18.04 安装MySQL">
+		<h4 class="text-truncate oneline">
+				<em>Ubuntu18.04</em> 安装<em>MySQL</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixx3/article/details/80782479" target="_blank" title="Ubuntu18.04 安装MySQL">
+				<span class="desc oneline">在Ubuntu18.04中，默认情况下，只有最新版本的MySQL包含在APT软件包存储库中,要安装它，只需更新服务器上的包索引并安装默认包apt-get...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixx3">来自：	<span class="blog_title"> 尘埃安然</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/skh2015java/article/details/80156278,BlogCommendFromBaidu_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/skh2015java/article/details/80156278" target="_blank" title="ubuntu系统下mysql重置密码和修改密码操作">
+		<h4 class="text-truncate oneline">
+				ubuntu系统下<em>mysql</em>重置密码和修改密码操作		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/skh2015java/article/details/80156278" target="_blank" title="ubuntu系统下mysql重置密码和修改密码操作">
+				<span class="desc oneline">一、忘记密码后想重置密码在介绍修改密码之前，先介绍一个文件/etc/mysql/debian.cnf.其主要内容如下图：里面有一个debian-sys-maint用户，这个用户只有Debian或Ubu...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/skh2015java">来自：	<span class="blog_title"> skh2015java的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u012002805/article/details/80786665,BlogCommendFromBaidu_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u012002805/article/details/80786665" target="_blank" title="Ubuntu 16.04 上安装 MySQL 5.7及卸载">
+		<h4 class="text-truncate oneline">
+				Ubuntu 16.04 上安装 <em>MySQL</em> 5.7及卸载		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					419</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u012002805/article/details/80786665" target="_blank" title="Ubuntu 16.04 上安装 MySQL 5.7及卸载">
+				<span class="desc oneline">介绍MySQL是一种开源数据库管理系统，通常作为流行的LAMP（Linux，Apache，MySQL，PHP/Python/Perl）堆栈的一部分安装。它使用关系数据库和SQL（结构化查询语言）来管理...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u012002805">来自：	<span class="blog_title"> 魏先生_Mr_weis</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/vivian_wanjin/article/details/89286741,BlogCommendFromBaidu_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/vivian_wanjin/article/details/89286741" target="_blank" title="ubuntu mysql">
+		<h4 class="text-truncate oneline">
+				ubuntu <em>mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-13</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					40</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/vivian_wanjin/article/details/89286741" target="_blank" title="ubuntu mysql">
+				<span class="desc oneline">ubuntu配置mysql密码系统环境：Linuxubuntu3.5.0-27-generic#46-UbuntuSMPMonMar2520:00:05UTC2013i686i686i686GNU/L...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/vivian_wanjin">来自：	<span class="blog_title"> shaowei的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_59" data-pid="59" data-track-view='{"mod":"kp_popu_59-860","con":",,SQL"}' data-track-click='{"mod":"kp_popu_59-860","con":",,SQL"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/109?positionId=59&queryWord=SQL" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wjlwangluo/article/details/78165588,BlogCommendFromBaidu_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wjlwangluo/article/details/78165588" target="_blank" title="Ubuntu下MySQL简单操作">
+		<h4 class="text-truncate oneline">
+				Ubuntu下<em>MySQL</em>简单操作		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					8334</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wjlwangluo/article/details/78165588" target="_blank" title="Ubuntu下MySQL简单操作">
+				<span class="desc oneline">安装Ubuntu下安装常规软件都比较简单，直接使用apt-get即可。安装步骤如下：输入mysql命令系统会提示没有安装这个软件，如下图：根据系统提示，执行下面命令进行安装。$sudoapt-geti...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wjlwangluo">来自：	<span class="blog_title"> wjlwangluo的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xiaoshiyiqie/article/details/79545722,searchFromBaidu_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xiaoshiyiqie/article/details/79545722" target="_blank" title="Ubuntu搭建mysql环境">
+		<h4 class="text-truncate oneline">
+				Ubuntu搭建<em>mysql</em>环境		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-13</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					92</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xiaoshiyiqie/article/details/79545722" target="_blank" title="Ubuntu搭建mysql环境">
+				<span class="desc oneline">1、安装Mysql服务sudoapt-getinstallupdatesudoapt-getinstallmysql-server安装过程中会让你设置Mysql的root密码，设个容易记住的就行，建议...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xiaoshiyiqie">来自：	<span class="blog_title"> 笑释一切的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_19582693/article/details/89006418,searchFromBaidu_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_19582693/article/details/89006418" target="_blank" title="Ubuntu+Mysql">
+		<h4 class="text-truncate oneline">
+				Ubuntu+<em>Mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-03</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					8</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_19582693/article/details/89006418" target="_blank" title="Ubuntu+Mysql">
+				<span class="desc oneline">@TOCUbuntu+Mysql欢迎使用Markdown编辑器你好！这是你第一次使用Markdown编辑器所展示的欢迎页。如果你想学习如何使用Markdown编辑器,可以仔细阅读这篇文章，了解一下Ma...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_19582693">来自：	<span class="blog_title"> qq_19582693的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_41533604/article/details/82800815,searchFromBaidu_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_41533604/article/details/82800815" target="_blank" title="ubuntu mysql 安装">
+		<h4 class="text-truncate oneline">
+				ubuntu <em>mysql</em> 安装		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-21</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					30</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_41533604/article/details/82800815" target="_blank" title="ubuntu mysql 安装">
+				<span class="desc oneline">服务器端安装安装服务器端：在终端中输⼊如下命令，回⻋后，然后按照提示输⼊sudo   apt-get   install   mysql-server服务器⽤于接收客户端的请求、执⾏sql语句、管理数...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_41533604">来自：	<span class="blog_title"> weixin_41533604的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/LvPartner/article/details/85956932,searchFromBaidu_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/LvPartner/article/details/85956932" target="_blank" title="Ubuntu18.04下MySQL安装+可视化">
+		<h4 class="text-truncate oneline">
+				<em>Ubuntu18.04</em>下<em>MySQL</em>安装+可视化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1645</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/LvPartner/article/details/85956932" target="_blank" title="Ubuntu18.04下MySQL安装+可视化">
+				<span class="desc oneline">MySQL安装</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/LvPartner">来自：	<span class="blog_title"> LvPartner的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_60" data-pid="60" data-track-view='{"mod":"kp_popu_60-43","con":",,"}' data-track-click='{"mod":"kp_popu_60-43","con":",,"}'><div id="three_ad8" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 900,
+                h : 84,
+                showid : 'Afihld',
+                placeholderId: "three_ad8",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 10,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_33937499/article/details/89020116,searchFromBaidu_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_33937499/article/details/89020116" target="_blank" title=" Ubuntu准备+MySQL+Java">
+		<h4 class="text-truncate oneline">
+				 Ubuntu准备+<em>MySQL</em>+Java		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_33937499/article/details/89020116" target="_blank" title=" Ubuntu准备+MySQL+Java">
+				<span class="desc oneline">Linux服务器准备1.安装Ubuntu系统2.修改root用户密码sudopasswdroot#修改root账户密码logout#退出当前账号并重新登录#如果需要关机使用halt命令3.更新所有Li...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_33937499">来自：	<span class="blog_title"> weixin_33937499的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_41918841/article/details/82993537,BlogCommendFromBaidu_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_41918841/article/details/82993537" target="_blank" title="ubuntu彻底删除mysql,并重装">
+		<h4 class="text-truncate oneline">
+				ubuntu彻底删除<em>mysql</em>,并重装		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1512</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_41918841/article/details/82993537" target="_blank" title="ubuntu彻底删除mysql,并重装">
+				<span class="desc oneline">删除mysqlsudoaptpurgemysql-*	sudorm-rf/etc/mysql//var/lib/mysql	sudoaptautoremove	sudoaptautoreclean(如...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_41918841">来自：	<span class="blog_title"> weixin_41918841的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+			<div class="recommend-item-box blog-expert-recommend-box">
+			<div class="d-flex">
+				<div class="blog-expert-recommend">
+					<div class="blog-expert">
+						<div class="blog-expert-flexbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zxcvb12zxcvb12/article/details/81360000,BlogCommendFromBaidu_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zxcvb12zxcvb12/article/details/81360000" target="_blank" title="ubuntu安装mysql5.7 记录">
+		<h4 class="text-truncate oneline">
+				ubuntu安装<em>mysql</em>5.7 记录		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					451</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zxcvb12zxcvb12/article/details/81360000" target="_blank" title="ubuntu安装mysql5.7 记录">
+				<span class="desc oneline">root@VM-0-6-ubuntu:/#mysql-Vmysql Ver14.14Distrib5.7.22,forLinux(x86_64)using EditLinewrapperroot@VM...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zxcvb12zxcvb12">来自：	<span class="blog_title"> zxcvb12zxcvb12的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/itxiaolong3/article/details/77905923,BlogCommendFromBaidu_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/itxiaolong3/article/details/77905923" target="_blank" title="ubuntu16.04下安装mysql详细步骤">
+		<h4 class="text-truncate oneline">
+				ubuntu16.04下安装<em>mysql</em>详细步骤		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/itxiaolong3/article/details/77905923" target="_blank" title="ubuntu16.04下安装mysql详细步骤">
+				<span class="desc oneline">1、如果要搭建服务器先去购买一个云主机，比如阿里云、京东云、新网等等都有卖。这里推荐使用京东云服务器，因为最近在搞活动。一元可体验两个月（可能现在活动已经过了，但在京东云里有免费领一个月的，学生机也有...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/itxiaolong3">来自：	<span class="blog_title"> 小龙</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/suwu150/article/details/52719371,BlogCommendFromBaidu_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/suwu150/article/details/52719371" target="_blank" title="Ubuntu中MySql的启动与关闭">
+		<h4 class="text-truncate oneline">
+				Ubuntu中<em>MySql</em>的启动与关闭		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/suwu150/article/details/52719371" target="_blank" title="Ubuntu中MySql的启动与关闭">
+				<span class="desc oneline">如何启动/停止/重启MySQL一、启动方式1、使用service启动：servicemysqlstart2、使用mysqld脚本启动：/etc/inint.d/mysqlstart3、使用safe_m...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/suwu150">来自：	<span class="blog_title"> suwu150</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_61" data-pid="61" data-track-view='{"mod":"kp_popu_61-557","con":",,"}' data-track-click='{"mod":"kp_popu_61-557","con":",,"}'><div id="three_ad13" class="mediav_ad" ></div>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script>
+                                               NEWS_FEED({
+                w: 852,
+                h : 60,
+                showid : 'GNKXx7',
+                placeholderId: "three_ad13",
+                inject : 'define',
+                define : {
+                    imagePosition : 'left',
+                    imageBorderRadius : 3,
+                    imageWidth: 90,
+                    imageHeight: 60,
+                    imageFill : 'clip',
+                    displayImage : true,
+                    displayTitle : true,
+                    titleFontSize: 18,
+                    titleFontColor: '#000',
+                    titleFontFamily : 'Lato,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif',
+                    titleFontWeight: 'bold',
+                    titlePaddingTop : 0,
+                    titlePaddingRight : 0,
+                    titlePaddingBottom : 5,
+                    titlePaddingLeft : 16,
+                    displayDesc : true,
+                    descFontSize: 14,
+                    descFontColor: '#8e959a',
+                    descFontFamily : 'Microsoft Yahei',
+                    paddingTop : 0,
+                    paddingRight : 0,
+                    paddingBottom : 0,
+                    paddingLeft : 0,
+                    backgroundColor: '#fff',
+                    hoverColor: '#000'
+                      }
+                  })
+                                        </script></div></div>
+	
+<div class="recommend-item-box  recommend-other-item-box"  data-track-click='{"mod":"popu_387","con":",https://bbs.csdn.net/topics/391966286,BlogCommendFromBaidu_14"}'>
+	<a href="https://bbs.csdn.net/topics/391966286" target="_blank">
+		<h4 class="text-truncate oneline">
+				ubuntu <em>mysql</em>的配置文件找不到		</h4>
+		<div class="info-box d-flex align-content-center">
+				<span class="date">06-12</span>
+		</div>
+		<p class="content oneline">
+			<span class="desc oneline">可能也不是找不到 有下面的这个配置文件 /etc/mysq/my.cnf 内容是这样的。我如何找到啊。 我想改类似编码之类的如何改。。。求助。 # # The MySQL database serve</span>
+							<span class="type-show type-show-bbs">论坛</span>
+					</p>
+	</a>
+
+</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_38770300/article/details/85221016,searchFromBaidu_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/weixin_38770300/article/details/85221016" target="_blank" title="Ubuntu mysql 安装与配置">
+		<h4 class="text-truncate oneline">
+				Ubuntu <em>mysql</em> 安装与配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					15</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/weixin_38770300/article/details/85221016" target="_blank" title="Ubuntu mysql 安装与配置">
+				<span class="desc oneline">Ubuntumysql安装与配置1.installation(非root用户)sudoapt-getinstallmysql-serversudoaptisntallmysql-clientsudoa...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/weixin_38770300">来自：	<span class="blog_title"> weixin_38770300的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jl19861101/article/details/83466100,searchFromBaidu_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jl19861101/article/details/83466100" target="_blank" title="Ubuntu_MySQL安装指南">
+		<h4 class="text-truncate oneline">
+				Ubuntu_<em>MySQL</em>安装指南		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jl19861101/article/details/83466100" target="_blank" title="Ubuntu_MySQL安装指南">
+				<span class="desc oneline">UbuntuLinux：MySQL安装指南发布时间：2006.04.1815:04来源：ubuntu作者：king安装MySQLsudoapt-getinstallmysql-server这个应该很简...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jl19861101">来自：	<span class="blog_title"> 梦一样的博客，神话般的感觉</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/papa8384/article/details/84925398,BlogCommendFromBaidu_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/papa8384/article/details/84925398" target="_blank" title="ubuntu中mysql无法登录">
+		<h4 class="text-truncate oneline">
+				ubuntu中<em>mysql</em>无法登录		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					382</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/papa8384/article/details/84925398" target="_blank" title="ubuntu中mysql无法登录">
+				<span class="desc oneline">之前在ubuntu中装好了mysql，今天再次打开ubuntu想登录mysql确一直报错，错误如下：[code=&amp;quot;java&amp;quot;]zhanglu@zhanglu-VirtualBox:...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/papa8384">来自：	<span class="blog_title"> papa8384的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/iehadoop/article/details/82961311,BlogCommendFromBaidu_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/iehadoop/article/details/82961311" target="_blank" title="Ubuntu 18.04安装MySQL8.0数据库">
+		<h4 class="text-truncate oneline">
+				Ubuntu 18.04安装<em>MySQL</em>8.0数据库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4677</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/iehadoop/article/details/82961311" target="_blank" title="Ubuntu 18.04安装MySQL8.0数据库">
+				<span class="desc oneline">前言sudoaptinstallmysql-server的方式默认安装的是MySQL5.7MySQL5.7版本最高只适配到Ubuntu17.04，不支持Ubuntu18.04MySQL8.0可适配到U...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/iehadoop">来自：	<span class="blog_title"> FG成长空间</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_62" data-pid="62" data-track-view='{"mod":"kp_popu_62-1062","con":",,"}' data-track-click='{"mod":"kp_popu_62-1062","con":",,"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/237?positionId=62&queryWord=" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/csdn_0911/article/details/82825607,BlogCommendFromBaidu_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/csdn_0911/article/details/82825607" target="_blank" title="Ubuntu18.04 安装MySQL；Ubuntu root密码修改；navicat 连接远程数据库；">
+		<h4 class="text-truncate oneline">
+				<em>Ubuntu18.04</em> 安装<em>MySQL</em>；Ubuntu root密码修改；navicat 连接远程数据库；		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-24</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					653</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/csdn_0911/article/details/82825607" target="_blank" title="Ubuntu18.04 安装MySQL；Ubuntu root密码修改；navicat 连接远程数据库；">
+				<span class="desc oneline">一下载安装 MySQL下载MySQL,创建文件存放路径：mkdirsoftware/data/mysqlwgethttps://dev.mysql.com/get/mysql-apt-config_0...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/csdn_0911">来自：	<span class="blog_title"> javaman_baicun 的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/y353027520dx/article/details/77621468,BlogCommendFromBaidu_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/y353027520dx/article/details/77621468" target="_blank" title="Linux Ubuntu apt-get安装mysql">
+		<h4 class="text-truncate oneline">
+				Linux Ubuntu apt-get安装<em>mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-27</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/y353027520dx/article/details/77621468" target="_blank" title="Linux Ubuntu apt-get安装mysql">
+				<span class="desc oneline">自从转前端以后好久都没有和数据库打过交道了，最近在写一个node项目需要用到mysql，但是又不想在本地安装数据库，就想着在云服务器上安装了，网上百度了安装方法，大多都是去mysql官网下载官方编译好...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/y353027520dx">来自：	<span class="blog_title"> 水煮蜗牛</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/twyth1214/article/details/80983438,BlogCommendFromBaidu_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/twyth1214/article/details/80983438" target="_blank" title="Ubuntu16.04安装MySQL8.0">
+		<h4 class="text-truncate oneline">
+				Ubuntu16.04安装<em>MySQL</em>8.0		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4363</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/twyth1214/article/details/80983438" target="_blank" title="Ubuntu16.04安装MySQL8.0">
+				<span class="desc oneline">1.So，去http://dev.mysql.com/downloads/repo/apt/.下载一个mysql-apt-config_0.*.****_all.deb，使用sudodpkg-imys...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/twyth1214">来自：	<span class="blog_title"> twyth1214的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/skysky_1989/article/details/84050252,BlogCommendFromBaidu_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/skysky_1989/article/details/84050252" target="_blank" title="ubuntu彻底删除mysql并重装mysql">
+		<h4 class="text-truncate oneline">
+				ubuntu彻底删除<em>mysql</em>并重装<em>mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-19</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					142</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/skysky_1989/article/details/84050252" target="_blank" title="ubuntu彻底删除mysql并重装mysql">
+				<span class="desc oneline">删除mysql：sudoapt-getautoremove--purgemysql-server-5.0sudoapt-getremovemysql-serversudoapt-getautoremo...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/skysky_1989">来自：	<span class="blog_title"> skysky_1989的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/fighter_yy/article/details/40753889,BlogCommendFromBaidu_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/fighter_yy/article/details/40753889" target="_blank" title="Ubuntu 安装mysql和简单操作">
+		<h4 class="text-truncate oneline">
+				Ubuntu 安装<em>mysql</em>和简单操作		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-03</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/fighter_yy/article/details/40753889" target="_blank" title="Ubuntu 安装mysql和简单操作">
+				<span class="desc oneline">http://www.cnblogs.com/zhuyp1015/p/3561470.html　　ubuntu上安装mysql非常简单只需要几条命令就可以完成。　　1. sudoapt-getinst...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/fighter_yy">来自：	<span class="blog_title"> fighter_yy的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_63" data-pid="63" data-track-view='{"mod":"kp_popu_63-1059","con":",,"}' data-track-click='{"mod":"kp_popu_63-1059","con":",,"}'><iframe  src="https://kunpeng-sc.csdnimg.cn/#/preview/234?positionId=63&queryWord=" frameborder="0" width= "100%"  height= "75px" scrolling="no" ></iframe></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/inhumming/article/details/80384168,BlogCommendFromBaidu_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/inhumming/article/details/80384168" target="_blank" title="ubuntu apt-get 安装mysql">
+		<h4 class="text-truncate oneline">
+				ubuntu apt-get 安装<em>mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					908</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/inhumming/article/details/80384168" target="_blank" title="ubuntu apt-get 安装mysql">
+				<span class="desc oneline">安装apt-getinstallmysql-server设置root密码mysql-uroot-p&amp;amp;gt;usemysql;&amp;amp;gt;updateusersetauthenticatio...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/inhumming">来自：	<span class="blog_title"> inhumming的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lifeifei2010/article/details/80536869,BlogCommendFromBaidu_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lifeifei2010/article/details/80536869" target="_blank" title="Linux ubuntu安装mysql 5.7.22 安装配置方法图文教程(linux) 强烈推荐!">
+		<h4 class="text-truncate oneline">
+				Linux ubuntu安装<em>mysql</em> 5.7.22 安装配置方法图文教程(linux) 强烈推荐!		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-01</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2895</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lifeifei2010/article/details/80536869" target="_blank" title="Linux ubuntu安装mysql 5.7.22 安装配置方法图文教程(linux) 强烈推荐!">
+				<span class="desc oneline">1.输入MySQL官网地址 https://dev.mysql.com/ 选择download-&amp;amp;gt;Community-&amp;amp;gt;MySQLCommunityServer点击 MyS...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lifeifei2010">来自：	<span class="blog_title"> 云智禅师的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_38737992/article/details/81090373,BlogCommendFromBaidu_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_38737992/article/details/81090373" target="_blank" title="ubuntu18.04 首次登录mysql未设置密码或忘记密码解决方法">
+		<h4 class="text-truncate oneline">
+				<em>ubuntu18.04</em> 首次登录<em>mysql</em>未设置密码或忘记密码解决方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_38737992/article/details/81090373" target="_blank" title="ubuntu18.04 首次登录mysql未设置密码或忘记密码解决方法">
+				<span class="desc oneline">1.首先输入以下指令：sudocat/etc/mysql/debian.cnf运行截图如下：2.再输入以下指令：mysql-udebian-sys-maint-p//注意!//这条指令的密码输入是输入...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_38737992">来自：	<span class="blog_title"> 学习笔记!</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Nancy50/article/details/81080693,BlogCommendFromBaidu_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Nancy50/article/details/81080693" target="_blank" title="Ubuntu16.04LTS下安装配置Mysql">
+		<h4 class="text-truncate oneline">
+				Ubuntu16.04LTS下安装配置<em>Mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6316</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Nancy50/article/details/81080693" target="_blank" title="Ubuntu16.04LTS下安装配置Mysql">
+				<span class="desc oneline">一、Ubuntu安装配置Mysql5.7（1）下载安装Mysql​sudoapt-getupdatesudoapt-getinstallmysql-server​（2）配置MySql密码强度这里，如果...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Nancy50">来自：	<span class="blog_title"> Adele的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Small_boy_/article/details/81475451,BlogCommendFromBaidu_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Small_boy_/article/details/81475451" target="_blank" title="Ubuntu 18 安装MySQL8.0">
+		<h4 class="text-truncate oneline">
+				Ubuntu 18 安装<em>MySQL</em>8.0		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					528</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Small_boy_/article/details/81475451" target="_blank" title="Ubuntu 18 安装MySQL8.0">
+				<span class="desc oneline">直接使用aptinstallmysql-server安装，那么恭喜你踩坑。sudoaptinstallmysql-server默认会安装MySQL5.7，将会出现一些莫名的问题，例如：安装过程没有要求...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Small_boy_">来自：	<span class="blog_title"> Small_boy_的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_64" data-pid="64" data-track-view='{"mod":"kp_popu_64-1251","con":",,"}' data-track-click='{"mod":"kp_popu_64-1251","con":",,"}'><!-- T28 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T28_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T28  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T28_render", "T28");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xy707707/article/details/80820189,BlogCommendFromBaidu_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xy707707/article/details/80820189" target="_blank" title="ubuntu mysql 初始密码修改">
+		<h4 class="text-truncate oneline">
+				ubuntu <em>mysql</em> 初始密码修改		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-26</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3451</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xy707707/article/details/80820189" target="_blank" title="ubuntu mysql 初始密码修改">
+				<span class="desc oneline">转自：https://www.cnblogs.com/roadofstudy/p/7446690.html最近在ubuntu系统上安装了MySQL，但是安装时没有提示输入root用户密码，在网上找了一...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xy707707">来自：	<span class="blog_title"> 逐月</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zhj082/article/details/80783883,BlogCommendFromBaidu_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zhj082/article/details/80783883" target="_blank" title="ubuntu下mysql服务重启失败解决思路">
+		<h4 class="text-truncate oneline">
+				ubuntu下<em>mysql</em>服务重启失败解决思路		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-23</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6530</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zhj082/article/details/80783883" target="_blank" title="ubuntu下mysql服务重启失败解决思路">
+				<span class="desc oneline">今天，在遇到ERROR1290(HY000):runningwiththe–secure-file-priv错误，根据网上提示，在配置文件my.cnf添加通过命令find/-namemy.cnf或者l...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zhj082">来自：	<span class="blog_title"> Rosefinch</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/igxuyr_/article/details/81186969,BlogCommendFromBaidu_31"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/igxuyr_/article/details/81186969" target="_blank" title="Ubuntu搭建mysql主从。">
+		<h4 class="text-truncate oneline">
+				Ubuntu搭建<em>mysql</em>主从。		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-24</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					299</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/igxuyr_/article/details/81186969" target="_blank" title="Ubuntu搭建mysql主从。">
+				<span class="desc oneline">实验环境：Ubuntu16.04两台，mysql5.7本次实例为master-slave。1）安装mysql在Ubuntu环境中，使用apt-getinstallmysql-server安装mysql...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/igxuyr_">来自：	<span class="blog_title"> igxuyr_的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gsl371/article/details/79181856,BlogCommendFromBaidu_32"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gsl371/article/details/79181856" target="_blank" title="ubuntu安装mysql的c++开发环境">
+		<h4 class="text-truncate oneline">
+				ubuntu安装<em>mysql</em>的c++开发环境		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-27</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1461</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gsl371/article/details/79181856" target="_blank" title="ubuntu安装mysql的c++开发环境">
+				<span class="desc oneline">安装mysql-server和mysql-client数据库连接capi安装CAPI实现应用开发五步曲CAPI的数据结构CAPI的函数概览CAPI函数描述一个示例MySQLConnector/C++M...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gsl371">来自：	<span class="blog_title"> gsl371的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/iehadoop/article/details/82961264,BlogCommendFromBaidu_33"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/iehadoop/article/details/82961264" target="_blank" title="Ubuntu18.04彻底删除MySQL数据库">
+		<h4 class="text-truncate oneline">
+				<em>Ubuntu18.04</em>彻底删除<em>MySQL</em>数据库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9504</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/iehadoop/article/details/82961264" target="_blank" title="Ubuntu18.04彻底删除MySQL数据库">
+				<span class="desc oneline">首先在终端中查看MySQL的依赖项：dpkg--list|grepmysql卸载：sudoapt-getremovemysql-common卸载：sudoapt-getautoremove--purg...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/iehadoop">来自：	<span class="blog_title"> FG成长空间</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_65" data-pid="65" data-track-view='{"mod":"kp_popu_65-1252","con":",,"}' data-track-click='{"mod":"kp_popu_65-1252","con":",,"}'><!-- T33 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T33_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T33  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T33_render", "T33");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_19004627/article/details/79560749,BlogCommendFromBaidu_34"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_19004627/article/details/79560749" target="_blank" title="ubuntu下MYSQL命令行操作">
+		<h4 class="text-truncate oneline">
+				ubuntu下<em>MYSQL</em>命令行操作		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1928</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_19004627/article/details/79560749" target="_blank" title="ubuntu下MYSQL命令行操作">
+				<span class="desc oneline">1，安装sudoapt-getinstall mysql-server 数据库服务器，用于管理数据库与表，控制用户访问，以及处理SQL查询apt-getisntallmysql-clientMySQL...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_19004627">来自：	<span class="blog_title"> 上官雨泽（微信：13631252376）</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zxjohnson/article/details/79360716,BlogCommendFromBaidu_35"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zxjohnson/article/details/79360716" target="_blank" title="在Ubuntu上安装mysql">
+		<h4 class="text-truncate oneline">
+				在Ubuntu上安装<em>mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-24</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zxjohnson/article/details/79360716" target="_blank" title="在Ubuntu上安装mysql">
+				<span class="desc oneline">1.下载并安装mysqlsudoapt-getupdatesudoapt-getinstallmysql-server会弹出提示，让输入root的密码，根据提示操作即可目前（2018-2-24）的my...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zxjohnson">来自：	<span class="blog_title"> zxjohnson的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u012509485/article/details/79727382,BlogCommendFromBaidu_36"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u012509485/article/details/79727382" target="_blank" title="【Linux】Ubuntu安装Mysql">
+		<h4 class="text-truncate oneline">
+				【Linux】Ubuntu安装<em>Mysql</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					562</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u012509485/article/details/79727382" target="_blank" title="【Linux】Ubuntu安装Mysql">
+				<span class="desc oneline">尝试多次apt-getinstall报错，那就别偷懒，下载文件包一个一个安装吧。首先彻底删除：彻底卸载软件#删除软件及其配置文件apt-get--purgeremovemysql-servermysq...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u012509485">来自：	<span class="blog_title"> 睹物思理</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/liuhuoxingkong/article/details/80696574,BlogCommendFromBaidu_37"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/liuhuoxingkong/article/details/80696574" target="_blank" title="Ubuntu16.04 Mysql离线安装">
+		<h4 class="text-truncate oneline">
+				Ubuntu16.04 <em>Mysql</em>离线安装		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3098</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/liuhuoxingkong/article/details/80696574" target="_blank" title="Ubuntu16.04 Mysql离线安装">
+				<span class="desc oneline">参考文章：https://www.cnblogs.com/tabCtrlShift/p/6564002.html某部署环境，因网络限制无法直接访问外网，所以只能手动下载安装包方式进行mysql安装。参...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/liuhuoxingkong">来自：	<span class="blog_title"> liuhuoxingkong的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+	<div class="recommend-item-box  recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/c1523456/10283670,BlogCommendFromBaidu_38"}'>
+		<a href="https://download.csdn.net/download/c1523456/10283670" target="_blank">
+			<div class="content clearfix">
+				<div class="">
+					<h4 class="text-truncate oneline clearfix">
+						<em>mysql</em> ubuntu版					</h4>
+					<span class="data float-right">03-13</span>
+				</div>
+				<div class="desc oneline">
+						这是mysql的deb版，详细的安装步骤我已经上传到了我的博客中，经参见http://blog.csdn.net/c1523456/article/details/79444578				</div>
+				<span class="type-show type-show-download">下载</span>
+			</div>
+		</a>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_66" data-pid="66" data-track-view='{"mod":"kp_popu_66-881","con":",,"}' data-track-click='{"mod":"kp_popu_66-881","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T38_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T38  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T38_render", "T38");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lllliulin/article/details/51526569,BlogCommendFromBaidu_39"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lllliulin/article/details/51526569" target="_blank" title="Ubuntu下Mysql常用命令详解">
+		<h4 class="text-truncate oneline">
+				Ubuntu下<em>Mysql</em>常用命令详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lllliulin/article/details/51526569" target="_blank" title="Ubuntu下Mysql常用命令详解">
+				<span class="desc oneline">Mysql安装目录数据库目录/var/lib/mysql/配置文件/usr/share/mysql（mysql.server命令及配置文件）相关命令/usr/bin(mysqladminmysqldu...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lllliulin">来自：	<span class="blog_title"> 小菜鸟的Blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/YuYan_wang/article/details/79515940,BlogCommendFromBaidu_40"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/YuYan_wang/article/details/79515940" target="_blank" title="ubuntu mysql5.7 解决不用密码也能登录">
+		<h4 class="text-truncate oneline">
+				ubuntu <em>mysql</em>5.7 解决不用密码也能登录		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2324</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/YuYan_wang/article/details/79515940" target="_blank" title="ubuntu mysql5.7 解决不用密码也能登录">
+				<span class="desc oneline">登录mysql   mysql-uroot-p或mysqlusemysql;updateusersetauthentication_string=PASSWORD(&amp;quot;密码&amp;quot;)whe...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/YuYan_wang">来自：	<span class="blog_title"> YuYan_wang</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Kwoky/article/details/79444959,BlogCommendFromBaidu_41"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Kwoky/article/details/79444959" target="_blank" title="Ubuntu中给mysql用户分配权限">
+		<h4 class="text-truncate oneline">
+				Ubuntu中给<em>mysql</em>用户分配权限		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					764</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Kwoky/article/details/79444959" target="_blank" title="Ubuntu中给mysql用户分配权限">
+				<span class="desc oneline">grant权限1,权限2,...权限non数据库名称.表名称to用户名@用户地址identifiedby'连接口令';权限1,权限2,...权限n代表select,insert,update,dele...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Kwoky">来自：	<span class="blog_title"> Kwoky的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xs1102/article/details/77312282,BlogCommendFromBaidu_42"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xs1102/article/details/77312282" target="_blank" title="Ubuntu下安装MySQL及简单操作">
+		<h4 class="text-truncate oneline">
+				Ubuntu下安装<em>MySQL</em>及简单操作		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xs1102/article/details/77312282" target="_blank" title="Ubuntu下安装MySQL及简单操作">
+				<span class="desc oneline">Ubuntu上安装MySQL非常简单只需要几条命令就可以完成。</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xs1102">来自：	<span class="blog_title"> 0 error(s), 0 warning(s), all success 的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/KeXianGong/article/details/38516345,BlogCommendFromBaidu_43"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/KeXianGong/article/details/38516345" target="_blank" title="(整理)Ubuntu Mysql 基本操作">
+		<h4 class="text-truncate oneline">
+				(整理)Ubuntu <em>Mysql</em> 基本操作		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">08-12</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					337</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/KeXianGong/article/details/38516345" target="_blank" title="(整理)Ubuntu Mysql 基本操作">
+				<span class="desc oneline">1.查看是否安装了Mysqlps-ef|grepmysqld安装了会显示mysql  4002  1 002:23?    00:00:00/usr/sbin/mysqldroot   4155 14...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/KeXianGong">来自：	<span class="blog_title"> KeXianGong的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_67" data-pid="67" data-track-view='{"mod":"kp_popu_67-882","con":",,"}' data-track-click='{"mod":"kp_popu_67-882","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T43_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T43  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T43_render", "T43");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/horacehe16/article/details/83820685,BlogCommendFromBaidu_44"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/horacehe16/article/details/83820685" target="_blank" title="基于Ubuntu16.04快速安装MySQL">
+		<h4 class="text-truncate oneline">
+				基于Ubuntu16.04快速安装<em>MySQL</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-07</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					84</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/horacehe16/article/details/83820685" target="_blank" title="基于Ubuntu16.04快速安装MySQL">
+				<span class="desc oneline">基于Ubuntu16.04快速安装MySQL1、很快，就这几步apt-getupdateapt-getinstallmysql-server[此步骤需要你设置密码！请谨记。]apt-getinstal...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/horacehe16">来自：	<span class="blog_title"> Horace Ho的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Xin_101/article/details/83504429,BlogCommendFromBaidu_45"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Xin_101/article/details/83504429" target="_blank" title="Ubuntu部署MySQL数据库">
+		<h4 class="text-truncate oneline">
+				Ubuntu部署<em>MySQL</em>数据库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					161</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Xin_101/article/details/83504429" target="_blank" title="Ubuntu部署MySQL数据库">
+				<span class="desc oneline">Ubuntu部署1.1安装sudoapt-getinstallmysql-serversusoapt-getinstallmysql-client1.2mysql状态运行状态sudonetstat-t...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Xin_101">来自：	<span class="blog_title"> xdq101的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/redwine_Wen/article/details/83001672,BlogCommendFromBaidu_46"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/redwine_Wen/article/details/83001672" target="_blank" title="Linux(Ubuntu18.0)安装Mysql5.7.23">
+		<h4 class="text-truncate oneline">
+				Linux(Ubuntu18.0)安装<em>Mysql</em>5.7.23		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					239</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/redwine_Wen/article/details/83001672" target="_blank" title="Linux(Ubuntu18.0)安装Mysql5.7.23">
+				<span class="desc oneline">Linux(Ubuntu18.0)安装Mysql5.7.23这里我明确知道自己的Linux的发型版本所以在MySQL官网下了一个比较准确的安装包.可以通过命令来查看当前系统的版本:uname-a(查看...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/redwine_Wen">来自：	<span class="blog_title"> redwine_Wen的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/mole/article/details/82934568,BlogCommendFromBaidu_47"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/mole/article/details/82934568" target="_blank" title="Ubuntu 安装 MySQL">
+		<h4 class="text-truncate oneline">
+				Ubuntu 安装 <em>MySQL</em>		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-03</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					92</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/mole/article/details/82934568" target="_blank" title="Ubuntu 安装 MySQL">
+				<span class="desc oneline">Ubuntu18.04安装MySQL8.0.121.下载MySQLdebbundle安装包URL：https://dev.mysql.com/downloads/mysql/2.解压tar-vxfmy...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/mole">来自：	<span class="blog_title"> mole的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/DarrenXf/article/details/83109417,BlogCommendFromBaidu_48"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/DarrenXf/article/details/83109417" target="_blank" title="Ubuntu mysql安装与使用">
+		<h4 class="text-truncate oneline">
+				Ubuntu <em>mysql</em>安装与使用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					111</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/DarrenXf/article/details/83109417" target="_blank" title="Ubuntu mysql安装与使用">
+				<span class="desc oneline">Ubuntu下安装mysql运行下面的shell代码#安装mysqlsudoapt-get-yinstallmysql-serversudoapt-get-yinstallmysql-clientsu...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/DarrenXf">来自：	<span class="blog_title"> DarrenXf的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	<div class="recommend-item-box recommend-ad-box"><div id="kp_box_68" data-pid="68" data-track-view='{"mod":"kp_popu_68-883","con":",,"}' data-track-click='{"mod":"kp_popu_68-883","con":",,"}'><!-- T48 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T48_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T48  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T48_render", "T48");
+</script></div></div>
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/paincupid/article/details/76039532,BlogCommendFromBaidu_49"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/paincupid/article/details/76039532" target="_blank" title="ubuntu17安装mysql5.7，以及msyql主从复制">
+		<h4 class="text-truncate oneline">
+				ubuntu17安装<em>mysql</em>5.7，以及msyql主从复制		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-24</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3470</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/paincupid/article/details/76039532" target="_blank" title="ubuntu17安装mysql5.7，以及msyql主从复制">
+				<span class="desc oneline">一、mysql安装1、sudoapt-getinstallmysql-server安装过程中需要输入密码，也可以为空白，貌似默认值为:MYSQL2、sudonetstat-tap|grepmysql通...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/paincupid">来自：	<span class="blog_title"> arthur.dy.lee的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/f907279313/article/details/32133257,BlogCommendHotData_0"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+		<h4 class="text-truncate oneline">
+				STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-18</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/f907279313/article/details/32133257" target="_blank" title="STM32IAP升级------IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结">
+				<span class="desc oneline">IAP升级功能编写初期的一些困惑与疑问---完成功能后的总结
+一，网上下载的例程，跳转部分的代码有差异，尤其是用的汇编那句
+二，关于跳转部分的代码的理解（转）
+三，关于跳转时能否不用按键，用软件标志位...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/f907279313">来自：	<span class="blog_title"> Super_Demo的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/sundacheng1989/article/details/17925431,BlogCommendHotData_1"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+		<h4 class="text-truncate oneline">
+				在64位Win7操作系统中安装Microsoft Access Engine的解决方案		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-06</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/sundacheng1989/article/details/17925431" target="_blank" title="在64位Win7操作系统中安装Microsoft Access Engine的解决方案">
+				<span class="desc oneline">现在的Win7系统中安装的一般都是32位的Office，因为微软推荐使用32位的Office，兼容性更强，稳定性更好。在使用Access作为数据库的时候，C#操作Access，如果Access是acc...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/sundacheng1989">来自：	<span class="blog_title"> 写代码的蜗牛</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/crazy1235/article/details/44069267,BlogCommendHotData_2"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+		<h4 class="text-truncate oneline">
+				百度地图开发（五）之公交信息检索 + 路线规划		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/crazy1235/article/details/44069267" target="_blank" title="百度地图开发（五）之公交信息检索 + 路线规划">
+				<span class="desc oneline">转载请注明出处：
+    在上一篇blog中介绍过POI检索的使用，本篇blog主要介绍公交信息检索和线路规划的内容。
+公交信息检索
+    实际上，公交信息检索与POI检索、在线建议检索非常相似，也...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/crazy1235">来自：	<span class="blog_title"> crazy_jack</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u011860731/article/details/48733073,BlogCommendHotData_3"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+		<h4 class="text-truncate oneline">
+				ThreadLocal的设计理念与作用		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u011860731/article/details/48733073" target="_blank" title="ThreadLocal的设计理念与作用">
+				<span class="desc oneline">Java中的ThreadLocal类允许我们创建只能被同一个线程读写的变量。因此，如果一段代码含有一个ThreadLocal变量的引用，即使两个线程同时执行这段代码，它们也无法访问到对方的Thread...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u011860731">来自：	<span class="blog_title"> u011860731的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kongwei521/article/details/51626589,BlogCommendHotData_4"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+		<h4 class="text-truncate oneline">
+				C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-10</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/kongwei521/article/details/51626589" target="_blank" title="C#实现开发windows服务实现自动从FTP服务器下载文件（自行设置分/时执行）">
+				<span class="desc oneline">最近在做一个每天定点从FTP自动下载节目.xml并更新到数据库的功能。首先想到用 FileSystemWatcher来监控下载到某个目录中的文件是否发生改变，如果改变就执行相应的操作，然后用timer...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/kongwei521">来自：	<span class="blog_title"> kongwei521的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tostq/article/details/50110329,BlogCommendHotData_5"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+		<h4 class="text-truncate oneline">
+				（LaTex)CTex的初次使用心得及入门教程		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/tostq/article/details/50110329" target="_blank" title="（LaTex)CTex的初次使用心得及入门教程">
+				<span class="desc oneline">摘要
+最近要发论文了，被知乎里人推荐使用论文编译软件（CTex、LaTex和Overleaf之类），瞬间感觉自己用Word简直Out了（书读少）。
+学校里也听说过LaTex，不过因为当时没怎么写过...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/tostq">来自：	<span class="blog_title"> tostq的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/rickypc/article/details/6014408,BlogCommendHotData_6"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+		<h4 class="text-truncate oneline">
+				如何编译64位( 64bit ) boost类库		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					9582</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/rickypc/article/details/6014408" target="_blank" title="如何编译64位( 64bit ) boost类库">
+				<span class="desc oneline"> 64位windows平台，编译环境是VS2005，进入Visual Studio 2005 x64 Win64 Command Prompt（单纯的cmd也不一定不行，我没试）。把bjam.exe放...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/rickypc">来自：	<span class="blog_title"> rickypc的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/neonlight/article/details/5975764,BlogCommendHotData_7"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+		<h4 class="text-truncate oneline">
+				vsftpd匿名用户上传和下载的配置		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/neonlight/article/details/5975764" target="_blank" title="vsftpd匿名用户上传和下载的配置">
+				<span class="desc oneline">　　看到很多朋友配置vsftpd时不能使用匿名用户上传和下载（创建目录或删除、重命名文件夹），本文主要解决vsftpd的匿名用户权限配制问题。...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/neonlight">来自：	<span class="blog_title"> 九宫霓虹</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/flysharkym/article/details/51404730,BlogCommendHotData_8"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+		<h4 class="text-truncate oneline">
+				mybatis一级缓存(session cache)引发的问题		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/flysharkym/article/details/51404730" target="_blank" title="mybatis一级缓存(session cache)引发的问题">
+				<span class="desc oneline">mybatis一级缓存(session cache)引发的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/flysharkym">来自：	<span class="blog_title"> flysharkym的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jinping_shi/article/details/59613054,BlogCommendHotData_9"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+		<h4 class="text-truncate oneline">
+				高斯混合模型（GMM）及其EM算法的理解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-02</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					12万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jinping_shi/article/details/59613054" target="_blank" title="高斯混合模型（GMM）及其EM算法的理解">
+				<span class="desc oneline">一个例子高斯混合模型（Gaussian Mixed Model）指的是多个高斯分布函数的线性组合，理论上GMM可以拟合出任意类型的分布，通常用于解决同一集合下的数据包含多个不同的分布的情况（或者是同一...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/jinping_shi">来自：	<span class="blog_title"> 小平子的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36892341/article/details/73918672,BlogCommendHotData_10"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+		<h4 class="text-truncate oneline">
+				linux上安装Docker(非常简单的安装方法)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-29</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					28万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+				<span class="desc oneline">最近比较有空，大四出来实习几个月了，作为实习狗的我，被叫去研究Docker了，汗汗！
+
+Docker的三大核心概念：镜像、容器、仓库
+镜像：类似虚拟机的镜像、用俗话说就是安装文件。
+容器：类似一个轻量...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq_36892341">来自：	<span class="blog_title"> 我走小路的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/meng564764406/article/details/52444644,BlogCommendHotData_11"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+		<h4 class="text-truncate oneline">
+				将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-05</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+				<span class="desc oneline">本篇文章是根据我的上篇博客，给出的改进版，由于时间有限，仅做了一个简单的优化。相关文章：将excel导入数据库2018年4月1日，新增下载地址链接：点击打开源码下载地址十分抱歉，这个链接地址没有在这篇...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/meng564764406">来自：	<span class="blog_title"> Lynn_Blog</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wangpeng047/article/details/19624529,BlogCommendHotData_12"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+		<h4 class="text-truncate oneline">
+				HttpClient使用详解		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					81万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wangpeng047/article/details/19624529" target="_blank" title="HttpClient使用详解">
+				<span class="desc oneline">Http协议的重要性相信不用我多说了，HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wangpeng047">来自：	<span class="blog_title"> 鹏霄万里展雄飞</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Main_Stage/article/details/41989499,BlogCommendHotData_13"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+		<h4 class="text-truncate oneline">
+				Android圆形图片--自定义控件		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Main_Stage/article/details/41989499" target="_blank" title="Android圆形图片--自定义控件">
+				<span class="desc oneline">Android圆形图片--自定义控件</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Main_Stage">来自：	<span class="blog_title"> Main_Stage的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lch_vison/article/details/79112450,BlogCommendHotData_14"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+		<h4 class="text-truncate oneline">
+				ubuntu16.04环境Kdevelop安装和汉化		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">01-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6239</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lch_vison/article/details/79112450" target="_blank" title="ubuntu16.04环境Kdevelop安装和汉化">
+				<span class="desc oneline">1、Kdevelop安装
+
+ 
+
+最简单的命令行安装，打开终端，执行
+
+ 
+
+
+sudo apt-get install kdevelop
+
+
+ 
+
+2、Kdevelop汉化
+
+不需要自己下载汉化包，...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lch_vison">来自：	<span class="blog_title"> lch_vision的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/klkxxy/article/details/78773980,BlogCommendHotData_15"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+		<h4 class="text-truncate oneline">
+				图片拉伸变形		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					332</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/klkxxy/article/details/78773980" target="_blank" title="图片拉伸变形">
+				<span class="desc oneline">http://blog.csdn.net/abc649395594/article/details/50004991</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/klkxxy">来自：	<span class="blog_title"> klkxxy的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/pengjc2001/article/details/54924699,BlogCommendHotData_16"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+		<h4 class="text-truncate oneline">
+				三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-11</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/pengjc2001/article/details/54924699" target="_blank" title="三菱FX系列PLC与PC通讯的实现之专有协议（计算机联接）的程序设计之一">
+				<span class="desc oneline">阅读内容为：FX系列微型可编程控制器用户手册（通讯篇）中计算机链接功能章节。
+采用本方法通信，pc端的实现，其实就是，把操作按照协议（2种）翻译成相应的字符串，通过串口发送给plc。
+
+
+编写一应用程...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/pengjc2001">来自：	<span class="blog_title"> pengjc2001的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/updog/article/details/6625975,BlogCommendHotData_17"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+		<h4 class="text-truncate oneline">
+				实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">07-22</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					1万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/updog/article/details/6625975" target="_blank" title="实现header file (.h)相应的source file (.cc/.cpp)文件时的注意事项">
+				<span class="desc oneline">本帖慢慢扩充……1. 假设是实现namespace Abc中的一个class，不要因为是在.cc中就肆无忌惮的在global scope或者namespace Abc{}中定义辅助变量和函数，或者ty...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq574857122/article/details/16361033,BlogCommendHotData_18"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+		<h4 class="text-truncate oneline">
+				强连通分量及缩点tarjan算法解析		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					66万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+				<span class="desc oneline">强连通分量：
+简言之 就是找环（每条边只走一次，两两可达）
+孤立的一个点也是一个连通分量 
+ 
+使用tarjan算法 在嵌套的多个环中优先得到最大环( 最小环就是每个孤立点）
+ 
+定义：
+int Ti...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/qq574857122">来自：	<span class="blog_title"> 九野的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013268685/article/details/41732447,BlogCommendHotData_19"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+		<h4 class="text-truncate oneline">
+				数据结构实验：栈实现计算器(表达式计算）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-04</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4049</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u013268685/article/details/41732447" target="_blank" title="数据结构实验：栈实现计算器(表达式计算）">
+				<span class="desc oneline">原创作品转载请注明出处
+欢迎抄袭，造福各位伸手党
+/*************************************************************************
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u013268685">来自：	<span class="blog_title"> u013268685的专栏(有一种幸福叫AC，有一种期待叫AK)</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jiebaoabcabc/article/details/19242621,BlogCommendHotData_20"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+		<h4 class="text-truncate oneline">
+				简单linux字符设备驱动程序与编程小技巧(上)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">02-15</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					629</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/jiebaoabcabc/article/details/19242621" target="_blank" title="简单linux字符设备驱动程序与编程小技巧(上)">
+				<span class="desc oneline">这几天开始研究linux下的驱动程序编写了，遇到的问题也挺多的，好在linux是开源的，很多高人编写的技巧和思路都会在他们的源代码中体现，我也在他们的源码中学到了很多好东西，我归纳了下贴出来，希望自己...</span>
+			</a>
+			<span class="blog_title_box oneline no-title">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gefangshuai/article/details/50328451,BlogCommendHotData_21"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+		<h4 class="text-truncate oneline">
+				关于SpringBoot bean无法注入的问题（与文件包位置有关）		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-16</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					27万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+				<span class="desc oneline">问题场景描述整个项目通过Maven构建，大致结构如下：
+核心Spring框架一个module spring-boot-base
+service和dao一个module server-core
+提供系统...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/gefangshuai">来自：	<span class="blog_title"> 开发随笔</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/autfish/article/details/52682778,BlogCommendHotData_22"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+		<h4 class="text-truncate oneline">
+				苹果充值常见的刷单手段和防范方法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">09-28</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/autfish/article/details/52682778" target="_blank" title="苹果充值常见的刷单手段和防范方法">
+				<span class="desc oneline">苹果充值的刷单现象在游戏行业非常普遍，很多团队挖空心思寻找漏洞以非法获利。常见的手段主要有以下六种：
+
+
+伪造充值凭据(receipt)以小额凭据骗取大额商品
+
+凭据重复使用
+凭据重复使用信用卡黑卡/...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/autfish">来自：	<span class="blog_title"> 分享知识、分享进步</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wuchengzeng/article/details/50037611,BlogCommendHotData_23"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+		<h4 class="text-truncate oneline">
+				jquery/js实现一个网页同时调用多个倒计时(最新的)		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">11-25</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					54万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+				<span class="desc oneline">jquery/js实现一个网页同时调用多个倒计时(最新的)
+
+最近需要网页添加多个倒计时. 查阅网络,基本上都是千遍一律的不好用. 自己按需写了个.希望对大家有用. 有用请赞一个哦!
+
+
+
+//js
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/wuchengzeng">来自：	<span class="blog_title"> Websites</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zp_00000/article/details/70207445,BlogCommendHotData_24"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+		<h4 class="text-truncate oneline">
+				VirtualBox COM获取对象失败		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">04-17</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					4万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zp_00000/article/details/70207445" target="_blank" title="VirtualBox COM获取对象失败">
+				<span class="desc oneline">错误详情
+
+
+
+
+
+1. 先来看看错误详情
+获取 VirtualBox COM 对象失败.应用程序将被中断.Failed to instantiate CLSID_VirtualBox ...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zp_00000">来自：	<span class="blog_title"> 多点折腾少点抱怨</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014306011/article/details/51546236,BlogCommendHotData_25"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+		<h4 class="text-truncate oneline">
+				Eclipse如何安装WindowBuilder插件及如何使用WB		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">05-31</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6481</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/u014306011/article/details/51546236" target="_blank" title="Eclipse如何安装WindowBuilder插件及如何使用WB">
+				<span class="desc oneline">Eclipse如何安装WindowBuilder插件及如何使用WB</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/u014306011">来自：	<span class="blog_title"> 天命王子的博客</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lubiaopan/article/details/6233517,BlogCommendHotData_26"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+		<h4 class="text-truncate oneline">
+				.NET和java的RSA互通，仅此而已		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">03-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					7万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/lubiaopan/article/details/6233517" target="_blank" title=".NET和java的RSA互通，仅此而已">
+				<span class="desc oneline">RSA .net jva 互通 解决不能互通的问题</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/lubiaopan">来自：	<span class="blog_title"> lubiaopan的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xu__cg/article/details/52970885,BlogCommendHotData_27"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+		<h4 class="text-truncate oneline">
+				Java设计模式学习06——静态代理与动态代理		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-30</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					3万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/xu__cg/article/details/52970885" target="_blank" title="Java设计模式学习06——静态代理与动态代理">
+				<span class="desc oneline">一、代理模式为某个对象提供一个代理，从而控制这个代理的访问。代理类和委托类具有共同的父类或父接口，这样在任何使用委托类对象的地方都可以使用代理类对象替代。代理类负责请求的预处理、过滤、将请求分配给委托...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/xu__cg">来自：	<span class="blog_title"> 小小本科生成长之路</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/NYS001/article/details/12637201,BlogCommendHotData_28"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+		<h4 class="text-truncate oneline">
+				蜂窝小区最短距离的坐标系解法		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">10-14</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					2万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/NYS001/article/details/12637201" target="_blank" title="蜂窝小区最短距离的坐标系解法">
+				<span class="desc oneline">如下图所示，蜂窝小区，以1为中心，顺时针编号，编号最大限定为100000。求任意两编号之间的最短距离。两个相邻小区的距离为1 示例：19到30的最短距离为5 实现如下三个接口： /**********...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/NYS001">来自：	<span class="blog_title"> NYS001的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Smile_qiqi/article/details/32724931,BlogCommendHotData_29"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+		<h4 class="text-truncate oneline">
+				魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">06-20</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					6万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/Smile_qiqi/article/details/32724931" target="_blank" title="魔兽争霸3冰封王座1.24e 多开联机补丁 信息发布与收集点">
+				<span class="desc oneline">畅所欲言！</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/Smile_qiqi">来自：	<span class="blog_title"> Smile_qiqi的专栏</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+<div class="recommend-item-box type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zd0303/article/details/7058457,BlogCommendHotData_30"}'>
+	<div class="content">
+		<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+		<h4 class="text-truncate oneline">
+				MATLAB中注释一段程序		</h4>
+		<div class="info-box d-flex align-content-center">
+			<p class="date-and-readNum oneline">
+				<span class="date hover-show">12-09</span>
+				<span class="read-num hover-hide">
+					阅读数 
+					5万+</span>
+				</p>
+			</div>
+		</a>
+		<p class="content">
+			<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+				<span class="desc oneline">在MATLAB中，可以注释一段程序。
+使用“%{”和“%}”。
+例如
+%{
+。。。
+%}
+即可。
+经典方法是用 if 0，但缺点是不够直观，注释掉的内容仍然保持代码的颜色。现在可以用
+...</span>
+			</a>
+			<span class="blog_title_box oneline ">
+									<span class="type-show type-show-blog type-show-after">博文</span>
+											<a target="_blank" href="https://blog.csdn.net/zd0303">来自：	<span class="blog_title"> 知识小屋</span></a>
+												</span>
+		</p>
+	</div>
+	</div>
+
+	
+	
+                <div class="recommend-item-box type_hot_word">
+                                <div class="content clearfix">
+                    <div class="word float-left">
+                                                            <span>
+                        <a href="https://edu.csdn.net/courses/o5329_s5330_k " target="_blank">
+                        机器学习教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/courses/o280_s351_k " target="_blank">
+                        Objective-C培训                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o7115_s388_l0_t " target="_blank">
+                        交互设计视频教程                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/course/play/5599/104252 " target="_blank">
+                        颜色模型                    </a></span>
+                                                                                <span>
+                        <a href="https://edu.csdn.net/combos/o363_l0_t " target="_blank">
+                        设计制作学习                    </a></span>
+                                                            </div>
+                </div>
+                                                <div class="content clearfix">
+                    <div class="float-left">
+                                        <span>
+                        <a href="https://www.csdn.net/gather_24/MtTaEg3sMDM5MS1ibG9n.html" target="_blank">
+                        mysql关联查询两次本表</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_10/MtjaIg3sMTUzMy1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+                        native底部 react</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_1b/Ntzagg1sOTU3LWRvd25sb2Fk.html" target="_blank">
+                        extjs glyph 图标</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/MtzaIg3sMjMtZWR1.html" target="_blank">
+                        维护物联网费用</a>
+                    </span>
+                                        <span>
+                        <a href="https://www.csdn.net/gather_4a/MtTaMg5sMDgtZWR1.html" target="_blank">
+                        课程设计数据库的维护</a>
+                    </span>
+                                        </div>
+                </div>
+                                </div>
+                            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+
+    <aside>
+	<div id="asideProfile" class="aside-box">
+    <!-- <h3 class="aside-title">个人资料</h3> -->
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/kzl_knight">
+              <img src="https://avatar.csdn.net/5/A/A/3_kzl_knight.jpg" class="avatar_pic">
+                              <img src="https://g.csdnimg.cn/static/user-reg-year/1x/1.png" class="user-years">
+                          </a>
+            
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/kzl_knight" target="_blank" class="" id="uid">kzl_knight</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a class="btn btn-sm btn-red-hollow attention" id="btnAttent">关注</a>
+            </span>
+        </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="49">
+                        <dt><a href="https://blog.csdn.net/kzl_knight?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/kzl_knight?t=1"><span class="count">49</span></a></dd>
+                    </dl>
+        <dl class="text-center" id="fanBox" title="36">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">36</span></dd>
+        </dl>
+        <dl class="text-center" title="12">
+            <dt>喜欢</dt>
+            <dd><span class="count">12</span></dd>
+        </dl>
+        <dl class="text-center" title="0">
+            <dt>评论</dt>
+            <dd><span class="count">0</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-3"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="52461">
+                5万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="996">
+                996            </dd>
+        </dl>
+        <dl title="73129">
+            <dt>排名：</dt>
+            <dd>7万+</dd>
+        </dl>
+    </div>
+        <div class="badge-box d-flex">
+        <span>勋章：</span>
+        <div class="badge d-flex">
+                                                        <div class="icon-badge" title="持之以恒">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/chizhiyiheng.svg" alt="">
+                                   <p>持之以恒</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然月内发布4篇或4篇以上原创或翻译IT博文的用户。不积跬步无以至千里，不积小流无以成江海，程序人生的精彩需要坚持不懈地积累！                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv1">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l1_t2.svg" alt="">
+                                   <p>勤写标兵Lv1</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布1篇到3篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv2">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l2_t2.svg" alt="">
+                                   <p>勤写标兵Lv2</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布4篇到6篇原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                                             <div class="icon-badge" title="勤写标兵Lv4">
+                       <div class="mouse-box">
+                          <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                          <div class="icon-arrow"></div>
+                       </div>
+                       <div class="grade-detail-box">
+                           <div class="pos-box">
+                               <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                                    <img src="https://g.csdnimg.cn/static/user-medal/qinxiebiaobing_l4_t1.svg" alt="">
+                                   <p>勤写标兵Lv4</p>
+                               </div>
+                               <div class="right-box">
+                                   授予每个自然周发布9篇以上（包括9篇）原创IT博文的用户。本勋章将于次周上午根据用户上周的博文发布情况由系统自动颁发。                               </div>
+                           </div>
+                       </div>
+                   </div>
+                                             </div>
+        <script>
+            (function ($) {
+                setTimeout(function(){
+                    $('div.icon-badge.show-moment').removeClass('show-moment');
+                }, 5000);
+            })(window.jQuery)
+        </script>
+    </div>
+    </div>
+<div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+      <div id="kp_box_56" data-pid="56" data-track-view='{"mod":"kp_popu_56-876","con":",,"}' data-track-click='{"mod":"kp_popu_56-876","con":",,"}'><!-- 广告位：PC-博客内页左上视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6096221',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="//dup.baidustatic.com/js/os.js"></script></div>    </div>
+</div>
+<div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91402940" target="_blank">windows查看进程并结束</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91044758" target="_blank">[Nginx]反向代理</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/91039990" target="_blank">[flask]1基础知识点</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90954216" target="_blank">uWSGI部署python项目</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/kzl_knight/article/details/90692758" target="_blank">[Django]中间件</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+<div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8966794">
+                    <span class="title oneline">web前端技术</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8916283">
+                    <span class="title oneline">linux基础</span>
+                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8917641">
+                    <span class="title oneline">python系统编程</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8930728">
+                    <span class="title oneline">Django</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8935344">
+                    <span class="title oneline">数据库</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8951492">
+                    <span class="title oneline">pycharm</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8959754">
+                    <span class="title oneline">csdn_python教学笔记2.0</span>
+                    <span class="count float-right">10篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971103">
+                    <span class="title oneline">csdn2.0课程笔记-1.python基础上</span>
+                    <span class="count float-right">9篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971104">
+                    <span class="title oneline">csdn2.0课程笔记-2.python基础下</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971107">
+                    <span class="title oneline">csdn2.0课程笔记-3.数据库操作</span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971109">
+                    <span class="title oneline">csdn2.0课程笔记-4.Web前端技术</span>
+                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971379">
+                    <span class="title oneline">项目实战</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8971742">
+                    <span class="title oneline">csdn2.0课程笔记-Web选修</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8982378">
+                    <span class="title oneline">数据挖掘</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/8989051">
+                    <span class="title oneline">web前端笔记</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9009953">
+                    <span class="title oneline">运维</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9012691">
+                    <span class="title oneline">Flask</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/kzl_knight/article/category/9021123">
+                    <span class="title oneline">win10</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+<div id="asideArchive" class="aside-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/06">
+                    2019年6月                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/kzl_knight/article/month/2019/05">
+                    2019年5月                    <span class="count float-right">42篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+    </div>
+<div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313005">1.3 Python运算符</a>
+					<p class="read">阅读数 <span>1564</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90441297">[Django项目案例]搭建用户与商品后台管理系统</a>
+					<p class="read">阅读数 <span>1526</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313521">1.4 Python的数据类型</a>
+					<p class="read">阅读数 <span>1514</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90512005">1.7 Python函数详解</a>
+					<p class="read">阅读数 <span>1499</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/kzl_knight/article/details/90313615">1.5 Python分支结构</a>
+					<p class="read">阅读数 <span>1471</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+	<div id="asideFooter">
+			
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57" data-track-view='{"mod":"kp_popu_57-1158","con":",,"}' data-track-click='{"mod":"kp_popu_57-1158","con":",,"}'><!-- 广告位：PC-博客内页左下视窗 -->
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '6272567',
+        container: s,
+        size: '300,250',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="https://dup.baidustatic.com/js/os.js"></script></div>		</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<div class="tool-box vertical">
+	<ul class="meau-list">
+		<li class="btn-like-box ">
+			<button class=" low-height hover-box btn-like " title="点赞">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup"></use>
+				</svg>
+				<span class="hover-show text-box text">
+					<span class="no-active">点赞</span>
+					<span class="active">取消点赞</span>
+				</span>
+				<p>0</p>
+			</button>
+		</li>
+		<li class="to-commentBox">
+						<a class="btn-comments low-height hover-box" title="写评论" href="#commentBox">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg>
+				<span class="hover-show text">评论</span>
+				<p class="">
+										</p>
+			</a>
+		</li>
+		<li class="toc-container-box" id="liTocBox">
+			<a class="btn-toc low-height hover-box btn-comments" title="目录">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-contents"></use>
+				</svg>
+				<span class="hover-show text">目录</span>
+			</a>
+			<div class="toc-container">
+				<div class="pos-box">
+					<div class="icon-arrow"></div>
+					<div class="scroll-box">
+						<div class="toc-box"></div>
+					</div>
+				</div>
+				<div class="opt-box">
+					<button class="btn-opt prev nomore" title="向上">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronup"></use>
+						</svg>
+					</button>
+					<button class="btn-opt next">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevrondown"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<a class="btn-bookmark low-height hover-box btn-comments" title="收藏">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg>
+					<span class="hover-show text">收藏</span>
+				<!-- <span class="hover-show text-box text">
+					<span class="no-active">收藏</span>
+					<span class="active">取消收藏</span>
+				</span> -->
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<div class="weixin-qr btn-comments low-height hover-box" >
+        <a href="#" class="bds_weixin clear-share-style" data-cmd="weixin" title="手机看"></a>
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-usephone"></use>
+				</svg>
+				<span class="hover-show text text3">
+					手机看
+				</span>
+			</div>
+		</li>
+							<li class="widescreen-hide">
+				<a class="prev btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90692758" title="[Django]中间件">
+					<svg class="icon hover-hide" aria-hidden="true">
+						<use xlink:href="#csdnc-chevronleft"></use>
+					</svg>
+					<span class="hover-show text text3">上一篇</span>
+				</a>
+			</li>
+								<li class="widescreen-hide">
+			<a class="next btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/90954216" title="uWSGI部署python项目">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-chevronright"></use>
+				</svg>
+				<span class="hover-show text text3">下一篇</span>
+			</a>
+		</li>
+						<!-- 宽屏更多按钮 -->
+		<li class="widescreen-more">
+			<a class="btn-comments chat-ask-button low-height hover-box" title="快问" href="#chatqa">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-more"></use>
+				</svg>
+				<span class="hover-show text">更多</span>
+				
+			</a>
+			<ul class="widescreen-more-box">
+													<li class="widescreen-more">
+						<a class="btn-comments low-height hover-box" href="https://blog.csdn.net/kzl_knight/article/details/90692758" title="[Django]中间件">
+							<svg class="icon hover-hide" aria-hidden="true">
+								<use xlink:href="#csdnc-chevronleft"></use>
+							</svg>
+							<span class="hover-show text text3">上一篇</span>
+						</a>
+					</li>
+																<li class="widescreen-more">
+					<a class="btn-comments hover-box low-height" href="https://blog.csdn.net/kzl_knight/article/details/90954216" title="uWSGI部署python项目">
+						<svg class="icon hover-hide" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronright"></use>
+						</svg>
+						<span class="hover-show text text3">下一篇</span>
+					</a>
+				</li>
+							</ul>
+		</li>
+	</ul>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script>
+    var recommendCount = 81;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var ChannelId = 12;
+    var articleId = "90899356";
+    var commentscount = 0;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/kzl_knight/article/details/90899356";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "[ubuntu18.04]维护mysql - kzl_knight的博客";
+    var needInsertBaidu = false;
+    // 代码段样式
+    var codeStyle = '';
+	var highlight = ["ubuntu18.04","\u7ef4\u62a4","mysql"];//高亮数组
+
+    var RecommendBlogExpertList = [];
+	var articleType = 1;
+	var CopyrightContent = '';
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+</body>
+
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+	<script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/pc_wap_common-45af74a22e.js" /></script>
+
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-84251d2950.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-fefc1403d5.min.js"></script>
+
+	<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-fc7383b956.min.js"></script>
+<script>
+ // 全局声明
+ if (window.csdn === undefined) {
+      window.csdn = {};
+    }
+    window.csdn.sideToolbar = {
+        options: {
+            report:{
+                isShow: true,
+            },
+            afterFinished: function(){
+                setTimeout(function () {
+                    var viphtml = '<a class="option-box" data-type="vip" href="https://mall.csdn.net/vip" target="_blank">'+
+                        '<img src="https://g.csdnimg.cn/side-toolbar/1.2/images/vip.png" alt="" srcset="">'+
+                        '<span class="show-txt">VIP<br>免广告</span>'+
+                        '</a>';
+                    $('.csdn-side-toolbar').prepend(viphtml)
+                },300)
+            }
+        }
+    }
+
+    $(function(){
+        $(document).on('click',"a.option-box[data-type='report']",function() {
+            showReport(false,articleTitles)
+        });
+    })
+</script>
+<script src="https://g.csdnimg.cn/side-toolbar/1.2/side-toolbar.js"></script>
+
+    <script src="//g.csdnimg.cn/??login-box/1.0.6/login-box.js,login-box/1.0.5/login-auto.js,copyright/1.0.3/copyright.js?t=20190307095522"></script>
+
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+<script type="text/javascript">
+    </script>
+<script src="https://gh.bdstatic.com/static/gh/js/sdk/bword.min.js"></script>
+</html>
